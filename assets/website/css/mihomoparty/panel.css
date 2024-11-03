@@ -1,0 +1,229 @@
+	/*-- Color Chose css --*/
+
+#style-selector {
+    
+	width: 213px;
+	position: fixed;
+	right: 0;
+	top: 101px;
+	z-index: 10000;
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	}
+.style-selector-wrapper {
+height:220px
+    -webkit-box-shadow: 0 2px 9px 2px rgba(0,0,0,0.14);
+	-moz-box-shadow: 0 2px 9px 2px rgba(0,0,0,0.14);
+	box-shadow: 0 2px 9px 2px rgba(0,0,0,0.14);
+	border: 1px solid rgba(23,24,26,0.15);
+	}
+.style-selector-wrapper .title{
+	display: block;
+    background: #FBF9F9;
+    text-align: center;
+    font-size: 15px;
+	font-weight: 600;
+    line-height: 44px;
+	color: #867A7A;
+	text-transform: capitalize;
+	border-bottom:1px solid rgba(23,24,26,0.15);
+	}
+#style-selector .title-sub2 {
+	display: block;
+    color: #CCCCCC;
+    text-align: center;
+    font-size: 12px;
+	line-height:41px;
+	border-bottom:1px solid rgba(23,24,26,0.15);
+    }
+.style-selector-wrapper{
+	text-align:center;
+	
+	}
+.wrapper-inner{
+	background-color: #ffffff;
+	min-height: 260px;
+	}
+.wrapper-inner ul {
+    margin:0;
+	list-style:none;
+    }
+.wrapper-inner ul  li{
+    margin:5px;
+	padding:0;
+	padding-left: 46px;
+	width:100%;
+	text-align:left;
+	height:25px;
+    }
+#style-selector a.close {
+position: absolute;
+top: 45px;
+right: -34px;
+width: 35px;
+height: 43px;
+line-height: 43px;
+text-align: center;
+color: #fff!important;
+font-size: 28px;
+font-weight: lighter!important;
+background: black!important;
+background-position: 0px 5px;
+border: 1px solid #DCDDDD;
+border-left: none!important;
+    }
+#style-selector a.active {
+    box-shadow: 0 0 0 2px #000;
+    }
+/* ----------- Colors ----------- */
+.pre-color-skin1{
+	width:25px;
+	height:25px;
+	background-color: #d21a10;
+	float: left;
+	cursor: pointer;
+	}
+.pre-color-skin2{
+	width:25px;
+	height:25px;
+	background-color: #acc86e;
+	float: left;
+	cursor: pointer;
+	}
+.pre-color-skin3{
+	width:25px;
+	height:25px;
+	background-color:#2b85b5!important;
+	float: left;
+	cursor: pointer;
+	}
+.pre-color-skin4{
+	width:25px;
+	height:25px;!important;
+	background: #7abcde!important;
+	float: left;
+	cursor: pointer;
+	}
+.pre-color-skin5{
+	width:25px;
+	height:25px;
+	background-color: #ebb74c;
+	float: left;
+	cursor: pointer;
+	}
+.pre-color-skin6{
+	width:25px;
+	height:25px;
+	background-color: #fb6148;
+	float: left;
+	cursor: pointer;
+	}
+.pre-color-skin7{
+	width:25px;
+	height:25px;
+	background-color: #4EB25C;
+	float: left;
+	cursor: pointer;
+	}
+.pre-color-skin8{
+	width:25px;
+	height:25px;
+	background-color: purple;
+	float: left;
+	cursor: pointer;
+	}
+.pre-color-skin9{
+	width:25px;
+	height:25px;
+	background-color: #ff69b4;
+	float: left;
+	cursor: pointer;
+	}
+.pre-color-skin10{
+	width:25px;
+	height:25px;
+	background-color: brown;
+	float: left;
+	cursor: pointer;
+	}
+#style-selector .styles-noborder {
+	overflow: hidden;
+	margin: 0px 0px 0px 0px;
+}
+#style-selector .styles-noborder li {
+	float: left;
+	margin: 0px 4px;
+	padding: 0;
+	color: #ddd;
+}
+#style-selector .styles-noborder li img {
+	float: left;
+	width: 50px;
+	height: 40px;
+}
+	/*-- End Color Chose css --*/
+.bonus_design_button{
+	margin:20px 0px;
+	text-align:center;
+	}
+.bonus_design_button a {
+	font-size:16px;
+	text-decoration:none;
+	padding:5px 15px 5px 15px;
+	color:#fe504f;
+	border:1px solid #fe504f;
+	text-align:center;
+	border-radius:4px;
+	margin-left: 8px;
+	}
+.bonus_design_button a:hover{
+	color:#ffffff;
+	background-color:#fe504f;
+	font-weight:bold;
+	border:none;
+	-webkit-transition: all 200ms ease-in;
+	-o-transition: all 200ms ease-in;
+	-moz-transition: all 200ms ease-in;
+	transition: all 200ms ease-in;
+	}
+	
+ul.color_th li{float:left; padding:0px; width:20px;}
+ul.color_th{padding-left: 10px;
+padding-top: 6px;}
+
+.wrapper-inner {
+background-color: rgba(0, 0, 0, 0.6)!important;
+
+z-index: 999999999999999999999999999999999999999999999999;}
+#style-selector a.close i {
+top: -2px;
+position: relative;}
+
+.mo-sceen {
+width: 89%!important;
+text-align: center;
+font-weight: bold;
+line-height: 43px!important;
+background: #3c3c3c;
+padding-bottom: 22px!important;
+margin-top: 12px!important;
+text-transform: uppercase;
+opacity: 0.8;
+margin: 5px;
+padding: 0;
+padding-left: 46px;
+width: 100%;
+text-align: left;
+height: 48px!important;
+padding: 0px 14px!important;
+font-size: 11px;
+}
+.wrapper-inner ul li a {
+color: white!important;
+}
+.mo-sceen a {
+display: block;
+text-align: center;
+text-decoration:none;
+}
+
+.dr-message{color:#fff; padding:10px 20px 10px 10px;}
