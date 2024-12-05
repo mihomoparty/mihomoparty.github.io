@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-21758.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>Redis6配置主从复制+读写分离</title>
+        <meta name="description" content="Redis6配置主从复制+读写分离  Redis6配置主从复制+读写分离   Redis5主从复制+读写分类介绍   背景 目标 redis主从架构介绍   Linux服务器-Redis6.X 主从复" />
+        <link rel="icon" href="__ADDON__/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="#">关于</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">联系</a>
+                                    </li>
+                                </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">Redis6配置主从复制+读写分离</h1>
+                                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <div class="toc"> <h3>Redis6配置主从复制+读写分离</h3> <ul> <li><a href="#Redis6_2" rel="nofollow">Redis6配置主从复制+读写分离</a></li> <li> <ul> <li><a href="#Redis5_4" rel="nofollow">Redis5主从复制+读写分类介绍</a></li> <li> <ul> <li><a href="#_6" rel="nofollow">背景</a></li> <li><a href="#_12" rel="nofollow">目标</a></li> <li><a href="#redis_17" rel="nofollow">redis主从架构介绍</a></li> </ul> </li> <li><a href="#LinuxRedis6X___21" rel="nofollow">Linux服务器-Redis6.X 主从复制 一主二从架构环境准备</a></li> <li> <ul> <li><a href="#_23" rel="nofollow">配置</a></li> <li><a href="#redisconf_37" rel="nofollow">创建主配置文件redis.conf</a></li> <li><a href="#redisconf_52" rel="nofollow">创建两个从配置文件redis.conf</a></li> </ul> </li> <li><a href="#LinuxRedis6X___68" rel="nofollow">Linux服务器-Redis6.X 主从复制 一主二从架构</a></li> <li> <ul> <li><a href="#_70" rel="nofollow">启动</a></li> </ul> </li> <li><a href="#Redis_91" rel="nofollow">Redis主从架构-复制读写分离原理解析</a></li> <li> <ul> <li><a href="#_93" rel="nofollow">主从复制</a></li> <li><a href="#_106" rel="nofollow">特点</a></li> <li><a href="#_113" rel="nofollow">加速复制</a></li> <li><a href="#_120" rel="nofollow">主从断开重连</a></li> </ul> </li> </ul> </li> <li><a href="#Redis6_126" rel="nofollow">Redis6配置主从复制+读写分离</a></li> <li> <ul> <li><a href="#Redis5_128" rel="nofollow">Redis5主从复制+读写分类介绍</a></li> <li> <ul> <li><a href="#_130" rel="nofollow">背景</a></li> <li><a href="#_136" rel="nofollow">目标</a></li> <li><a href="#redis_141" rel="nofollow">redis主从架构介绍</a></li> </ul> </li> <li><a href="#LinuxRedis6X___146" rel="nofollow">Linux服务器-Redis6.X 主从复制 一主二从架构环境准备</a></li> <li> <ul> <li><a href="#_148" rel="nofollow">配置</a></li> <li><a href="#redisconf_162" rel="nofollow">创建主配置文件redis.conf</a></li> <li><a href="#redisconf_177" rel="nofollow">创建两个从配置文件redis.conf</a></li> </ul> </li> <li><a href="#LinuxRedis6X___193" rel="nofollow">Linux服务器-Redis6.X 主从复制 一主二从架构</a></li> <li> <ul> <li><a href="#_195" rel="nofollow">启动</a></li> </ul> </li> <li><a href="#Redis_216" rel="nofollow">Redis主从架构-复制读写分离原理解析</a></li> <li> <ul> <li><a href="#_218" rel="nofollow">主从复制</a></li> <li><a href="#_231" rel="nofollow">特点</a></li> <li><a href="#_238" rel="nofollow">加速复制</a></li> <li><a href="#_245" rel="nofollow">主从断开重连</a></li> </ul> </li> </ul> </li> </ul> </div> </h1> <h2><a id="Redis5_4" rel="nofollow"></a>Redis5主从复制+读写分类介绍</h2> <h3><a id="_6" rel="nofollow"></a>背景</h3> <ul> <li>单机部署简单，但是可靠性低，并且不能很好的利用cpu的多核处理能力</li> <li>生产环境—必须保证高可用-一般不可能单机部署</li> <li>读写分离是可用性要求不高、性能要求较高、数据规模小的情况</li> </ul> <h3><a id="_12" rel="nofollow"></a>目标</h3> <ul> <li>读写分离，扩展主节点的读能力，分担主节点读压力</li> <li>容灾恢复，一旦主节点宕机，从节点作为主节点的备份可以随时顶上</li> </ul> <h3><a id="redis_17" rel="nofollow"></a>redis主从架构介绍</h3> <p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-KAWhpQ47-1626503734005)(C:\Users\阮相歌\AppData\Roaming\Typora\typora-user-images\image-20210717130506749.png)]</p> <h2><a id="LinuxRedis6X___21" rel="nofollow"></a>Linux服务器-Redis6.X 主从复制 一主二从架构环境准备</h2> <h3><a id="_23" rel="nofollow"></a>配置</h3> <pre><code class="prism language-java">mkdir<span class="token operator">-</span>p<span class="token operator">/</span>data<span class="token operator">/</span>redis<span class="token operator">/</span>master<span class="token operator">/</span>data mkdir<span class="token operator">-</span>p<span class="token operator">/</span>data<span class="token operator">/</span>redis<span class="token operator">/</span>slave1<span class="token operator">/</span>data mkdir<span class="token operator">-</span>p<span class="token operator">/</span>data<span class="token operator">/</span>redis<span class="token operator">/</span>slave2<span class="token operator">/</span>data #从节点开启只读模式<span class="token punctuation">(</span>默认<span class="token punctuation">)</span> replica<span class="token operator">-</span>read<span class="token operator">-</span>only yes #从节点访问主节点的密码，和requirepass⼀样 masterauth<span class="token number">123456</span> #哪个主节点进⾏复制 replicaof<span class="token number">8.129</span><span class="token number">.113</span><span class="token number">.233</span><span class="token number">6379</span></code></pre> <h3><a id="redisconf_37" rel="nofollow"></a>创建主配置文件redis.conf</h3> <pre><code>bind 0.0.0.0 port 6379 daemonize yes requirepass "123456" logfile "/usr/local/redis/log/redis1.log" dbfilename "xdclass1.rdb" dir "/usr/local/redis/data" appendonly yes appendfilename "appendonly1.aof" masterauth "123456"</code></pre> <h3><a id="redisconf_52" rel="nofollow"></a>创建两个从配置文件redis.conf</h3> <pre><code>bind 0.0.0.0 port 6380/6381 daemonize yes requirepass "123456" logfile "/usr/local/redis/log/redis1/2.log" dbfilename "xdclass1/2.rdb" dir "/usr/local/redis/data" appendonly yes appendfilename "appendonly1/2.aof" replicaof 8.129.113.233 6379 masterauth "123456"</code></pre> <h2><a id="LinuxRedis6X___68" rel="nofollow"></a>Linux服务器-Redis6.X 主从复制 一主二从架构</h2> <h3><a id="_70" rel="nofollow"></a>启动</h3> <pre><code>#启动主 ./redis-server /data/redis/master/data/redis.conf #启动从 ./redis-server /data/redis/slave1/data/redis.conf #启动从 ./redis-server /data/redis/slave2/data/redis.conf</code></pre> <ul> <li>info replication 查看状态</li> <li>主从复制和读写验证</li> <li>防火墙和网络安全组记得开放端口 <ul> <li>6379 主节点</li> <li>6380 从节点</li> <li>6381 从节点</li> </ul> </li> </ul> <h2><a id="Redis_91" rel="nofollow"></a>Redis主从架构-复制读写分离原理解析</h2> <h3><a id="_93" rel="nofollow"></a>主从复制</h3> <ul> <li>主从复制分两种（主从刚连接的时候，进⾏全量同步；全同步结束后，进⾏增量同步） <ul> <li>全量复制 <ul> <li>master服务器会开启⼀个后台进程⽤于将redis中的数据⽣成⼀个rdb⽂件</li> <li>主服务器会缓存所有接收到的来⾃客户端的写命令，当后台保存进程 处理完毕后，会将该rdb⽂件传递给slave服务器</li> <li>slave服务器会将rdb⽂件保存在磁盘并通过读取该⽂件将数据加载到内存</li> <li>在此之后master服务器会将在此期间缓存的命令通过redis传输协议发送给slave服务器</li> <li>然后slave服务器将这些命令依次作⽤于⾃⼰本地的数据集上最终达到数据的⼀致性</li> </ul> </li> <li>增量复制 <ul> <li>Slave初始化后开始正常⼯作时主服务器发⽣的写操作同步到从服务器的过程</li> <li>服务器每执⾏⼀个写命令就会向从服务器发送相同的写命令，从服务器接收并执⾏收到的写命令</li> </ul> </li> </ul> </li> </ul> <h3><a id="_106" rel="nofollow"></a>特点</h3> <ul> <li>主从复制对于 主/从 redis服务器来说是⾮阻塞的，所以同步期间都可以正常处理外界请求</li> <li>⼀个主redis可以含有多个从redis，每个从redis可以接收来⾃其他从redis服务器的连接</li> <li>从节点不会让key过期，⽽是主节点的key过期删除后，成为del命令传输到从节点进⾏删除 <ul> <li>从节点开启 sync 看⽇志</li> </ul> </li> </ul> <h3><a id="_113" rel="nofollow"></a>加速复制</h3> <ul> <li>完全重新同步需要在磁盘上创建⼀个RDB⽂件，然后加载这个⽂件以便为从服务器发送数据</li> <li>在⽐较低速的磁盘，这种操作会给主服务器带来较⼤的压⼒</li> <li>新版⽀持⽆磁盘的复制，⼦进程直接将RDB通过⽹络发送给从服务器，不使⽤磁盘作为中间存储</li> <li>repl-diskless-sync yes (默认是no)</li> </ul> <h3><a id="_120" rel="nofollow"></a>主从断开重连</h3> <ul> <li>如果遭遇连接断开，重新连接之后可以从中断处继续进⾏复制，⽽不必重新同步</li> <li>2.8版本后 部分重新同步这个新特性内部使⽤PSYNC命令，旧的实现中使⽤SYNC命令</li> </ul> <p>)</p> </h1> <h2><a id="Redis5_128" rel="nofollow"></a>Redis5主从复制+读写分类介绍</h2> <h3><a id="_130" rel="nofollow"></a>背景</h3> <ul> <li>单机部署简单，但是可靠性低，并且不能很好的利用cpu的多核处理能力</li> <li>生产环境—必须保证高可用-一般不可能单机部署</li> <li>读写分离是可用性要求不高、性能要求较高、数据规模小的情况</li> </ul> <h3><a id="_136" rel="nofollow"></a>目标</h3> <ul> <li>读写分离，扩展主节点的读能力，分担主节点读压力</li> <li>容灾恢复，一旦主节点宕机，从节点作为主节点的备份可以随时顶上</li> </ul> <h3><a id="redis_141" rel="nofollow"></a>redis主从架构介绍</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220902/0b4ced1c1657d058aa0139405f21d917.jpg" alt="Redis6配置主从复制+读写分离"></p> <h2><a id="LinuxRedis6X___146" rel="nofollow"></a>Linux服务器-Redis6.X 主从复制 一主二从架构环境准备</h2> <h3><a id="_148" rel="nofollow"></a>配置</h3> <pre><code class="prism language-java">mkdir<span class="token operator">-</span>p<span class="token operator">/</span>data<span class="token operator">/</span>redis<span class="token operator">/</span>master<span class="token operator">/</span>data mkdir<span class="token operator">-</span>p<span class="token operator">/</span>data<span class="token operator">/</span>redis<span class="token operator">/</span>slave1<span class="token operator">/</span>data mkdir<span class="token operator">-</span>p<span class="token operator">/</span>data<span class="token operator">/</span>redis<span class="token operator">/</span>slave2<span class="token operator">/</span>data #从节点开启只读模式<span class="token punctuation">(</span>默认<span class="token punctuation">)</span> replica<span class="token operator">-</span>read<span class="token operator">-</span>only yes #从节点访问主节点的密码，和requirepass⼀样 masterauth<span class="token number">123456</span> #哪个主节点进⾏复制 replicaof<span class="token number">8.129</span><span class="token number">.113</span><span class="token number">.233</span><span class="token number">6379</span></code></pre> <h3><a id="redisconf_162" rel="nofollow"></a>创建主配置文件redis.conf</h3> <pre><code>bind 0.0.0.0 port 6379 daemonize yes requirepass "123456" logfile "/usr/local/redis/log/redis1.log" dbfilename "xdclass1.rdb" dir "/usr/local/redis/data" appendonly yes appendfilename "appendonly1.aof" masterauth "123456"</code></pre> <h3><a id="redisconf_177" rel="nofollow"></a>创建两个从配置文件redis.conf</h3> <pre><code>bind 0.0.0.0 port 6380/6381 daemonize yes requirepass "123456" logfile "/usr/local/redis/log/redis1/2.log" dbfilename "xdclass1/2.rdb" dir "/usr/local/redis/data" appendonly yes appendfilename "appendonly1/2.aof" replicaof 8.129.113.233 6379 masterauth "123456"</code></pre> <h2><a id="LinuxRedis6X___193" rel="nofollow"></a>Linux服务器-Redis6.X 主从复制 一主二从架构</h2> <h3><a id="_195" rel="nofollow"></a>启动</h3> <pre><code>#启动主 ./redis-server /data/redis/master/data/redis.conf #启动从 ./redis-server /data/redis/slave1/data/redis.conf #启动从 ./redis-server /data/redis/slave2/data/redis.conf</code></pre> <ul> <li>info replication 查看状态</li> <li>主从复制和读写验证</li> <li>防火墙和网络安全组记得开放端口 <ul> <li>6379 主节点</li> <li>6380 从节点</li> <li>6381 从节点</li> </ul> </li> </ul> <h2><a id="Redis_216" rel="nofollow"></a>Redis主从架构-复制读写分离原理解析</h2> <h3><a id="_218" rel="nofollow"></a>主从复制</h3> <ul> <li>主从复制分两种（主从刚连接的时候，进⾏全量同步；全同步结束后，进⾏增量同步） <ul> <li>全量复制 <ul> <li>master服务器会开启⼀个后台进程⽤于将redis中的数据⽣成⼀个rdb⽂件</li> <li>主服务器会缓存所有接收到的来⾃客户端的写命令，当后台保存进程 处理完毕后，会将该rdb⽂件传递给slave服务器</li> <li>slave服务器会将rdb⽂件保存在磁盘并通过读取该⽂件将数据加载到内存</li> <li>在此之后master服务器会将在此期间缓存的命令通过redis传输协议发送给slave服务器</li> <li>然后slave服务器将这些命令依次作⽤于⾃⼰本地的数据集上最终达到数据的⼀致性</li> </ul> </li> <li>增量复制 <ul> <li>Slave初始化后开始正常⼯作时主服务器发⽣的写操作同步到从服务器的过程</li> <li>服务器每执⾏⼀个写命令就会向从服务器发送相同的写命令，从服务器接收并执⾏收到的写命令</li> </ul> </li> </ul> </li> </ul> <h3><a id="_231" rel="nofollow"></a>特点</h3> <ul> <li>主从复制对于 主/从 redis服务器来说是⾮阻塞的，所以同步期间都可以正常处理外界请求</li> <li>⼀个主redis可以含有多个从redis，每个从redis可以接收来⾃其他从redis服务器的连接</li> <li>从节点不会让key过期，⽽是主节点的key过期删除后，成为del命令传输到从节点进⾏删除 <ul> <li>从节点开启 sync 看⽇志</li> </ul> </li> </ul> <h3><a id="_238" rel="nofollow"></a>加速复制</h3> <ul> <li>完全重新同步需要在磁盘上创建⼀个RDB⽂件，然后加载这个⽂件以便为从服务器发送数据</li> <li>在⽐较低速的磁盘，这种操作会给主服务器带来较⼤的压⼒</li> <li>新版⽀持⽆磁盘的复制，⼦进程直接将RDB通过⽹络发送给从服务器，不使⽤磁盘作为中间存储</li> <li>repl-diskless-sync yes (默认是no)</li> </ul> <h3><a id="_245" rel="nofollow"></a>主从断开重连</h3> <ul> <li>如果遭遇连接断开，重新连接之后可以从中断处继续进⾏复制，⽽不必重新同步</li> <li>2.8版本后 部分重新同步这个新特性内部使⽤PSYNC命令，旧的实现中使⽤SYNC命令</li> </ul> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-21255.htm">动物防疫站打针需要什么资质呢（动物防疫站打针多少钱）</a></p>
+                                        <p>下一个：<a href="/news/article-21759.htm">vue变更v-for列表多个项目的颜色和选择项目</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-19417.htm" title="专门卖宠物的软件（售卖宠物的软件）">专门卖宠物的软件（售卖宠物的软件）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新20.8M/S免费节点订阅链接">Mihomo Party节点订阅每天更新20.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新19.8M/S免费节点订阅链接">Mihomo Party节点订阅每天更新19.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19880.htm" title="动物打疫苗有什么作用吗（动物打的疫苗是什么）">动物打疫苗有什么作用吗（动物打的疫苗是什么）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-23-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新18.2M/S免费节点订阅链接">Mihomo Party节点订阅每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20335.htm" title="动物疫苗接种方法有哪几种呢（动物疫苗接种方法有哪几种呢视频）">动物疫苗接种方法有哪几种呢（动物疫苗接种方法有哪几种呢视频）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新21.4M/S免费节点订阅链接">Mihomo Party节点订阅每天更新21.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新22.9M/S免费节点订阅链接">Mihomo Party节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20794.htm" title="Python数据类型%s，%d，%f的用法">Python数据类型%s，%d，%f的用法</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新21.1M/S免费节点订阅链接">Mihomo Party节点订阅每天更新21.1M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
