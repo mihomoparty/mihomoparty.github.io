@@ -3,12 +3,11 @@
 
 
 <head>
-        <link rel="canonical" href="https://mihomoparty.github.io" />
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-25863.htm" />
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <!-- Metas Page details-->
-    <title>2024-11归档 - Mihomo Party免费机场订阅节点官网</title>
-        <meta name="keywords" content="2024-11归档" />
-        <meta name="description" content="2024-11归档" />
+    <title>Springboot使用@JsonSerialize和@JsonDeserialize</title>
+        <meta name="description" content="@JsonSerialize和@JsonDeserialize  在springboot将一个对象转换成json或json解析为对象时，如果需要对某些字段指定序列化和可以使用@JsonSerializ" />
         <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -60,7 +59,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body id="top" class="ndhome" data-page="category">
+<body id="top" class="ndhome" data-page="detail">
         <!-- PRELOADER-->
     <div id="preloader">
         <div class="preloader-container">
@@ -119,15 +118,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-4">
-                    <div class="page-title">
-                        <h1>2024-11 归档</h1>
-                    </div>
+                    
                 </div><!-- col 6-->
                 <div class="col-sm-8">
                     <div class="ndbreadcrumb">
                         <ul class="breadcrumb">
                             <li><a href="/">首页</a></li>
-                            <li class="active">2024-11 归档</li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
                         </ul>
                     </div>
                 </div><!-- col 6-->
@@ -140,36 +138,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <div class="xcblog-blog-list">
-                                                <div class="row item xcblog-blog-item" data-date="2024-11-04">
-                            <div class="col-md-3">
-                                <a href="/free-nodes/2024-11-4-node-share.htm" class="xcblog-blog-url">
-                                    <img src="/uploads/20241103-1/5003ca06755b1a10ce28d4b03bafbedc.webp" alt="Mihomo Party节点订阅每天更新19.5M/S免费节点订阅链接">
-                                </a>
-                            </div>
-                            <div class="col-md-9">
-                                <a href="/free-nodes/2024-11-4-node-share.htm" class="xcblog-blog-url">
-                                    <h3 class="xcblog-blog-title">Mihomo Party节点订阅每天更新19.5M/S免费节点订阅链接</h3>
-                                </a>
-                                <p>这一次的节点更新覆盖了韩国、日本、欧洲、新加坡、加拿大、美国、香港等地区,最高速度可达19.5 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。</p>
-                            </div>
-                        </div>
-                                                <div class="row item xcblog-blog-item" data-date="2024-11-03">
-                            <div class="col-md-3">
-                                <a href="/free-nodes/2024-11-3-node-share.htm" class="xcblog-blog-url">
-                                    <img src="/uploads/20241103-1/091750c9400aeadf71f8adba9af83ce8.webp" alt="11月3日→21.5M/S|2024年最新免费节点Mihomo Party订阅链接地址">
-                                </a>
-                            </div>
-                            <div class="col-md-9">
-                                <a href="/free-nodes/2024-11-3-node-share.htm" class="xcblog-blog-url">
-                                    <h3 class="xcblog-blog-title">11月3日→21.5M/S|2024年最新免费节点Mihomo Party订阅链接地址</h3>
-                                </a>
-                                <p>这一次的节点更新覆盖了美国、韩国、日本、欧洲、香港、加拿大、新加坡等地区,最高速度可达21.5 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。</p>
-                            </div>
-                        </div>
-                        
-                        <ul class="pagination"><li><a href="/date/2024-11/page-3.htm">&laquo;</a></li> <li><a href="/date/2024-11/">1</a></li><li><a href="/date/2024-11/page-2.htm">2</a></li><li><a href="/date/2024-11/page-3.htm">3</a></li><li class="active"><span>4</span></li> <li class="disabled"><span>&raquo;</span></li></ul>                    </div>
-                </div>
+                    <h1 style="font-size: 2.5rem;">Springboot使用@JsonSerialize和@JsonDeserialize</h1>
+                                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h3> <a id="JsonSerializeJsonDeserialize_0" rel="nofollow"></a>@JsonSerialize和@JsonDeserialize</h3> <blockquote> <p>在springboot将一个对象转换成json或json解析为对象时，如果需要对某些字段指定序列化和可以使用@JsonSerialize和@JsonDeserialize注解指定自定义的序列化和反序列号器。</p> </blockquote> <p>自定义序列化器，用于springboot将java对象解析为json时使用</p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DateTimeSerializer</span> <span class="token keyword">extends</span> <span class="token class-name">JsonSerializer</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">LocalDateTime</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{<!-- --></span>      <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">serialize</span><span class="token punctuation">(</span><span class="token class-name">LocalDateTime</span> value<span class="token punctuation">,</span> <span class="token class-name">JsonGenerator</span> gen<span class="token punctuation">,</span> <span class="token class-name">SerializerProvider</span> serializers<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{<!-- --></span>         <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             <span class="token class-name">DateTimeFormatter</span> dateTimeFormatter <span class="token operator">=</span> <span class="token class-name">DateTimeFormatter</span><span class="token punctuation">.</span><span class="token function">ofPattern</span><span class="token punctuation">(</span><span class="token string">"yyyy/MM/dd/HH:mm:ss"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             gen<span class="token punctuation">.</span><span class="token function">writeString</span><span class="token punctuation">(</span>value<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>dateTimeFormatter<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{<!-- --></span>             gen<span class="token punctuation">.</span><span class="token function">writeNull</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p>自定义反序列化器，用于springboot将json解析到javabean对象使用</p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DateTimeDeserializer</span> <span class="token keyword">extends</span> <span class="token class-name">JsonDeserializer</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">LocalDateTime</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{<!-- --></span>      <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> <span class="token class-name">LocalDateTime</span> <span class="token function">deserialize</span><span class="token punctuation">(</span><span class="token class-name">JsonParser</span> p<span class="token punctuation">,</span> <span class="token class-name">DeserializationContext</span> ctxt<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span><span class="token punctuation">,</span> <span class="token class-name">JsonProcessingException</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">String</span> text <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token class-name">DateTimeFormatter</span> dateTimeFormatter <span class="token operator">=</span> <span class="token class-name">DateTimeFormatter</span><span class="token punctuation">.</span><span class="token function">ofPattern</span><span class="token punctuation">(</span><span class="token string">"yyyy-MM-dd-HH:mm:ss"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">return</span> <span class="token class-name">LocalDateTime</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>text<span class="token punctuation">,</span> dateTimeFormatter<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p>在对象中使用</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Data</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>     <span class="token annotation punctuation">@JsonSerialize</span><span class="token punctuation">(</span>using <span class="token operator">=</span> <span class="token class-name">DateTimeSerializer</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>     <span class="token annotation punctuation">@JsonDeserialize</span><span class="token punctuation">(</span>using <span class="token operator">=</span> <span class="token class-name">DateTimeDeserializer</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>     <span class="token keyword">private</span> <span class="token class-name">LocalDateTime</span> birthDate<span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-25403.htm">养猫咪不吉利吗（养猫咪不吉利吗怎么办）</a></p>
+                                        <p>下一个：<a href="/news/article-25864.htm">宠物领养证如何办理手续流程视频（宠物领养证书怎么办理）</a></p>
+                                    </div>
+                                </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
     <div class="panel-heading">
@@ -177,16 +152,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-18950.htm" title="宠物食品加工厂的前景（宠物食品厂需要投资多少钱）">宠物食品加工厂的前景（宠物食品厂需要投资多少钱）</a></li>
-                        <li class="py-2"><a href="/news/article-25863.htm" title="Springboot使用@JsonSerialize和@JsonDeserialize">Springboot使用@JsonSerialize和@JsonDeserialize</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-15-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新23M/S免费节点订阅链接">Mihomo Party节点订阅每天更新23M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-26-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新20.1M/S免费节点订阅链接">Mihomo Party节点订阅每天更新20.1M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-14-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新22.4M/S免费节点订阅链接">Mihomo Party节点订阅每天更新22.4M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-8-node-share-links.htm" title="Mihomo Party节点订阅每天更新19.4M/S免费节点订阅链接">Mihomo Party节点订阅每天更新19.4M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-25-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新20.4M/S免费节点订阅链接">Mihomo Party节点订阅每天更新20.4M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新19.7M/S免费节点订阅链接">Mihomo Party节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-4-node-share.htm" title="Mihomo Party节点订阅每天更新19.5M/S免费节点订阅链接">Mihomo Party节点订阅每天更新19.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-3-node-share.htm" title="11月3日→21.5M/S|2024年最新免费节点Mihomo Party订阅链接地址">11月3日→21.5M/S|2024年最新免费节点Mihomo Party订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-24414.htm" title="宠物医院收费价目表（诸城宠物医院收费价目表）">宠物医院收费价目表（诸城宠物医院收费价目表）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-node-share-links.htm" title="Mihomo Party节点订阅每天更新20.9M/S免费节点订阅链接">Mihomo Party节点订阅每天更新20.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20796.htm" title="Spring JDBC-NamedParameterJdbcTemplate模板类">Spring JDBC-NamedParameterJdbcTemplate模板类</a></li>
+                        <li class="py-2"><a href="/news/article-24937.htm" title="动物防疫疫苗数量统计表格图片大全（动物疫苗现状）">动物防疫疫苗数量统计表格图片大全（动物疫苗现状）</a></li>
+                        <li class="py-2"><a href="/news/article-20338.htm" title="动物疫苗上市公司排名前十名有哪些 动物疫苗上市公司排名前十名有哪些牌子">动物疫苗上市公司排名前十名有哪些 动物疫苗上市公司排名前十名有哪些牌子</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-23-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新18.2M/S免费节点订阅链接">Mihomo Party节点订阅每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-node-share.htm" title="Mihomo Party节点订阅每天更新18M/S免费节点订阅链接">Mihomo Party节点订阅每天更新18M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-22164.htm" title="宠物店一般一年能赚多少钱（宠物店一般一个月营业额多少）">宠物店一般一年能赚多少钱（宠物店一般一个月营业额多少）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新21.1M/S免费节点订阅链接">Mihomo Party节点订阅每天更新21.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19880.htm" title="动物打疫苗有什么作用吗（动物打的疫苗是什么）">动物打疫苗有什么作用吗（动物打的疫苗是什么）</a></li>
                     </ul>
     </div>
 </div>
