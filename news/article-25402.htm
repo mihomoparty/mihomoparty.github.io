@@ -45,8 +45,7 @@
     <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
     <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
     <!-- Style Switch -->
-    
-<!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -139,7 +138,8 @@
             <div class="row">
                 <div class="col-md-9">
                     <h1 style="font-size: 2.5rem;">我们如何将MySQL返回的结果集分成几组？</h1>
-                                      				  				  				<p>可以通过在SELECT语句中使用GROUP BY子句来完成。我们可以借助GROUP BY子句指定一列作为分组条件。由于指定了分组条件，因此在特定列中具有相同值的行将被视为单个组。MySQL SELECT语句返回的结果集将被分组。</p> <h2>示例</h2> <p>以下是一个很好的例子来理解它-</p> <p>我们有一个名为“ employees”的表，如下所示：</p> <pre>mysql&gt;&nbsp;Select&nbsp;*&nbsp;from&nbsp;employees; +------+-------------+--------+------------+ |&nbsp;id&nbsp;&nbsp;&nbsp;|&nbsp;designation&nbsp;|&nbsp;Salary&nbsp;|&nbsp;DoJ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| +------+-------------+--------+------------+ |&nbsp;100&nbsp;&nbsp;|&nbsp;Asst.Prof&nbsp;&nbsp;&nbsp;|&nbsp;50000&nbsp;&nbsp;|&nbsp;2016-06-15&nbsp;| |&nbsp;300&nbsp;&nbsp;|&nbsp;Prof&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;85000&nbsp;&nbsp;|&nbsp;2010-05-18&nbsp;| |&nbsp;250&nbsp;&nbsp;|&nbsp;Asso.Prof&nbsp;&nbsp;&nbsp;|&nbsp;74000&nbsp;&nbsp;|&nbsp;2013-02-12&nbsp;| |&nbsp;400&nbsp;&nbsp;|&nbsp;Prof&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;90000&nbsp;&nbsp;|&nbsp;2009-05-19&nbsp;| |&nbsp;200&nbsp;&nbsp;|&nbsp;Asst.Prof&nbsp;&nbsp;&nbsp;|&nbsp;60000&nbsp;&nbsp;|&nbsp;2015-05-11&nbsp;| +------+-------------+--------+------------+ 5&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <p>现在，在以下脚本的帮助下，我们将输出分组。</p> <pre>mysql&gt;&nbsp;select&nbsp;designation,&nbsp;count(*),&nbsp;AVG(salary)&nbsp;from&nbsp;employees&nbsp;group&nbsp;by&nbsp;designation; +-------------+----------+-------------+ |&nbsp;designation&nbsp;|&nbsp;count(*)&nbsp;|&nbsp;AVG(salary)&nbsp;| +-------------+----------+-------------+ |&nbsp;Asso.Prof&nbsp;&nbsp;&nbsp;|&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;74000.0000&nbsp;&nbsp;| |&nbsp;Asst.Prof&nbsp;&nbsp;&nbsp;|&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;55000.0000&nbsp;&nbsp;| |&nbsp;Prof&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;87500.0000&nbsp;&nbsp;| +-------------+----------+-------------+ 3&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <p>上面的查询将结果集分为Asso.Prof组，总数为1，平均工资为74000，Asst.Prof，总数为2，平均工资为55000，Prof，总数为2，平均工资为87500 。</p> <div></div> 			                <div class="clearfix"></div>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<p>可以通过在SELECT语句中使用GROUP BY子句来完成。我们可以借助GROUP BY子句指定一列作为分组条件。由于指定了分组条件，因此在特定列中具有相同值的行将被视为单个组。MySQL SELECT语句返回的结果集将被分组。</p> <h2>示例</h2> <p>以下是一个很好的例子来理解它-</p> <p>我们有一个名为“ employees”的表，如下所示：</p> <pre>mysql&gt;&nbsp;Select&nbsp;*&nbsp;from&nbsp;employees; +------+-------------+--------+------------+ |&nbsp;id&nbsp;&nbsp;&nbsp;|&nbsp;designation&nbsp;|&nbsp;Salary&nbsp;|&nbsp;DoJ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| +------+-------------+--------+------------+ |&nbsp;100&nbsp;&nbsp;|&nbsp;Asst.Prof&nbsp;&nbsp;&nbsp;|&nbsp;50000&nbsp;&nbsp;|&nbsp;2016-06-15&nbsp;| |&nbsp;300&nbsp;&nbsp;|&nbsp;Prof&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;85000&nbsp;&nbsp;|&nbsp;2010-05-18&nbsp;| |&nbsp;250&nbsp;&nbsp;|&nbsp;Asso.Prof&nbsp;&nbsp;&nbsp;|&nbsp;74000&nbsp;&nbsp;|&nbsp;2013-02-12&nbsp;| |&nbsp;400&nbsp;&nbsp;|&nbsp;Prof&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;90000&nbsp;&nbsp;|&nbsp;2009-05-19&nbsp;| |&nbsp;200&nbsp;&nbsp;|&nbsp;Asst.Prof&nbsp;&nbsp;&nbsp;|&nbsp;60000&nbsp;&nbsp;|&nbsp;2015-05-11&nbsp;| +------+-------------+--------+------------+ 5&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <p>现在，在以下脚本的帮助下，我们将输出分组。</p> <pre>mysql&gt;&nbsp;select&nbsp;designation,&nbsp;count(*),&nbsp;AVG(salary)&nbsp;from&nbsp;employees&nbsp;group&nbsp;by&nbsp;designation; +-------------+----------+-------------+ |&nbsp;designation&nbsp;|&nbsp;count(*)&nbsp;|&nbsp;AVG(salary)&nbsp;| +-------------+----------+-------------+ |&nbsp;Asso.Prof&nbsp;&nbsp;&nbsp;|&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;74000.0000&nbsp;&nbsp;| |&nbsp;Asst.Prof&nbsp;&nbsp;&nbsp;|&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;55000.0000&nbsp;&nbsp;| |&nbsp;Prof&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;87500.0000&nbsp;&nbsp;| +-------------+----------+-------------+ 3&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <p>上面的查询将结果集分为Asso.Prof组，总数为1，平均工资为74000，Asst.Prof，总数为2，平均工资为55000，Prof，总数为2，平均工资为87500 。</p> <div></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-24937.htm">动物防疫疫苗数量统计表格图片大全（动物疫苗现状）</a></p>
                                         <p>下一个：<a href="/news/article-25403.htm">养猫咪不吉利吗（养猫咪不吉利吗怎么办）</a></p>
@@ -152,16 +152,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-16-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新19.2M/S免费节点订阅链接">Mihomo Party节点订阅每天更新19.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-20338.htm" title="动物疫苗上市公司排名前十名有哪些 动物疫苗上市公司排名前十名有哪些牌子">动物疫苗上市公司排名前十名有哪些 动物疫苗上市公司排名前十名有哪些牌子</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-7-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新19M/S免费节点订阅链接">Mihomo Party节点订阅每天更新19M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-22-node-share-links.htm" title="Mihomo Party节点订阅每天更新20.9M/S免费节点订阅链接">Mihomo Party节点订阅每天更新20.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-26342.htm" title="JDK7的try-with-resource方式的使用">JDK7的try-with-resource方式的使用</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新19.8M/S免费节点订阅链接">Mihomo Party节点订阅每天更新19.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-node-share-links.htm" title="Mihomo Party节点订阅每天更新21.9M/S免费节点订阅链接">Mihomo Party节点订阅每天更新21.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-node-share.htm" title="Mihomo Party节点订阅每天更新18M/S免费节点订阅链接">Mihomo Party节点订阅每天更新18M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-24000.htm" title="关于MySQL92和99 等值连接、非等值连接、自连接、外连接及多表查询的代码示例总结！">关于MySQL92和99 等值连接、非等值连接、自连接、外连接及多表查询的代码示例总结！</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-node-share-links.htm" title="Mihomo Party节点订阅每天更新18.8M/S免费节点订阅链接">Mihomo Party节点订阅每天更新18.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-6-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新20M/S免费节点订阅链接">Mihomo Party节点订阅每天更新20M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-28190.htm" title="动物医院的英语单词怎么写的（动物医院 翻译）">动物医院的英语单词怎么写的（动物医院 翻译）</a></li>
                         <li class="py-2"><a href="/news/article-24414.htm" title="宠物医院收费价目表（诸城宠物医院收费价目表）">宠物医院收费价目表（诸城宠物医院收费价目表）</a></li>
-                        <li class="py-2"><a href="/news/article-22164.htm" title="宠物店一般一年能赚多少钱（宠物店一般一个月营业额多少）">宠物店一般一年能赚多少钱（宠物店一般一个月营业额多少）</a></li>
-                        <li class="py-2"><a href="/news/article-24415.htm" title="动物医院哪家好一些啊（动物医院哪家好一些啊知乎）">动物医院哪家好一些啊（动物医院哪家好一些啊知乎）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-26-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新20.1M/S免费节点订阅链接">Mihomo Party节点订阅每天更新20.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-9-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新22.6M/S免费节点订阅链接">Mihomo Party节点订阅每天更新22.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新21.1M/S免费节点订阅链接">Mihomo Party节点订阅每天更新21.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-26796.htm" title="属马养猫起什么名字好（属马养猫起什么名字好呢）">属马养猫起什么名字好（属马养猫起什么名字好呢）</a></li>
                     </ul>
     </div>
 </div>
@@ -173,7 +173,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">45</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -205,6 +205,15 @@
                     </div><!-- col 6 end -->
                     <div class="col-sm-6">
                         <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
                             <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
                         </p>
                     </div><!-- col 6 end -->

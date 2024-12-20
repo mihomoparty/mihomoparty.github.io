@@ -45,8 +45,7 @@
     <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
     <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
     <!-- Style Switch -->
-    
-<!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -139,7 +138,8 @@
             <div class="row">
                 <div class="col-md-9">
                     <h1 style="font-size: 2.5rem;">JDK7的try-with-resource方式的使用</h1>
-                                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>如果使用传统try-catch-finally管理资源链接，代码可能是下面这样，finally代码远远多于业务代码。 <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/1fc49bb3150cf3b8a5a530b90284fdc1.jpg" alt="JDK7的try-with-resource方式的使用"><br /> 为了增加代码可读性和可维护性，建议使用jdk7 提供的新特性try-with-resource（只能在表面上省去finally块关闭资源的逻辑）： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/ae69b214f7d1c2fcd1e828b996b64f5a.jpg" alt="JDK7的try-with-resource方式的使用"><br /> 即：try(资源定义){ <br /> 业务逻辑 <br /> } <br /> 其实这只是个语法糖，因为编译时编译器会自动帮代码加上finally并调用close方法（前提是这些资源类都实现了Closeable接口）。（将你编译好的.class文件拖入idea即可看到编译后的代码（idea可以反编译出来）） <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/58fdf987ca7027267d2de63e04464f1d.jpg" alt="JDK7的try-with-resource方式的使用"><br /> 可以看出finally代码块中除了正常关闭连接代码外，还包含了addSuppressed()方法，这个方法作用是保证一个异常不被另外一个异常抑制而无法抛出，比如try-catch块代码抛异常，程序会继续执行finally代码，但如果finally代码又抛错，就会导致try-catch的异常无法正常抛出，此时可以使用addSuppressed()方法可以将被抑制的异常也抛出。 <br /> 参考链接：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://my.oschina.net/fhd/blog/324484"  rel="nofollow">https://my.oschina.net/fhd/blog/324484</a>。 <br /> try-with-resource代码确实好用，程序可读性有所提高。但看着上面第二张图片的代码，你是否怀疑资源最大可能被关闭？是否编译器加上的fin.close()方法和out.close()方法就完整了？不是的。请看GZIPOutputStream类的close()方法 <br /> 下面是GZIPOutputStream类的父类的close()方法（GZIPOutputStream类没重写） <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/1708a93e6512a1a7b9985b2e3b5e5c35.jpg" alt="JDK7的try-with-resource方式的使用"><br /> close()方法时先调用finish()方法再调用out.close()方法，所以如果finish()方法顺利执行，那么out.close()方法确实可以顺利执行。 <br /> 但进去finish()方法看看， <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/b101979a395a38403d1b08952fc60ec1.jpg" alt="JDK7的try-with-resource方式的使用"><br /> finish()方法是声明了会抛异常的，也就是finish()方法不见得一定正常执行，也就导致了out.close()方法在finish()方法抛异常时不能被调用，进而导致资源没有被关闭。 <br /> 对于各个资源类的包装类，内部都是使用装饰者模式实现的，例子中调用out.close()方法，深层次还是调用FileOutputStream类的close方法，既然这样，我们程序就应该最大程度确保最内层资源的close()方法被调用（就算包装类的close()方法抛异常），才能最大程度上保证资源被关闭。 <br /> 因此上面try-with-resource例子的流嵌套是不合理的，应该使用下面这种方式（分开定义每个Closeable类的资源）： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/c613f6734459734b8afe67afc7e91d45.jpg" alt="JDK7的try-with-resource方式的使用"><br /> 看上面分开定义后编译生成的代码（如下）： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/4aa9660752c4dc319dc48174bc9221f8.jpg" alt="JDK7的try-with-resource方式的使用"><br /> 显然，每一层Closeable类的资源的close()方法都被显式地调用。保证了资源最大程度的关闭。</p> </p></div> 			                <div class="clearfix"></div>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>如果使用传统try-catch-finally管理资源链接，代码可能是下面这样，finally代码远远多于业务代码。 <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/1fc49bb3150cf3b8a5a530b90284fdc1.jpg" alt="JDK7的try-with-resource方式的使用"><br /> 为了增加代码可读性和可维护性，建议使用jdk7 提供的新特性try-with-resource（只能在表面上省去finally块关闭资源的逻辑）： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/ae69b214f7d1c2fcd1e828b996b64f5a.jpg" alt="JDK7的try-with-resource方式的使用"><br /> 即：try(资源定义){ <br /> 业务逻辑 <br /> } <br /> 其实这只是个语法糖，因为编译时编译器会自动帮代码加上finally并调用close方法（前提是这些资源类都实现了Closeable接口）。（将你编译好的.class文件拖入idea即可看到编译后的代码（idea可以反编译出来）） <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/58fdf987ca7027267d2de63e04464f1d.jpg" alt="JDK7的try-with-resource方式的使用"><br /> 可以看出finally代码块中除了正常关闭连接代码外，还包含了addSuppressed()方法，这个方法作用是保证一个异常不被另外一个异常抑制而无法抛出，比如try-catch块代码抛异常，程序会继续执行finally代码，但如果finally代码又抛错，就会导致try-catch的异常无法正常抛出，此时可以使用addSuppressed()方法可以将被抑制的异常也抛出。 <br /> 参考链接：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://my.oschina.net/fhd/blog/324484"  rel="nofollow">https://my.oschina.net/fhd/blog/324484</a>。 <br /> try-with-resource代码确实好用，程序可读性有所提高。但看着上面第二张图片的代码，你是否怀疑资源最大可能被关闭？是否编译器加上的fin.close()方法和out.close()方法就完整了？不是的。请看GZIPOutputStream类的close()方法 <br /> 下面是GZIPOutputStream类的父类的close()方法（GZIPOutputStream类没重写） <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/1708a93e6512a1a7b9985b2e3b5e5c35.jpg" alt="JDK7的try-with-resource方式的使用"><br /> close()方法时先调用finish()方法再调用out.close()方法，所以如果finish()方法顺利执行，那么out.close()方法确实可以顺利执行。 <br /> 但进去finish()方法看看， <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/b101979a395a38403d1b08952fc60ec1.jpg" alt="JDK7的try-with-resource方式的使用"><br /> finish()方法是声明了会抛异常的，也就是finish()方法不见得一定正常执行，也就导致了out.close()方法在finish()方法抛异常时不能被调用，进而导致资源没有被关闭。 <br /> 对于各个资源类的包装类，内部都是使用装饰者模式实现的，例子中调用out.close()方法，深层次还是调用FileOutputStream类的close方法，既然这样，我们程序就应该最大程度确保最内层资源的close()方法被调用（就算包装类的close()方法抛异常），才能最大程度上保证资源被关闭。 <br /> 因此上面try-with-resource例子的流嵌套是不合理的，应该使用下面这种方式（分开定义每个Closeable类的资源）： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/c613f6734459734b8afe67afc7e91d45.jpg" alt="JDK7的try-with-resource方式的使用"><br /> 看上面分开定义后编译生成的代码（如下）： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/4aa9660752c4dc319dc48174bc9221f8.jpg" alt="JDK7的try-with-resource方式的使用"><br /> 显然，每一层Closeable类的资源的close()方法都被显式地调用。保证了资源最大程度的关闭。</p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-25864.htm">宠物领养证如何办理手续流程视频（宠物领养证书怎么办理）</a></p>
                                         <p>下一个：<a href="/news/article-26343.htm">宠物医院好评文案100字 宠物店优质点评100字</a></p>
@@ -152,16 +152,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-21254.htm" title="动物医院社会实践报告总结500字左右（动物医院社会实践报告总结500字左右怎么写）">动物医院社会实践报告总结500字左右（动物医院社会实践报告总结500字左右怎么写）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新18M/S免费节点订阅链接">Mihomo Party节点订阅每天更新18M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-11-node-share-links.htm" title="Mihomo Party节点订阅每天更新18.8M/S免费节点订阅链接">Mihomo Party节点订阅每天更新18.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新18.2M/S免费节点订阅链接">Mihomo Party节点订阅每天更新18.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-27258.htm" title="重庆狗狗领养免费平台有哪些（2021重庆免费领养狗狗贴吧）">重庆狗狗领养免费平台有哪些（2021重庆免费领养狗狗贴吧）</a></li>
-                        <li class="py-2"><a href="/news/article-27257.htm" title="宠物粮食成本分析论文（宠物粮食成本分析论文题目）">宠物粮食成本分析论文（宠物粮食成本分析论文题目）</a></li>
-                        <li class="py-2"><a href="/news/article-25864.htm" title="宠物领养证如何办理手续流程视频（宠物领养证书怎么办理）">宠物领养证如何办理手续流程视频（宠物领养证书怎么办理）</a></li>
-                        <li class="py-2"><a href="/news/article-26343.htm" title="宠物医院好评文案100字 宠物店优质点评100字">宠物医院好评文案100字 宠物店优质点评100字</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-14-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新22M/S免费节点订阅链接">Mihomo Party节点订阅每天更新22M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-3-node-share.htm" title="11月3日→21.5M/S|2024年最新免费节点Mihomo Party订阅链接地址">11月3日→21.5M/S|2024年最新免费节点Mihomo Party订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-23087.htm" title="厦门动物领养中心地址 厦门动物领养中心地址在哪里">厦门动物领养中心地址 厦门动物领养中心地址在哪里</a></li>
+                        <li class="py-2"><a href="/news/article-22627.htm" title="动物医院在哪个位置好点（动物医院大众点评）">动物医院在哪个位置好点（动物医院大众点评）</a></li>
+                        <li class="py-2"><a href="/news/article-24414.htm" title="宠物医院收费价目表（诸城宠物医院收费价目表）">宠物医院收费价目表（诸城宠物医院收费价目表）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-node-share.htm" title="Mihomo Party节点订阅每天更新20.2M/S免费节点订阅链接">Mihomo Party节点订阅每天更新20.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新21.1M/S免费节点订阅链接">Mihomo Party节点订阅每天更新21.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-28190.htm" title="动物医院的英语单词怎么写的（动物医院 翻译）">动物医院的英语单词怎么写的（动物医院 翻译）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新18.2M/S免费节点订阅链接">Mihomo Party节点订阅每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-22163.htm" title="springboot 新建 AutoConfiguration">springboot 新建 AutoConfiguration</a></li>
+                        <li class="py-2"><a href="/news/article-23534.htm" title="山东聊城宠物产业基地在哪里（聊城宠物店地址）">山东聊城宠物产业基地在哪里（聊城宠物店地址）</a></li>
+                        <li class="py-2"><a href="/news/article-22628.htm" title="宠物领养协议是否有法律效力 ">宠物领养协议是否有法律效力 </a></li>
                     </ul>
     </div>
 </div>
@@ -173,7 +173,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -205,6 +205,15 @@
                     </div><!-- col 6 end -->
                     <div class="col-sm-6">
                         <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
                             <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
                         </p>
                     </div><!-- col 6 end -->
