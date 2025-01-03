@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-35220.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>mysql 中count函数的使用方法_MySQL中count函数使用方法详解</title>
+        <meta name="description" content="count(*) 它返回检索行的数目， 不论其是否包含 NULL值。 SELECT 从一个表中检索，而不检索其它的列，并且没有 WHERE子句时， COUNT(*)被优化到最快的返回速度。 例如：SE" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="#">关于</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">联系</a>
+                                    </li>
+                                </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">mysql 中count函数的使用方法_MySQL中count函数使用方法详解</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>count(*) 它返回检索行的数目， 不论其是否包含 NULL值。</p> <p>SELECT 从一个表中检索，而不检索其它的列，并且没有 WHERE子句时， COUNT(*)被优化到最快的返回速度。</p> <p>例如：SELECT COUNT(*) FROM student;</p> <p>COUNT(DISTINCT 字段)，返回不同的非NULL值数目；若找不到匹配的项，则COUNT(DISTINCT)返回 0 。</p> <p>这个优化仅适用于 MyISAM表, 原因是这些表类型会储存一个函数返回记录的精确数量，而且非常容易访问。</p> <p>对于事务型的存储引擎(InnoDB, BDB), 存储一个精确行数的问题比较多，原因是可能会发生多重事物处理,</p> <p>而每个都可能会对行数产生影响。</p> <p>例，创建用于测试的数据表，以进行count数据统计：</p> <p>代码如下</p> <p>复制代码</p> <p>CREATE TABLE `user` (</p> <p>`id` int(5) unsigned NOT NULL AUTO_INCREMENT,</p> <p>`name` varchar(10) DEFAULT NULL,</p> <p>`password` varchar(10) DEFAULT NULL,</p> <p>PRIMARY KEY (`id`)</p> <p>) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1</p> <p>测试数据为：</p> <p>1 name1 123456</p> <p>2 name2 123456</p> <p>3 name3 123456</p> <p>4 name4&nbsp; NULL</p> <p>请注意以下查询的返回结果：</p> <p>代码如下</p> <p>复制代码</p> <p>1，select&nbsp;count(*) from `user`</p> <p>2，select count(name) from `user`</p> <p>3，select count(password) from `user`</p> <p>输出结果：4,4,3</p> <p>原因分析：</p> <p>1，count(*)是对行数目进行计数，所以结果为4。</p> <p>2，count(column_name)是对列中不为空的行进行计数，所以count(name)=4，而count(password)=3。</p> <p>以上二点，在使用count函数时，要注意下。</p> <p>使用GROUP BY对每个owner的所有记录分组，没有它，你会得到错误消息：</p> <p>代码如下</p> <p>复制代码</p> <p>mysql&gt; SELECT owner, COUNT(*) FROM pet;</p> <p>ERROR 1140 (42000): Mixing of GROUP columns (MIN(),MAX(),COUNT(),...)</p> <p>with no GROUP columns is illegal if there is no GROUP BY clause</p> <p>COUNT( )和GROUP BY以各种方式分类你的数据。下列例子显示出进行动物普查操作的不同方式。</p> <p>每种动物的数量：</p> <p>代码如下</p> <p>复制代码</p> <p>mysql&gt; SELECT species, COUNT(*) FROM pet GROUP BY species;</p> <p>+---------+----------+</p> <p>| species | COUNT(*) |</p> <p>+---------+----------+</p> <p>| bird&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 |</p> <p>| cat&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 |</p> <p>| dog&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3 |</p> <p>| hamster |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| snake&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>+---------+----------+</p> <p>每种性别的动物数量：</p> <p>代码如下</p> <p>复制代码</p> <p>mysql&gt; SELECT sex, COUNT(*) FROM pet GROUP BY sex;</p> <p>+------+----------+</p> <p>| sex&nbsp; | COUNT(*) |</p> <p>+------+----------+</p> <p>| NULL |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| f&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4 |</p> <p>| m&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4 |</p> <p>+------+----------+</p> <p>(在这个输 出中，NULL表示“未知性别”。)</p> <p>按种类和性别组合的动物数量：</p> <p>代码如下</p> <p>复制代码</p> <p>mysql&gt; SELECT species, sex, COUNT(*) FROM pet GROUP BY species, sex;</p> <p>+---------+------+----------+</p> <p>| species | sex&nbsp; | COUNT(*) |</p> <p>+---------+------+----------+</p> <p>| bird&nbsp;&nbsp;&nbsp; | NULL |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| bird&nbsp;&nbsp;&nbsp; | f&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| cat&nbsp;&nbsp;&nbsp;&nbsp; | f&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| cat&nbsp;&nbsp;&nbsp;&nbsp; | m&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| dog&nbsp;&nbsp;&nbsp;&nbsp; | f&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| dog&nbsp;&nbsp;&nbsp;&nbsp; | m&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 |</p> <p>| hamster | f&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| snake&nbsp;&nbsp; | m&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>+---------+------+----------+</p> <p>若 使用COUNT( )，你不必检索整个表。例如, 前面的查询，当只对狗和猫进行时，应为：</p> <p>代码如下</p> <p>复制代码</p> <p>mysql&gt; SELECT species, sex, COUNT(*) FROM pet</p> <p>-&gt; WHERE species = 'dog' OR species = 'cat'</p> <p>-&gt; GROUP BY species, sex;</p> <p>+---------+------+----------+</p> <p>| species | sex&nbsp; | COUNT(*) |</p> <p>+---------+------+----------+</p> <p>| cat&nbsp;&nbsp;&nbsp;&nbsp; | f&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| cat&nbsp;&nbsp;&nbsp;&nbsp; | m&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| dog&nbsp;&nbsp;&nbsp;&nbsp; | f&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| dog&nbsp;&nbsp;&nbsp;&nbsp; | m&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 |</p> <p>+---------+------+----------+</p> <p>或， 如果你仅需要知道已知性别的按性别的动物数目：</p> <p>代码如下</p> <p>复制代码</p> <p>mysql&gt; SELECT species, sex, COUNT(*) FROM pet</p> <p>-&gt; WHERE sex IS NOT NULL</p> <p>-&gt; GROUP BY species, sex;</p> <p>+---------+------+----------+</p> <p>| species | sex&nbsp; | COUNT(*) |</p> <p>+---------+------+----------+</p> <p>| bird&nbsp;&nbsp;&nbsp; | f&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| cat&nbsp;&nbsp;&nbsp;&nbsp; | f&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| cat&nbsp;&nbsp;&nbsp;&nbsp; | m&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| dog&nbsp;&nbsp;&nbsp;&nbsp; | f&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| dog&nbsp;&nbsp;&nbsp;&nbsp; | m&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 |</p> <p>| hamster | f&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>| snake&nbsp;&nbsp; | m&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 |</p> <p>+---------+------+----------+</p> <p>顺便提下mysql的DISTINCT的关键字有很多你想不到的用处</p> <p>1.在count 不重复的记录的时候能用到</p> <p>比如SELECT COUNT( DISTINCT id ) FROM tablename;</p> <p>就是计算talbebname表中id不同的记录有多少条</p> <p>2,在需要返回记录不同的id的具体值的时候可以用</p> <p>比如SELECT DISTINCT id FROM tablename;</p> <p>返回talbebname表中不同的id的具体的值</p> <p>3.上面的情况2对于需要返回mysql表中2列以上的结果时会有歧义</p> <p>比如SELECT DISTINCT id, type FROM tablename;</p> <p>实际上返回的是 id与type同时不相同的结果,也就是DISTINCT同时作用了两个字段，必须得id与tyoe都相同的才被排除了,与我们期望的结果不一样</p> <p>4.这时候可以考虑使用group_concat函数来进行排除,不过这个mysql函数是在mysql4.1以上才支持的</p> <p>5.其实还有另外一种解决方式,就是使用</p> <p>SELECT id, type, count(DISTINCT id) FROM tablename</p> <p>虽然这样的返回结果多了一列无用的count数据(或许你就需要这个我说的无用数据)</p> <p>返回的结果是 只有id不同的所有结果和上面的4类型可以互补使用,就是看你需要什么样的数据了</p> </div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-34821.htm">免费问诊在线医生（免费问诊在线医生皮肤科）</a></p>
+                                        <p>下一个：<a href="/news/article-35221.htm">宠物领养网站的设计与实现的致谢 宠物领养网站html模板</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-19878.htm" title="v-model.trim使用">v-model.trim使用</a></li>
+                        <li class="py-2"><a href="/news/article-21255.htm" title="动物防疫站打针需要什么资质呢（动物防疫站打针多少钱）">动物防疫站打针需要什么资质呢（动物防疫站打针多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-25863.htm" title="Springboot使用@JsonSerialize和@JsonDeserialize">Springboot使用@JsonSerialize和@JsonDeserialize</a></li>
+                        <li class="py-2"><a href="/news/article-30540.htm" title="女人养猫的十大坏处视频大全（女人养猫的十大坏处视频大全图片）">女人养猫的十大坏处视频大全（女人养猫的十大坏处视频大全图片）</a></li>
+                        <li class="py-2"><a href="/news/article-26343.htm" title="宠物医院好评文案100字 宠物店优质点评100字">宠物医院好评文案100字 宠物店优质点评100字</a></li>
+                        <li class="py-2"><a href="/news/article-30021.htm" title="做绝育手术好的宠物医院（宠物医院 绝育）">做绝育手术好的宠物医院（宠物医院 绝育）</a></li>
+                        <li class="py-2"><a href="/news/article-23087.htm" title="厦门动物领养中心地址 厦门动物领养中心地址在哪里">厦门动物领养中心地址 厦门动物领养中心地址在哪里</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-6-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新20M/S免费节点订阅链接">Mihomo Party节点订阅每天更新20M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新20.6M/S免费节点订阅链接">Mihomo Party节点订阅每天更新20.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-33875.htm" title="宠物小猫多少钱（宠物猫咪多少钱）">宠物小猫多少钱（宠物猫咪多少钱）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
