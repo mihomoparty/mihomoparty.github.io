@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-36740.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>教你用jquery实现网页的楼梯效果</title>
+        <meta name="description" content="在各大电商网站中经常看到如图所示右边的楼梯效果，当我们滚动页面滚动道不同的分栏的时候，右边的提示框相应的也会发生变化，并且点击提示框上的不同按钮，可以跳转到对应的节点。这个功能怎么实现的呢？  1.页" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="#">关于</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">联系</a>
+                                    </li>
+                                </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">教你用jquery实现网页的楼梯效果</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230224/517b44e466508a130f88214cd6e40d3a.jpg" alt="教你用jquery实现网页的楼梯效果"><br /> 在各大电商网站中经常看到如图所示右边的楼梯效果，当我们滚动页面滚动道不同的分栏的时候，右边的提示框相应的也会发生变化，并且点击提示框上的不同按钮，可以跳转到对应的节点。这个功能怎么实现的呢？</p> <h3> <a id="1_3" rel="nofollow"></a>1.页面布局</h3> <p>写出几个大的色块表示每一个模块，增加一个ul作为右边的提示框</p> <pre><code class="prism language-css">&lt;div class=<span class="token string">"top"</span>&gt;     &lt;/div&gt;     &lt;div class=<span class="token string">"content"</span> style=<span class="token string">"background-color : yellowgreen "</span>&gt;         &lt;h1&gt;京东秒杀&lt;/h1&gt;     &lt;/div&gt;     &lt;div class=<span class="token string">"content"</span> style=<span class="token string">"background-color : skyblue "</span>&gt;         &lt;h1&gt;特色优选&lt;/h1&gt;     &lt;/div&gt;     &lt;div class=<span class="token string">"content"</span> style=<span class="token string">"background-color : #666 "</span>&gt;         &lt;h1&gt;频道广场&lt;/h1&gt;     &lt;/div&gt;     &lt;div class=<span class="token string">"content"</span> style=<span class="token string">"background-color : orangered "</span>&gt;         &lt;h1&gt;为您推荐&lt;/h1&gt;     &lt;/div&gt;     &lt;div class=<span class="token string">"footer"</span>&gt;&lt;/div&gt;       &lt;ul class=<span class="token string">"stairs-list"</span>&gt;         &lt;li&gt;             &lt;span&gt;京东&lt;/span&gt;             &lt;span&gt;秒杀&lt;/span&gt;         &lt;/li&gt;         &lt;li&gt;             &lt;span&gt;特色&lt;/span&gt;             &lt;span&gt;优选&lt;/span&gt;         &lt;/li&gt;         &lt;li&gt;             &lt;span&gt;频道&lt;/span&gt;             &lt;span&gt;广场&lt;/span&gt;         &lt;/li&gt;          &lt;li&gt;             &lt;span&gt;为您&lt;/span&gt;             &lt;span&gt;推荐&lt;/span&gt;         &lt;/li&gt;     &lt;/ul&gt; </code></pre> <h3> <a id="2_41" rel="nofollow"></a>2.样式</h3> <p>主要是给右边的提示框添加定位效果，时期固定在右边的某个位置。</p> <pre><code class="prism language-css"><span class="token selector">&lt;style&gt;         *</span><span class="token punctuation">{<!-- --></span>             <span class="token property">margin</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span>             <span class="token property">padding</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">li</span><span class="token punctuation">{<!-- --></span>             <span class="token property">list-style-type</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.top</span><span class="token punctuation">{<!-- --></span>             <span class="token property">height</span><span class="token punctuation">:</span>900px<span class="token punctuation">;</span>             <span class="token property">background</span> <span class="token punctuation">:</span> #ddd<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.footer</span><span class="token punctuation">{<!-- --></span>             <span class="token property">height</span> <span class="token punctuation">:</span> 1000px<span class="token punctuation">;</span>             <span class="token property">background</span> <span class="token punctuation">:</span> #ddd<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.content</span><span class="token punctuation">{<!-- --></span>             <span class="token property">height</span><span class="token punctuation">:</span>800px<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.content h1</span><span class="token punctuation">{<!-- --></span>             <span class="token property">text-align</span><span class="token punctuation">:</span>center<span class="token punctuation">;</span>             <span class="token property">line-height</span><span class="token punctuation">:</span> 80px<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.stairs-list</span><span class="token punctuation">{<!-- --></span>             <span class="token property">width</span> <span class="token punctuation">:</span> 60px<span class="token punctuation">;</span>             <span class="token property">position</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span>             <span class="token property">right</span><span class="token punctuation">:</span>5%<span class="token punctuation">;</span>             <span class="token property">top</span><span class="token punctuation">:</span>50%<span class="token punctuation">;</span>             <span class="token property">margin-top</span><span class="token punctuation">:</span>-120px<span class="token punctuation">;</span>             <span class="token property">background</span> <span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.stairs-list li</span><span class="token punctuation">{<!-- --></span>             <span class="token property">width</span><span class="token punctuation">:</span>50px<span class="token punctuation">;</span>             <span class="token property">height</span><span class="token punctuation">:</span>50px<span class="token punctuation">;</span>             <span class="token property">line-height</span><span class="token punctuation">:</span> 25px<span class="token punctuation">;</span>             <span class="token property">text-align</span> <span class="token punctuation">:</span> center<span class="token punctuation">;</span>             <span class="token property">padding</span><span class="token punctuation">:</span>5px<span class="token punctuation">;</span>             <span class="token property">border-bottom</span><span class="token punctuation">:</span>1px solid #ddd<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.stairs-list li.active</span><span class="token punctuation">{<!-- --></span>             <span class="token property">color</span> <span class="token punctuation">:</span> orangered<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.stairs li span</span><span class="token punctuation">{<!-- --></span>             <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>           <span class="token punctuation">}</span>       &lt;/style&gt; </code></pre> <h3> <a id="_93" rel="nofollow"></a>脚本</h3> <p>首先引入jquery</p> <pre><code class="prism language-css">&lt;script src=<span class="token string">"https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"</span>&gt;&lt;/script&gt; </code></pre> <pre><code class="prism language-css"><span class="token selector">&lt;script&gt; //构造函数 options对象中共两个属性用来选取页面地每一个模块和选取提示框。 function Stairs(options)</span><span class="token punctuation">{<!-- --></span>     this.options = options<span class="token punctuation">;</span>     this.<span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token selector">Stairs.prototype =</span> <span class="token punctuation">{<!-- --></span>     <span class="token selector">constructor:Stairs,     init:function()</span><span class="token punctuation">{<!-- --></span>     	//声明一个数组用来存储每一个模块距离顶部的距离         this.content_top_list = []<span class="token selector">;         $(this.options.content_selector).offset(function(index,coords)</span><span class="token punctuation">{<!-- --></span>              this.content_top_list.<span class="token function">push</span><span class="token punctuation">(</span>coords.top<span class="token punctuation">)</span><span class="token punctuation">;</span>             return coords<span class="token punctuation">;</span>         <span class="token punctuation">}</span>.<span class="token function">bind</span><span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         //这一步是给数组中添加一个项，在后面数组的时候的时候我们需要与最后一个模块的位置比对，以确保是否离开了判定区域，因此要添加一个footer的距离顶部的高度，也就是最后一个模块的距离顶部高度加上自己的高度。         this.first = this.content_top_list[0]<span class="token punctuation">;</span>         this._last = this.content_top_list[this.content_top_list.length-1] + $<span class="token punctuation">(</span>this.options.content_selector<span class="token punctuation">)</span>.<span class="token function">last</span><span class="token punctuation">(</span><span class="token punctuation">)</span>.<span class="token function">height</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         this.content_top_list.<span class="token function">push</span><span class="token punctuation">(</span>this._last<span class="token punctuation">)</span><span class="token punctuation">;</span>         this.<span class="token function">bindEvent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span><span class="token selector">,     bindEvent:function()</span><span class="token punctuation">{<!-- --></span>          var $body_html = $<span class="token punctuation">(</span><span class="token string">"body,html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          //此处我们需要用到鼠标点击的this因此我们需要把实例对象存储起来          var instance = this<span class="token selector">;          $(document).scroll(function()</span><span class="token punctuation">{<!-- --></span>              var scrolltop = $body_html.<span class="token function">scrollTop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               this.<span class="token function">calStairsIndex</span><span class="token punctuation">(</span>scrolltop<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token punctuation">}</span>.<span class="token function">bind</span><span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token selector">;          //绑定鼠标点击事件 当鼠标点击时 获取对应的下标 将页面滚动到改下表对应的卷动高度的位置          $(this.options.stairs_selector).click(function()</span><span class="token punctuation">{<!-- --></span>              var index = $<span class="token punctuation">(</span>instance.options.stairs_selector<span class="token punctuation">)</span>.<span class="token function">index</span><span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>              instance.<span class="token function">changeScrollTop</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token punctuation">}</span><span class="token punctuation">)</span>     <span class="token punctuation">}</span><span class="token selector">,     calStairsIndex:function(st)</span><span class="token punctuation">{<!-- --></span>     	<span class="token selector">//当滚动的距离在最小以下或者最大以上时返回index=-1 当进入了某个区域时返回该区域的下标 当滚动的距离没有离开该区域时返回false         if(st &lt; this.first || st &gt; this._last)</span><span class="token punctuation">{<!-- --></span>              this.index = -1<span class="token punctuation">;</span>              this.<span class="token function">changeStairsBtn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              return false<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">if(st &gt;= this.content_top_list[this.index] &amp;&amp; st &lt; this.content_top_list[this.index + 1 ])</span><span class="token punctuation">{<!-- --></span>             return false<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token function">for</span><span class="token punctuation">(</span>var i = 0<span class="token punctuation">;</span> i &lt; this.content_top_list.length <span class="token selector">; i++)</span><span class="token punctuation">{<!-- --></span>             <span class="token selector">if(st &gt;= this.content_top_list[i] &amp;&amp; st &lt; this.content_top_list[i + 1 ])</span><span class="token punctuation">{<!-- --></span>                 this.index = i<span class="token punctuation">;</span>                 break<span class="token punctuation">;</span>             <span class="token punctuation">}</span>         <span class="token punctuation">}</span>         this.<span class="token function">changeStairsBtn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span><span class="token selector">,         changeStairsBtn:function()</span><span class="token punctuation">{<!-- --></span>     //首先清除所有的li上的active 然后判定index的值 如果为-1就不给任何li添加active 如果不为-1就给对应下标的li添加active类 这样就可以有页面滚动 li随之变化的特效          var stairs = $<span class="token punctuation">(</span>this.options.stairs_selector<span class="token punctuation">)</span><span class="token punctuation">;</span>          stairs.<span class="token function">removeClass</span><span class="token punctuation">(</span><span class="token string">"active"</span><span class="token punctuation">)</span><span class="token selector">;          if(this.index === -1)</span><span class="token punctuation">{<!-- --></span>              return false<span class="token punctuation">;</span>          <span class="token punctuation">}</span>          stairs.<span class="token function">eq</span><span class="token punctuation">(</span>this.index<span class="token punctuation">)</span>.<span class="token function">addClass</span><span class="token punctuation">(</span><span class="token string">"active"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span><span class="token selector">,     changeScrollTop:function(index)</span><span class="token punctuation">{<!-- --></span>          $<span class="token punctuation">(</span><span class="token string">"body,html"</span><span class="token punctuation">)</span>.<span class="token function">scrollTop</span><span class="token punctuation">(</span>this.content_top_list[index]<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>     <span class="token punctuation">}</span> <span class="token selector">new Stairs(</span><span class="token punctuation">{<!-- --></span>     <span class="token property">content_selector</span><span class="token punctuation">:</span><span class="token string">".content"</span>,     <span class="token property">stairs_selector</span><span class="token punctuation">:</span><span class="token string">".stairs-list li"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         &lt;/script&gt; </code></pre> <h3> <a id="_175" rel="nofollow"></a>全部代码</h3> <pre><code class="prism language-css"><span class="token selector">&lt;!DOCTYPE html&gt; &lt;html lang="en"&gt; &lt;head&gt;     &lt;meta charset="UTF-8"&gt;     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;     &lt;title&gt;Document&lt;/title&gt;     &lt;style&gt;         *</span><span class="token punctuation">{<!-- --></span>             <span class="token property">margin</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span>             <span class="token property">padding</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">li</span><span class="token punctuation">{<!-- --></span>             <span class="token property">list-style-type</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.top</span><span class="token punctuation">{<!-- --></span>             <span class="token property">height</span><span class="token punctuation">:</span>900px<span class="token punctuation">;</span>             <span class="token property">background</span> <span class="token punctuation">:</span> #ddd<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.footer</span><span class="token punctuation">{<!-- --></span>             <span class="token property">height</span> <span class="token punctuation">:</span> 1000px<span class="token punctuation">;</span>             <span class="token property">background</span> <span class="token punctuation">:</span> #ddd<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.content</span><span class="token punctuation">{<!-- --></span>             <span class="token property">height</span><span class="token punctuation">:</span>800px<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.content h1</span><span class="token punctuation">{<!-- --></span>             <span class="token property">text-align</span><span class="token punctuation">:</span>center<span class="token punctuation">;</span>             <span class="token property">line-height</span><span class="token punctuation">:</span> 80px<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.stairs-list</span><span class="token punctuation">{<!-- --></span>             <span class="token property">width</span> <span class="token punctuation">:</span> 60px<span class="token punctuation">;</span>             <span class="token property">position</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span>             <span class="token property">right</span><span class="token punctuation">:</span>5%<span class="token punctuation">;</span>             <span class="token property">top</span><span class="token punctuation">:</span>50%<span class="token punctuation">;</span>             <span class="token property">margin-top</span><span class="token punctuation">:</span>-120px<span class="token punctuation">;</span>             <span class="token property">background</span> <span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.stairs-list li</span><span class="token punctuation">{<!-- --></span>             <span class="token property">width</span><span class="token punctuation">:</span>50px<span class="token punctuation">;</span>             <span class="token property">height</span><span class="token punctuation">:</span>50px<span class="token punctuation">;</span>             <span class="token property">line-height</span><span class="token punctuation">:</span> 25px<span class="token punctuation">;</span>             <span class="token property">text-align</span> <span class="token punctuation">:</span> center<span class="token punctuation">;</span>             <span class="token property">padding</span><span class="token punctuation">:</span>5px<span class="token punctuation">;</span>             <span class="token property">border-bottom</span><span class="token punctuation">:</span>1px solid #ddd<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.stairs-list li.active</span><span class="token punctuation">{<!-- --></span>             <span class="token property">color</span> <span class="token punctuation">:</span> orangered<span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token selector">.stairs li span</span><span class="token punctuation">{<!-- --></span>             <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>           <span class="token punctuation">}</span>       <span class="token selector">&lt;/style&gt; &lt;/head&gt; &lt;body&gt;     &lt;div class="top"&gt;     &lt;/div&gt;     &lt;div class="content" style="background-color : yellowgreen "&gt;         &lt;h1&gt;京东秒杀&lt;/h1&gt;     &lt;/div&gt;     &lt;div class="content" style="background-color : skyblue "&gt;         &lt;h1&gt;特色优选&lt;/h1&gt;     &lt;/div&gt;     &lt;div class="content" style="background-color : #666 "&gt;         &lt;h1&gt;频道广场&lt;/h1&gt;     &lt;/div&gt;     &lt;div class="content" style="background-color : orangered "&gt;         &lt;h1&gt;为您推荐&lt;/h1&gt;     &lt;/div&gt;     &lt;div class="footer"&gt;&lt;/div&gt;       &lt;ul class="stairs-list"&gt;         &lt;li&gt;             &lt;span&gt;京东&lt;/span&gt;             &lt;span&gt;秒杀&lt;/span&gt;         &lt;/li&gt;         &lt;li&gt;             &lt;span&gt;特色&lt;/span&gt;             &lt;span&gt;优选&lt;/span&gt;         &lt;/li&gt;         &lt;li&gt;             &lt;span&gt;频道&lt;/span&gt;             &lt;span&gt;广场&lt;/span&gt;         &lt;/li&gt;          &lt;li&gt;             &lt;span&gt;为您&lt;/span&gt;             &lt;span&gt;推荐&lt;/span&gt;         &lt;/li&gt;     &lt;/ul&gt;       &lt;script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"&gt;&lt;/script&gt;     &lt;script&gt;        function Stairs(options)</span><span class="token punctuation">{<!-- --></span>            this.options = options<span class="token punctuation">;</span>            this.<span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>        <span class="token selector">Stairs.prototype =</span> <span class="token punctuation">{<!-- --></span>            <span class="token selector">constructor:Stairs,            init:function()</span><span class="token punctuation">{<!-- --></span>                this.content_top_list = []<span class="token selector">;                $(this.options.content_selector).offset(function(index,coords)</span><span class="token punctuation">{<!-- --></span>                     this.content_top_list.<span class="token function">push</span><span class="token punctuation">(</span>coords.top<span class="token punctuation">)</span><span class="token punctuation">;</span>                    return coords<span class="token punctuation">;</span>                <span class="token punctuation">}</span>.<span class="token function">bind</span><span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                this.first = this.content_top_list[0]<span class="token punctuation">;</span>                this._last = this.content_top_list[this.content_top_list.length-1] + $<span class="token punctuation">(</span>this.options.content_selector<span class="token punctuation">)</span>.<span class="token function">last</span><span class="token punctuation">(</span><span class="token punctuation">)</span>.<span class="token function">height</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                this.content_top_list.<span class="token function">push</span><span class="token punctuation">(</span>this._last<span class="token punctuation">)</span><span class="token punctuation">;</span>                this.<span class="token function">bindEvent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token punctuation">}</span><span class="token selector">,            bindEvent:function()</span><span class="token punctuation">{<!-- --></span>                 var $body_html = $<span class="token punctuation">(</span><span class="token string">"body,html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 var instance = this<span class="token selector">;                 $(document).scroll(function()</span><span class="token punctuation">{<!-- --></span>                     var scrolltop = $body_html.<span class="token function">scrollTop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      this.<span class="token function">calStairsIndex</span><span class="token punctuation">(</span>scrolltop<span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token punctuation">}</span>.<span class="token function">bind</span><span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token selector">;                 $(this.options.stairs_selector).click(function()</span><span class="token punctuation">{<!-- --></span>                     var index = $<span class="token punctuation">(</span>instance.options.stairs_selector<span class="token punctuation">)</span>.<span class="token function">index</span><span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>                     instance.<span class="token function">changeScrollTop</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token punctuation">}</span><span class="token punctuation">)</span>            <span class="token punctuation">}</span><span class="token selector">,            calStairsIndex:function(st)</span><span class="token punctuation">{<!-- --></span>                <span class="token selector">if(st &lt; this.first || st &gt; this._last)</span><span class="token punctuation">{<!-- --></span>                     this.index = -1<span class="token punctuation">;</span>                     this.<span class="token function">changeStairsBtn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     return false<span class="token punctuation">;</span>                <span class="token punctuation">}</span>                <span class="token selector">if(st &gt;= this.content_top_list[this.index] &amp;&amp; st &lt; this.content_top_list[this.index + 1 ])</span><span class="token punctuation">{<!-- --></span>                    return false<span class="token punctuation">;</span>                <span class="token punctuation">}</span>                <span class="token function">for</span><span class="token punctuation">(</span>var i = 0<span class="token punctuation">;</span> i &lt; this.content_top_list.length <span class="token selector">; i++)</span><span class="token punctuation">{<!-- --></span>                    <span class="token selector">if(st &gt;= this.content_top_list[i] &amp;&amp; st &lt; this.content_top_list[i + 1 ])</span><span class="token punctuation">{<!-- --></span>                        this.index = i<span class="token punctuation">;</span>                        break<span class="token punctuation">;</span>                    <span class="token punctuation">}</span>                <span class="token punctuation">}</span>                this.<span class="token function">changeStairsBtn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token punctuation">}</span><span class="token selector">,            changeStairsBtn:function()</span><span class="token punctuation">{<!-- --></span>                 var stairs = $<span class="token punctuation">(</span>this.options.stairs_selector<span class="token punctuation">)</span><span class="token punctuation">;</span>                 stairs.<span class="token function">removeClass</span><span class="token punctuation">(</span><span class="token string">"active"</span><span class="token punctuation">)</span><span class="token selector">;                 if(this.index === -1)</span><span class="token punctuation">{<!-- --></span>                     return false<span class="token punctuation">;</span>                 <span class="token punctuation">}</span>                 stairs.<span class="token function">eq</span><span class="token punctuation">(</span>this.index<span class="token punctuation">)</span>.<span class="token function">addClass</span><span class="token punctuation">(</span><span class="token string">"active"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token punctuation">}</span><span class="token selector">,            changeScrollTop:function(index)</span><span class="token punctuation">{<!-- --></span>                 $<span class="token punctuation">(</span><span class="token string">"body,html"</span><span class="token punctuation">)</span>.<span class="token function">scrollTop</span><span class="token punctuation">(</span>this.content_top_list[index]<span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token punctuation">}</span>            <span class="token punctuation">}</span>        <span class="token selector">new Stairs(</span><span class="token punctuation">{<!-- --></span>            <span class="token property">content_selector</span><span class="token punctuation">:</span><span class="token string">".content"</span>,            <span class="token property">stairs_selector</span><span class="token punctuation">:</span><span class="token string">".stairs-list li"</span>        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              &lt;/script&gt; &lt;/body&gt; &lt;/html&gt; </code></pre> <h3> <a id="_340" rel="nofollow"></a>总结</h3> <p>1.首先清除楼梯特效的原理，其实就是根据卷曲高度给切换active的位置。<br /> 2.本效果一共有两个事件：页面滚动事件，鼠标点击事件<br /> 3.滚动事件：获取每一个页面的距离顶部的高度，注意添加一个最大高度，判断卷曲高度与存储高度的 大小关系以确定index值，根据index给对应的li添加类<br /> 4.点击事件：点击li获取对应的index，根据index找到对应的卷曲高度，控制页面卷曲。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-36282.htm">动物疫苗检测中心上班时间（动物疫苗检测中心上班时间是几点）</a></p>
+                                        <p>下一个：<a href="/news/article-36741.htm">附近免费领养小猫电话号码 附近免费领养小猫电话号码是多少</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-node-share.htm" title="Mihomo Party节点订阅每天更新19.1M/S免费节点订阅链接">Mihomo Party节点订阅每天更新19.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新18.8M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.8M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-25-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新22.7M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新20.8M/S免费节点订阅链接">Mihomo Party节点订阅每天更新20.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-28191.htm" title="青岛最好宠物医院是哪家（青岛好点的宠物医院）">青岛最好宠物医院是哪家（青岛好点的宠物医院）</a></li>
+                        <li class="py-2"><a href="/news/article-33875.htm" title="宠物小猫多少钱（宠物猫咪多少钱）">宠物小猫多少钱（宠物猫咪多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-34819.htm" title="动物疫苗的作用是什么呢英文（动物接种疫苗的好处）">动物疫苗的作用是什么呢英文（动物接种疫苗的好处）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-27-node-share-links.htm" title="Mihomo Party节点订阅每天更新23M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新23M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-29585.htm" title="聊城卖宠物的地方在哪里（聊城哪里有卖宠物的）">聊城卖宠物的地方在哪里（聊城哪里有卖宠物的）</a></li>
+                        <li class="py-2"><a href="/news/article-26793.htm" title="Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
