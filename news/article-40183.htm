@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-40183.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>Vue利用js实现点击菜单导航栏实现平滑滚动定位</title>
+        <meta name="description" content="里面有 等elementui的标签，不用的话可以换Div 代码结构 &lt;template&gt;&lt;div&gt;&lt;el-menu:default-active="activeIndex" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="#">关于</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">联系</a>
+                                    </li>
+                                </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">Vue利用js实现点击菜单导航栏实现平滑滚动定位</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <p>里面有 等elementui的标签，不用的话可以换Div</p> <h2><a id="_2" rel="nofollow"></a>代码结构</h2> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>el<span class="token operator">-</span>menu<span class="token punctuation">:</span><span class="token keyword">default</span><span class="token operator">-</span>active<span class="token operator">=</span><span class="token string">"activeIndex2"</span><span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"el-menu-demo"</span>       mode<span class="token operator">=</span><span class="token string">"horizontal"</span>       @select<span class="token operator">=</span><span class="token string">"handleSelect"</span>       background<span class="token operator">-</span>color<span class="token operator">=</span><span class="token string">"#fff"</span>       text<span class="token operator">-</span>color<span class="token operator">=</span><span class="token string">"#000"</span>       active<span class="token operator">-</span>text<span class="token operator">-</span>color<span class="token operator">=</span><span class="token string">"green"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 可以从后面拿数据<span class="token punctuation">,</span>也可以按下面的写法<span class="token operator">--</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span><span class="token operator">&lt;</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item         v<span class="token operator">-</span><span class="token keyword">for</span><span class="token operator">=</span><span class="token string">"(item, index) in title_list"</span><span class="token punctuation">:</span>key<span class="token operator">=</span><span class="token string">"index"</span>         @click<span class="token operator">=</span><span class="token string">"jump(index)"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>span           ref<span class="token operator">=</span><span class="token string">"spans"</span><span class="token punctuation">:</span>style<span class="token operator">=</span><span class="token string">"{ color: activeStep === index ? 'green' : '#000000' }"</span>           @click<span class="token operator">=</span><span class="token string">"jump(index)"</span><span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span> item<span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item<span class="token operator">&gt;</span><span class="token operator">--</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item index<span class="token operator">=</span><span class="token string">"1"</span> @click<span class="token operator">=</span><span class="token string">"jump(0)"</span><span class="token operator">&gt;</span>申请领料<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item<span class="token operator">&gt;</span><span class="token operator">&lt;</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item index<span class="token operator">=</span><span class="token string">"2"</span> @click<span class="token operator">=</span><span class="token string">"jump(1)"</span><span class="token operator">&gt;</span>角色管理<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item<span class="token operator">&gt;</span><span class="token operator">&lt;</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item index<span class="token operator">=</span><span class="token string">"3"</span> @click<span class="token operator">=</span><span class="token string">"jump(2)"</span><span class="token operator">&gt;</span>物料申请<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item<span class="token operator">&gt;</span><span class="token operator">&lt;</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item index<span class="token operator">=</span><span class="token string">"4"</span> @click<span class="token operator">=</span><span class="token string">"jump(3)"</span><span class="token operator">&gt;</span>料车表单<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item<span class="token operator">&gt;</span><span class="token operator">&lt;</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item index<span class="token operator">=</span><span class="token string">"5"</span> @click<span class="token operator">=</span><span class="token string">"jump(4)"</span><span class="token operator">&gt;</span>消息中心<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item<span class="token operator">&gt;</span><span class="token operator">&lt;</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item index<span class="token operator">=</span><span class="token string">"6"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>menu<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"result"</span> @scroll<span class="token operator">=</span><span class="token string">"onScroll"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"scroll-item"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contentOne"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contA"</span><span class="token operator">&gt;</span>申请领料<span class="token number">1111</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"scroll-item"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contentOne"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contA"</span><span class="token operator">&gt;</span>角色管理<span class="token number">2222</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"scroll-item"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contentOne"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contA"</span><span class="token operator">&gt;</span>物料申请<span class="token number">3333</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contB"</span><span class="token operator">&gt;</span>物料申请<span class="token number">3333</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"scroll-item"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contentOne"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contA"</span><span class="token operator">&gt;</span>料车表单<span class="token number">4444</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contB"</span><span class="token operator">&gt;</span>料车表单<span class="token number">4444</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contC"</span><span class="token operator">&gt;</span>料车表单<span class="token number">4444</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"scroll-item"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contentOne"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contA"</span><span class="token operator">&gt;</span>消息中心<span class="token number">5555</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contB"</span><span class="token operator">&gt;</span>消息中心<span class="token number">5555</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contB"</span><span class="token operator">&gt;</span>消息中心<span class="token number">5555</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"contB"</span><span class="token operator">&gt;</span>消息中心<span class="token number">5555</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"scroll-itemSp"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span></code></pre> <h2><a id="script_77" rel="nofollow"></a>script部分</h2> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>script<span class="token operator">&gt;</span><span class="token keyword">export</span><span class="token keyword">default</span><span class="token punctuation">{<!-- --></span>   methods<span class="token punctuation">:</span><span class="token punctuation">{<!-- --></span><span class="token function">jump</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">var</span> items<span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">".scroll-item"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span> items<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">if</span><span class="token punctuation">(</span>index<span class="token operator">===</span> i<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>           items<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">scrollIntoView</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>             block<span class="token punctuation">:</span><span class="token string">"start"</span><span class="token punctuation">,</span><span class="token comment">//默认跳转到顶部</span>             behavior<span class="token punctuation">:</span><span class="token string">"smooth"</span><span class="token punctuation">,</span><span class="token comment">//滚动的速度</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token function">onScroll</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">let</span> scrollItems<span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">".scroll-item"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token operator">=</span> scrollItems<span class="token punctuation">.</span>length<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&gt;=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 判断滚动条滚动距离是否大于当前滚动项可滚动距离</span><span class="token keyword">let</span> judge<span class="token operator">=</span>           e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>scrollTop<span class="token operator">&gt;=</span>           scrollItems<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>offsetTop<span class="token operator">-</span> scrollItems<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>offsetTop<span class="token punctuation">;</span><span class="token keyword">if</span><span class="token punctuation">(</span>judge<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">this</span><span class="token punctuation">.</span>activeStep<span class="token operator">=</span> i<span class="token punctuation">;</span><span class="token keyword">break</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token punctuation">{<!-- --></span>       activeIndex<span class="token punctuation">:</span><span class="token string">"1"</span><span class="token punctuation">,</span>       activeIndex2<span class="token punctuation">:</span><span class="token string">"1"</span><span class="token punctuation">,</span>       activeStep<span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">,</span>       title_list<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span> title<span class="token punctuation">:</span><span class="token string">"申请领料"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span> title<span class="token punctuation">:</span><span class="token string">"角色管理"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span> title<span class="token punctuation">:</span><span class="token string">"物料申请"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span> title<span class="token punctuation">:</span><span class="token string">"料车表单"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span> title<span class="token punctuation">:</span><span class="token string">"消息中心"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span></code></pre> <h2><a id="CSS_124" rel="nofollow"></a>CSS部分</h2> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>style scoped<span class="token operator">&gt;</span><span class="token punctuation">.</span>result<span class="token punctuation">{<!-- --></span>   width<span class="token punctuation">:</span><span class="token number">100</span><span class="token operator">%</span><span class="token punctuation">;</span>   height<span class="token punctuation">:</span><span class="token number">530</span>px<span class="token punctuation">;</span>   overflow<span class="token punctuation">:</span> scroll<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">.</span>scroll<span class="token operator">-</span>item<span class="token punctuation">{<!-- --></span>   width<span class="token punctuation">:</span><span class="token number">100</span><span class="token operator">%</span><span class="token punctuation">;</span>   height<span class="token punctuation">:</span><span class="token number">300</span>px<span class="token punctuation">;</span>   margin<span class="token operator">-</span>top<span class="token punctuation">:</span><span class="token number">20</span>px<span class="token punctuation">;</span>   background<span class="token punctuation">:</span> #eee<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">.</span>scroll<span class="token operator">-</span>itemSp<span class="token punctuation">{<!-- --></span>   width<span class="token punctuation">:</span><span class="token number">100</span><span class="token operator">%</span><span class="token punctuation">;</span>   height<span class="token punctuation">:</span><span class="token number">300</span>px<span class="token punctuation">;</span><span class="token comment">/* margin-top: 20px; */</span>   background<span class="token punctuation">:</span> #eee<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">.</span>scroll<span class="token operator">-</span>item<span class="token operator">&gt;</span> span<span class="token punctuation">{<!-- --></span>   font<span class="token operator">-</span>size<span class="token punctuation">:</span><span class="token number">40</span>px<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">.</span>scroll<span class="token operator">-</span>item<span class="token punctuation">:</span>first<span class="token operator">-</span>child<span class="token punctuation">{<!-- --></span>   margin<span class="token operator">-</span>top<span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">.</span>scroll<span class="token operator">-</span>item<span class="token punctuation">:</span>last<span class="token operator">-</span>child<span class="token punctuation">{<!-- --></span>   height<span class="token punctuation">:</span><span class="token number">500</span>px<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">.</span>el<span class="token operator">-</span>menu<span class="token punctuation">{<!-- --></span>   padding<span class="token operator">-</span>left<span class="token punctuation">:</span><span class="token number">500</span>px<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">.</span>el<span class="token operator">-</span>menu<span class="token operator">-</span>item<span class="token punctuation">{<!-- --></span>   margin<span class="token operator">-</span>left<span class="token punctuation">:</span><span class="token number">10</span>px<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">.</span>contentOne<span class="token punctuation">{<!-- --></span>   display<span class="token punctuation">:</span> flex<span class="token punctuation">;</span><span class="token comment">/* height: 250px; */</span><span class="token punctuation">}</span><span class="token punctuation">.</span>contA<span class="token punctuation">{<!-- --></span>   width<span class="token punctuation">:</span><span class="token number">180</span>px<span class="token punctuation">;</span>   height<span class="token punctuation">:</span><span class="token number">180</span>px<span class="token punctuation">;</span>   background<span class="token operator">-</span>color<span class="token punctuation">:</span> green<span class="token punctuation">;</span>   margin<span class="token operator">-</span>top<span class="token punctuation">:</span><span class="token number">20</span>px<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">.</span>contB<span class="token punctuation">{<!-- --></span>   width<span class="token punctuation">:</span><span class="token number">180</span>px<span class="token punctuation">;</span>   height<span class="token punctuation">:</span><span class="token number">180</span>px<span class="token punctuation">;</span>   background<span class="token operator">-</span>color<span class="token punctuation">:</span> green<span class="token punctuation">;</span>   margin<span class="token operator">-</span>top<span class="token punctuation">:</span><span class="token number">20</span>px<span class="token punctuation">;</span>   margin<span class="token operator">-</span>left<span class="token punctuation">:</span><span class="token number">20</span>px<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">.</span>contC<span class="token punctuation">{<!-- --></span>   width<span class="token punctuation">:</span><span class="token number">180</span>px<span class="token punctuation">;</span>   height<span class="token punctuation">:</span><span class="token number">180</span>px<span class="token punctuation">;</span>   background<span class="token operator">-</span>color<span class="token punctuation">:</span> green<span class="token punctuation">;</span>   margin<span class="token operator">-</span>top<span class="token punctuation">:</span><span class="token number">20</span>px<span class="token punctuation">;</span>   margin<span class="token operator">-</span>left<span class="token punctuation">:</span><span class="token number">20</span>px<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span></code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-39703.htm">宠物领养跟买有什么区别（领养的狗和宠物店的区别在哪里）</a></p>
+                                        <p>下一个：<a href="/news/article-40186.htm">领养狗协议有法律效应吗（狗领养协议有没有法律效应）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-33874.htm" title="动物疫苗什么时候打 动物疫苗什么时候打最好">动物疫苗什么时候打 动物疫苗什么时候打最好</a></li>
+                        <li class="py-2"><a href="/news/article-34342.htm" title="同安宠物（同安宠物诊所）">同安宠物（同安宠物诊所）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新22.3M/S免费节点订阅链接">Mihomo Party节点订阅每天更新22.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-24000.htm" title="关于MySQL92和99 等值连接、非等值连接、自连接、外连接及多表查询的代码示例总结！">关于MySQL92和99 等值连接、非等值连接、自连接、外连接及多表查询的代码示例总结！</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-24-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新19.1M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-35772.htm" title="使用 Docker 搭建 Confluence">使用 Docker 搭建 Confluence</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-8-node-share-links.htm" title="Mihomo Party节点订阅每天更新21.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新21.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-20335.htm" title="动物疫苗接种方法有哪几种呢（动物疫苗接种方法有哪几种呢视频）">动物疫苗接种方法有哪几种呢（动物疫苗接种方法有哪几种呢视频）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新20.8M/S免费节点订阅链接">Mihomo Party节点订阅每天更新20.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-31383.htm" title="宠物医院免费咨询电话（宠物医院24小时咨询电话）">宠物医院免费咨询电话（宠物医院24小时咨询电话）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
