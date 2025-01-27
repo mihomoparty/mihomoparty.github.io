@@ -170,6 +170,7 @@
                   				  				  				<div id="content_views" class="htmledit_views"> <h3><strong>多态：</strong></h3> <p>从字面意思理解就是多种形态。而在Java中多态是同一个行为具有多个不同表现形式或形态的能力。</p> <p><strong>多态分为:</strong></p> <p><strong>方法多态：方法的重写和重载就是方法的多态的体现形式</strong></p> <p><strong>对象多态：</strong></p> <p>1.一个对象 的编译类型和运行类型是不一样</p> <p>2.编译类型是在定义对象的时候，就已经确定好的</p> <p>3.运行类型是可以改变的</p> <p>4.编译类型看=的左边 运行类型看 =的右边</p> <p>例：<strong>Person person = new Person();</strong></p> <p><strong>注意：</strong></p> <p>1.必须有继承</p> <p>2.必须有重写</p> <p>3.等号左边是父类的引用，等号右边是子类的对象。</p> <p><strong>多态的转型：【向上转型和向下转型】</strong></p> <h3><strong>1.向上转型</strong></h3> <p>本质就是：父类的引用指向子类对象。</p> <p>语法格式：</p> <p> 父类 父类引用 = new 子类（）；</p> <pre><code class="language-java">示例：package com.qfedu.d_duotai;  class Person { 	public void eat () { 		 	} } class Student extends Person { 	@Override 	public void eat() { 		System.out.println("学生吃饭，吃披萨"); 	} 	public void sleep () { 		System.out.println("中午不谁下午崩溃！！！"); 	} } public class Demo1 { 	public static void main(String[] args) { 		Person person = new Student();//向上转型 		person.eat(); 		//person.sleep(); 	}  } </code></pre> <p>将子类的对象赋值给了父类的引用。小范围（子类） 转为大范围（父类）自动转</p> <p>父类的引用可以调用父类的所有成员方法，可以调用子类的重写父类的方法，但是不能调用子类独有的方法。</p> <h3><strong>2.向下转型</strong></h3> <p>语法格式：</p> <p>父类 父类引用 = new 子类（）；</p> <p>子类 子类引用 = （子类）父类的引用；</p> <pre><code class="language-java">实例：package com.qfedu.d_duotai;  class TestA { 	//Object 是所有类的父类 	public void test (Object obj ) { 		//必须给我打印一个String类型的狗蛋，我不要Object类型的狗蛋 //		String str = (String) obj;  //		System.out.println(str); 		int i1 = (int)obj; 		System.out.println(i1); 		 	} } public class Demo4 { 	public static void main(String[] args) { 		TestA testA = new TestA(); 		//testA.test("狗蛋"); 		Object object = "狗蛋"; 		testA.test(98); 		testA.test('狗'); 	}  } </code></pre> <h3><strong>instenceof 关键字</strong></h3> <p>是比较操作符，返回值是布尔&nbsp;<strong>Boolean</strong>类型数据</p> <p>语法格式：</p> <p>对象引用&nbsp;<strong>instenceof</strong>&nbsp;类（运行类型）</p> <p>用来判断对象的运行类型（=右边）， 是否是xx类型或者xx类型的子类</p> <p><strong>目的：是为了在强转的时候不出现问题</strong></p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-44633.htm">原生js实现楼层滚动（界面滑动）效果</a></p>
+                                        <p>下一个：<a href="/news/article-45147.htm">GO语言学习——基本数据类型字符串</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -179,16 +180,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-43668.htm" title="动物疫苗的生产工艺流程图（动物疫苗研发生产流程）">动物疫苗的生产工艺流程图（动物疫苗研发生产流程）</a></li>
-                        <li class="py-2"><a href="/news/article-20796.htm" title="Spring JDBC-NamedParameterJdbcTemplate模板类">Spring JDBC-NamedParameterJdbcTemplate模板类</a></li>
-                        <li class="py-2"><a href="/news/article-26793.htm" title="Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-8-node-share-links.htm" title="Mihomo Party节点订阅每天更新21.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新21.6M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/news/article-39702.htm" title="孩子10几天后才说被猫咬了,打个狂犬疫苗能喝点小酒吗（打了狂犬疫苗六个月后又被猫抓伤了能茶喝吗?）">孩子10几天后才说被猫咬了,打个狂犬疫苗能喝点小酒吗（打了狂犬疫苗六个月后又被猫抓伤了能茶喝吗?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-26-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新20.1M/S免费节点订阅链接">Mihomo Party节点订阅每天更新20.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-25-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新22.7M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新18.8M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.8M/S免费节点订阅链接地址分享</a></li>
                         <li class="py-2"><a href="/news/article-34821.htm" title="免费问诊在线医生（免费问诊在线医生皮肤科）">免费问诊在线医生（免费问诊在线医生皮肤科）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-7-node-share.htm" title="Mihomo Party节点订阅每天更新22.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.6M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/news/article-18950.htm" title="宠物食品加工厂的前景（宠物食品厂需要投资多少钱）">宠物食品加工厂的前景（宠物食品厂需要投资多少钱）</a></li>
-                        <li class="py-2"><a href="/news/article-34342.htm" title="同安宠物（同安宠物诊所）">同安宠物（同安宠物诊所）</a></li>
-                        <li class="py-2"><a href="/news/article-40186.htm" title="领养狗协议有法律效应吗（狗领养协议有没有法律效应）">领养狗协议有法律效应吗（狗领养协议有没有法律效应）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-5-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新19.2M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-19878.htm" title="v-model.trim使用">v-model.trim使用</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-22-node-share.htm" title="Mihomo Party节点订阅每天更新20.5M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新20.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-38697.htm" title="济南美联众合动物医院怎么样（济南美联众合动物医院怎么样）">济南美联众合动物医院怎么样（济南美联众合动物医院怎么样）</a></li>
+                        <li class="py-2"><a href="/news/article-36741.htm" title="附近免费领养小猫电话号码 附近免费领养小猫电话号码是多少">附近免费领养小猫电话号码 附近免费领养小猫电话号码是多少</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-node-share.htm" title="Mihomo Party节点订阅每天更新19.3M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.3M/S免费节点订阅链接地址分享</a></li>
                     </ul>
     </div>
 </div>
@@ -200,7 +201,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">66</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
