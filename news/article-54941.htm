@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-54941.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>领域驱动模型DDD领域事件的订阅/发布实践</title>
+        <meta name="description" content="前言 凭良心来说，《微服务架构设计模式》此书什么都好，就是选用的业务过于庞大而导致代码连贯性太差，我作为读者来说对于其中采用的自研框架看起来味同嚼蜡，需要花费的学习成本实在是难以想象，不仅要对书中的内" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-54941.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="领域驱动模型DDD领域事件的订阅/发布实践" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/e39dea8217818b6c97c8bf5790f27fa1.webp" />
+        <meta property="og:release_date" content="2025-02-11T05:44:29" />
+    <meta property="og:updated_time" content="2025-02-11T05:44:29" />
+        <meta property="og:description" content="前言 凭良心来说，《微服务架构设计模式》此书什么都好，就是选用的业务过于庞大而导致代码连贯性太差，我作为读者来说对于其中采用的自研框架看起来味同嚼蜡，需要花费的学习成本实在是难以想象，不仅要对书中的内" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="领域驱动模型DDD领域事件的订阅/发布实践">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">领域驱动模型DDD领域事件的订阅/发布实践</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<h2 id="前言">前言</h2> <p>凭良心来说，《微服务架构设计模式》此书什么都好，就是选用的业务过于庞大而导致代码连贯性太差，我作为读者来说对于其中采用的自研框架看起来味同嚼蜡，需要花费的学习成本实在是难以想象，不仅要对书中的内容进行了解，还要去学习作者框架用法，最可恶的是官方文档还写得十分简洁。</p> <p>不要跟我说《微服务架构设计模式》是一本概念性著作，对于我这水平一般的"实用派"来说在理解概念的雏形后最希望的就是通过书中的实现案例确认自己的理解是否正确，最后再巩固记忆尝试使用。</p> <p>如果你读了第一章可以看到，在该章节中我一直强调万不可在阅读文章时带入“正进行编程的思维”——即如何具体到代码块的编写或是相关技术的采用。</p> <p>这个劝诫与我此章采用代码讲解并不冲突，我举例的代码坚持从简：一是我水平和时间不足以让我做出像书本一样专业的企业案例；二是我认为过度繁琐的业务会让读者深陷代码解读而非吸取思想理念的困境中。从利用现实生活中的相似物比喻引导读者粗略理解概念，到简略的代码框架明了地让读者知道“某种思维”的大致应用方向，这一切始终围绕着本博客撰写的核心观点——“架构的设计”的阅读过程是思维视角的抽象传播，而非细致到可以“一招鲜吃遍天”的具体代码。</p> <h2 id="贫血模型充血模型">贫血模型、充血模型</h2> <p>本着说话就要说完的原则，我还是决定在此章加入这一小节。主要是因为领域驱动模型中重要的宏观架构到“领域的划分”、“限界上下文”，细微业务逻辑到“事件”、“聚合”、“命令”等。然而在通常开发过程中Java的Spring框架、Golang的Beggo框架，大多在有意无意暗示开发者使用<strong>贫血模式</strong>，在平常项目后端我们一般使用三层架构进行业务开发：Repository + Entity、Service + BO（Business Object）、Controller + VO（View Object），Entity类和Repository类负责数据访问， Bo类和Service类负责处理业务逻辑， Vo类和Controller类属于接口层。（估计某些简单项目甚至连到这一步细分都没有）</p> <p><strong>贫血模式</strong>其最直观的表现就在于：领域对象里中只有GET和SET方法，至于业务逻辑都塞入Service类中，对象BO类中的所有属性就只是用来做数据库和真实世界的数据之间的传递介质。</p> <pre><code class="language-java">@Data public class TicketBO {     //单个订单的商品形成的Set集合，参考淘宝购物车勾选多个商品后合计支付的订单     private Set&lt;Order&gt; orders;     //所有价格     private BigDecimal realAmount;     //优惠     private BigDecimal discounts;     //订单创建时间     private LocalDateTime orderCreateTime;     //修改订单     private LocalDateTime orderChangeTime;     //订单完成时间     private LocalDateTime finishCreateTime; }</code></pre> <p>而在<strong>充血模式</strong>下数据和对应的业务逻辑被封装到对象类中，Service层仅负责业务逻辑与存储之间的流程编排（从DB中获取数据，传递数据，最后存储数据），并不参与任何的业务逻辑。在以下代码里，我将用户未优惠下的支付金额与实际支付金额的业务计算直接置入类中，形成典型的面向对象编程风格。</p> <pre><code class="language-java">@Data public class TicketBO {     //单个订单的商品形成的Set集合，参考淘宝购物车勾选多个商品后合计支付的订单     private Set&lt;Order&gt; orders;     //所有价格     private BigDecimal realAmount;     //优惠扣减价格     private BigDecimal discounts;     //订单创建时间     private LocalDateTime orderCreateTime;     //修改订单     private LocalDateTime orderChangeTime;     //订单完成时间     private LocalDateTime finishCreateTime;      //未使用优惠券情况下应付应付总额     public BigDecimal getAllAmount(){         return orders.stream().map(Order::getPrice).reduce(BigDecimal.ZERO,BigDecimal::add);     }      //使用优惠券后实际应付总额     public BigDecimal getRealAmount(){         BigDecimal allAmount = getAllAmount();         return allAmount.subtract(discounts);     } }</code></pre> <p>读者可能会产生疑问，这两种开发模式落实到代码层面，区别不就是一个将业务逻辑放到 Service 类中，一个将业务逻辑放到 Domain 领域模型（上面的BO类）中吗？为什么基于贫血模型的传统开发模式，就不能应对复杂业务系统的开发？</p> <p>实际上，除了我们能看到的代码层面的区别之外（一个业务逻辑放到 Service 层，一个放到领域模型中），还有一个非常重要的区别，那就是两种不同的开发模式会导致不同的开发流程。</p> <p>传统的代码业务流程开发中，很多程序员最终面向的不过是CRUD编程，即在Service类中将数据处理好后存储到数据库中。拿以上图代码为例进行假设：我们要让用户支付的金额包括邮费，如果采用的时<strong>贫血模式</strong>那我们可以直接在BO中添加一个邮费属性。但是到修改Service类时，我们就得对先前每一个涉及金额的计算代码块（秒杀节日订单、正常购买订单、预约购买订单）重写里面的的金额计算方式，这不仅降低了复用性，后期随着业务拓展也更容易陷入“牵一发动全身”的泥沼中。</p> <p>而采用基于DDD的<strong>充血模式</strong>时，因为预先定义好了领域模型所包含的属性和方法，此后的领域模型相当于可复用的业务中间层。当出现新功能需求的开发，都基于之前定义好的这些领域模型来完成。还是新增邮费属性，我们可以直接在BO类中编写计算出添加邮费后的实际应付总额，而所涉及金额的Service类基本可以不做任何变更。</p> <h2 id="领域事件的订阅发布">领域事件的订阅/发布</h2> <p>上一小节已经对贫血模式、充血模式做了举例说明，下面我将会以充血模式为基础编写一个很基础的下单的业务逻辑。</p> <h3 id="何为领域事件">何为领域事件？</h3> <p>既然被称之为<strong>事件</strong>，那事件的发生必定是存在触发条件的：因为A的产生所以需要变更B。这个概念希望各位能够切记，以免与后面才讲的<strong>命令</strong>混淆。</p> <p>发布领域事件并非任何时候都是必要的，一是在发生重大变更或时才应该发布领域事件，二是在聚合在被创建时才应该发布领域事件。</p> <p>如何判断是否属于重大变更，拿以下两个例子对比：</p> <p>①餐馆菜单菜品变更导致食材库需要更换购买的食材；</p> <p>②餐馆菜单价格涨价导致用户购买时需要多支付金额；</p> <p>对于①来说菜单与食材库是两个独立的<strong>聚合</strong>，而食材库无法自动感知菜单菜品是否发生变化（你修改菜单菜品数据库数据是无法影响食材库的数据库数据），所以在不主动通知的情况下，食材库就会一直按照原本的食材单购买原材料。因此当菜单菜品发生变更，从业务上来说会出现 Menu Change 事件，而 Menu Change 事件发生过程中一定需要创建新的 Menu 对象，此外业务上影响了食材 Ingredient 聚合，所以需要发布领域事件。</p> <p>对于②来说菜单价格的降涨会同步影响到订单应支付金额，不需要手动再去提醒订单“菜单涨价了，你也要跟着再计算一次价格哦”，因为对于订单金额来说只要根据用户下单的菜品查询数据库的价格后求和便可，根本不必时刻关注价格是否变动。</p> <p>那价格增降什么时候需要事件发布呢？各位可以参考京东或淘宝的“降价短信提醒”功能。因为商品与短信功能时两个独立的<strong>聚合</strong>，短信模块在数据层面上无法自动感知商品价格的变动，所以就需要商品价格主动发布领域事件告诉短信模块你要发送通知短信告诉用户订阅的商品降价了。从业务上来说就出现了 Commodity Change 事件，而 Commodity Change 的发生才会触发短信的发送。</p> <p>综上，我用了大量的篇幅对何时需要领域事件发布进行解释，主要希望各位不要错以为任何发生变动的情况都要进行发布，希望各位能够谅解我的啰嗦。</p> <p>接下来我将会以“用户预约时间对商品进行下单支付，当预约时间到了后通知订单自动创建”为例，编写一段简陋的事件订阅/发布代码让各位能够进一步理解事件订阅/发布的过程。</p> <h3 id="具体代码">具体代码</h3> <p>注意：领域事件遵从的是<strong>订阅/发布</strong>而不是<strong>发布/接收</strong>。曾经我在阅读理解这一块知识的时候很想当然地误解了字面含义，它们最大的区别是顺序问题，前者是先订阅再发布，而后者是先发布再接收。我并非是为了咬文嚼字，这其中细微的差距希望各位能够多读几遍并结合代码才能领悟得到。</p> <p>编写事件订阅代码：</p> <pre><code class="language-java">public interface DomainEventSubscriber&lt;T&gt; {    //如何处理事件     void handleEvent(final T aDomainEvent);    //订阅事件类型     Class&lt;T&gt; subscribedToEventType(); }</code></pre> <p>编写事件发布代码：</p> <pre><code class="language-java">public class DomainEventPublisher {     private static final ThreadLocal&lt;DomainEventPublisher&gt; instance = new ThreadLocal&lt;DomainEventPublisher&gt;() {         @Override         protected DomainEventPublisher initialValue() {             return new DomainEventPublisher();         }     };      //做一个判断是否正在发布     private boolean publishing;      //订阅方列表     @SuppressWarnings("rawtypes")     private List subscribers;      public static DomainEventPublisher instance() {         DomainEventPublisher domainEventPublisher = instance.get();         return domainEventPublisher;     }      @SuppressWarnings("rawtypes")     private List subscribers() {         return this.subscribers;     }      //设置发布状态     private void setPublishing(boolean flag) {         this.publishing = flag;     }      @SuppressWarnings("rawtypes")     private void setSubscribers(List subscriberList) {         this.subscribers = subscriberList;     }      //查看当前是否有订阅集合     @SuppressWarnings("rawtypes")     public boolean hasSubscribers() {         return subscribers() != null;     }      //如果当前订阅集合为空则创建一个新的集合     @SuppressWarnings("rawtypes")     private void ensureSubscribersList() {         if (!this.hasSubscribers()) {             this.setSubscribers(new ArrayList());         }     }      //如果当前没有在进行发布，则进行订阅集合判断后将新的订阅者加入集合列表     @SuppressWarnings("unchecked")     public &lt;T&gt; void subscribe(DomainEventSubscriber&lt;T&gt; aSubscriber) {         if (!this.publishing) {             this.ensureSubscribersList();             this.subscribers().add(aSubscriber);         }     }      //此处的&lt;T&gt; 表示传入参数有泛型,&lt;T&gt;存在的作用，是为了保证参数中能够出现T这种数据类型     public &lt;T&gt; void publish(T useDomainEvent) {         //如果没有正在发布消息同时候订阅列表不为空         if (!this.publishing &amp;&amp; hasSubscribers()) {             try {                 this.setPublishing(true);                 //获取当前正在发布消息的领域事件类名                 Class&lt;?&gt; publishClass = useDomainEvent.getClass();                 //获取当前所有订阅者                 List&lt;DomainEventSubscriber&lt;T&gt;&gt; allSubscribers = this.subscribers();                 //遍历所有订阅者列表                 for (DomainEventSubscriber&lt;T&gt; subscriber : allSubscribers) {                     //返回对应的领域事件类                     Class&lt;T&gt; subscribedToType = subscriber.subscribedToEventType();                     //如果发布的领域事件类型与订阅列表的类型匹配上，则将事件交给对应的处理器进行处理                     if (subscribedToType.toString().equals(publishClass.toString()) ) {                         subscriber.handleEvent(useDomainEvent);                     }                 }             }finally {                 //处理完后告知发布消息事件已经结束                 this.setPublishing(false);             }         }     } }</code></pre> <p>领域事件一般包括元数据，例如事件ID和时间戳，为了便于拓展先简单订阅领域事件的接口：</p> <pre><code class="language-java">//定义领域事件接口 public interface DomainEvent {     String id();      Date occurredOn();      default Date getCreatEventTime(){         return occurredOn();     }      default String type(){         return getClass().getSimpleName();     }      default String getType(){         return type();     } }</code></pre> <p>根据聚合编写与聚合相关的事件：</p> <pre><code class="language-java">@Data public abstract class TicketDomainEvent implements DomainEvent{     //补充到聚合根信息中     private String orderId;      private Date occurredOn;      @Override     public String id() {         return this.orderId;     }      @Override     public Date occurredOn() {         return this.occurredOn;     } }</code></pre> <p>根据具体业务的需求和上下文环境定制特定的事件：</p> <pre><code class="language-java">//在订单创建时可以根据现实需求补充上下文信息,如果没有为空就可以 @Data public class CustomerTicketCreateEvent extends TicketDomainEvent {     //基础订单信息     private Ticket ticket;      //面向客户的订单信息，额外添加收获地址     private String address;      public CustomerTicketCreateEvent(Ticket ticket, String address){         this.address = address;         this.ticket = ticket;     } }</code></pre> <p>充血模式下的对象实体类：</p> <pre><code class="language-java">@Data public class Ticket {     //实际应支付价格     private BigDecimal realAmount;     //优惠     private BigDecimal discounts;     private Set&lt;Order&gt; orders;     //订单创建时间     private LocalDateTime orderCreateTime;     //修改订单     private LocalDateTime orderChangeTime;     //订单完成时间     private LocalDateTime finishCreateTime;      //未优惠情况下应付应付总额     public BigDecimal getAllAmount(){         return orders.stream().map(Order::getPrice).reduce(BigDecimal.ZERO,BigDecimal::add);     }      //价格优惠后实际应付总额     public BigDecimal getRealAmount(){         BigDecimal allAmount = getAllAmount();         return allAmount.subtract(discounts);     } }</code></pre> <p>我们在这里做一个业务假设，例如预约购买，一旦某件商品上线，就通知我们自动创建订单进行支付，模拟Service的伪代码：</p> <pre><code class="language-java">//模拟MVC三层模型中的Service public class BuyService {     //预定服务，定时任务到了，发布创建订单的事件     public void reservation(Ticket ticket){         Ticket ticket = new Ticket();         //优惠价格         ticket.setDiscounts(new BigDecimal(20));         //收获地址         String address = "M78星云光之国成化大道消防队对面";          DomainEventPublisher.instance().publish(new CustomerTicketCreateEvent(ticket,address));     } }</code></pre> <p>订单自动创建模拟Service的伪代码：</p> <pre><code class="language-java">public class TicketService {     public void saveTicket(){         DomainEventPublisher.instance().subscribe(new DomainEventSubscriber&lt;CustomerTicketCreateEvent&gt;() {              @Override             public void handleEvent(CustomerTicketCreateEvent domainEvent) {                 System.out.println("收货地址是:"+ domainEvent.getAddress());                 System.out.println("goods was purchased");                 //将顶到保存到数据库,可以增加与db数据库的增删查改操作                 System.out.println("db has save!!");             }              @Override             public Class&lt;CustomerTicketCreateEvent&gt; subscribedToEventType() {                 return CustomerTicketCreateEvent.class;             }         });     } }</code></pre> <p>可以看到上面的TicketService类中并未对数据进行更多的逻辑处理，只负责业务逻辑与存储之间的流程编排，充血模式使得各个层级负责的业务分明。（至于BuyService因为要模拟发布方，所以就没有遵从）。</p> <p>最后还记得我上面说的，先订阅再发布吗？以下就很明显地体现出来：</p> <pre><code class="language-java">@SpringBootTest class DrivenApplicationTests {      @Test     void contextLoads() {         //先注册订阅列表，再进行发布。顺序颠倒控制台显示为空         TicketService ticketService = new TicketService();         ticketService.saveTicket();          BuyService buyService = new BuyService();         buyService.reservation();     } }</code></pre> <p>GitHub源码：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/1148973713/Domain-Driven"  target="_blank" rel="nofollow">https://github.com/1148973713/Domain-Driven</a></p> <h2 id="结语">结语</h2> <p>本博主编程水平一般，不能在闲余时间编写特别复杂的业务流程向各位一一详解领域事件发布/订阅的流程，我希望通过简单明了的案例让各位不陷入代码理解困难的情况下窥得进入领域驱动设计的门槛，如果有什么意见或建议希望各位能够在评论区指出。后续应该会更新Saga事务一致性相关的内容，希望各位持续关注并耐心等待。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-54388.htm">卖宠物粮食的店名（宠物粮食店铺）</a></p>
+                                        <p>下一个：<a href="/news/article-54942.htm">新手开什么店赚钱（新手开店开什么店最好）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-51725.htm" title="宠物粮食加工厂什么岗位比较好做 宠物粮食加工厂什么岗位比较好做呢">宠物粮食加工厂什么岗位比较好做 宠物粮食加工厂什么岗位比较好做呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新22.3M/S免费节点订阅链接">Mihomo Party节点订阅每天更新22.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-27257.htm" title="宠物粮食成本分析论文（宠物粮食成本分析论文题目）">宠物粮食成本分析论文（宠物粮食成本分析论文题目）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-2-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新22.4M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.4M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-33874.htm" title="动物疫苗什么时候打 动物疫苗什么时候打最好">动物疫苗什么时候打 动物疫苗什么时候打最好</a></li>
+                        <li class="py-2"><a href="/news/article-49613.htm" title="宠物领养须知图片大全大图（宠物领养须知图片大全大图高清）">宠物领养须知图片大全大图（宠物领养须知图片大全大图高清）</a></li>
+                        <li class="py-2"><a href="/news/article-25864.htm" title="宠物领养证如何办理手续流程视频（宠物领养证书怎么办理）">宠物领养证如何办理手续流程视频（宠物领养证书怎么办理）</a></li>
+                        <li class="py-2"><a href="/news/article-24415.htm" title="动物医院哪家好一些啊（动物医院哪家好一些啊知乎）">动物医院哪家好一些啊（动物医院哪家好一些啊知乎）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-node-share.htm" title="Mihomo Party节点订阅每天更新21M/S免费节点订阅链接">Mihomo Party节点订阅每天更新21M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新18.9M/S免费节点订阅链接">Mihomo Party节点订阅每天更新18.9M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-55502.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>编译实战 | 手摸手教你在Windows环境下运行Redis6.x</title>
+        <meta name="description" content="原创：微信公众号码农参上，欢迎分享，转载请保留出处。  哈喽大家好啊，我是没事就愿意瞎捣鼓的Hydra。 不知道有没有小伙伴像我一样，平常开发中用的是windows操作系统，有时候想装点什么软件，一看" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-55502.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="编译实战 | 手摸手教你在Windows环境下运行Redis6.x" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/091750c9400aeadf71f8adba9af83ce8.webp" />
+        <meta property="og:release_date" content="2025-02-12T09:09:25" />
+    <meta property="og:updated_time" content="2025-02-12T09:09:25" />
+        <meta property="og:description" content="原创：微信公众号码农参上，欢迎分享，转载请保留出处。  哈喽大家好啊，我是没事就愿意瞎捣鼓的Hydra。 不知道有没有小伙伴像我一样，平常开发中用的是windows操作系统，有时候想装点什么软件，一看" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="编译实战 | 手摸手教你在Windows环境下运行Redis6.x">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">编译实战 | 手摸手教你在Windows环境下运行Redis6.x</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<blockquote> <p>原创：微信公众号<code>码农参上</code>，欢迎分享，转载请保留出处。</p> </blockquote> <p>哈喽大家好啊，我是没事就愿意瞎捣鼓的Hydra。</p> <p>不知道有没有小伙伴像我一样，平常开发中用的是windows操作系统，有时候想装点什么软件，一看只支持linux系统，无奈要么启动虚拟机、要么装在云服务器上。</p> <p>这不前几天又是这样，刚想用一下Redis 6.x版本来尝试一下新特性，打开官网一看，好家伙我直呼内行，果然不支持windows系统：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/92ba5e8b40a2cb0772b92e3f134647db.jpg" alt="编译实战 | 手摸手教你在Windows环境下运行Redis6.x"></p> <p>不过虽然redis的官网上不提供windows版本下载，但是这也难不倒我这个面向百度编程的小能手，一番查找后让我找到了微软在github上维护的几个可以在windows上运行的redis版本：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/1974ea2c0901dcc4301c757b8d6de33a.jpg" alt="编译实战 | 手摸手教你在Windows环境下运行Redis6.x"></p> <p>项目的git地址是<code>https://github.com/MicrosoftArchive/redis/releases</code>，我翻了一下，微软维护了<code>2.x</code>和<code>3.x</code>的多个windows版本redis，不过比较遗憾，在维护到<code>3.0.504</code>正式版本后就放弃了更新。</p> <p>不过问题不大，眼看微软撂挑子不干了，波兰的热心市民 Tomasz Poradowski 先生这时候站出来，继续开始提供可以在windows上运行的<code>4.x</code>和<code>5.x</code>版本的redis，并且从2017年到2022年一干就是5年。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/a34e603765f06c26dc8231eecd671351.jpg" alt="编译实战 | 手摸手教你在Windows环境下运行Redis6.x"></p> <p>项目git地址是<code>https://github.com/tporadowski/redis/releases</code>，没错，其实我本地环境运行的<code>redis-5.0.9</code>就是以前从这里下载的，而且绿色版使用起来真的是干净又卫生，所以我强烈建议大家给这位老哥来一个Star支持一下。</p> <p>不过绕了这么一大圈，我的问题还是没有解决啊，既然没有现成的可以在windows上运行的<code>redis6.x</code>版本，那我们干脆就来自己编译一个吧。</p> <h2 id="初识cygwin">初识Cygwin</h2> <p>首先介绍一下我们今天要用到的工具<strong>Cygwin</strong>，先简单看一下它的官网<code>https://cygwin.com/</code>，上面很清晰的解释了几个容易引起大家混淆的问题：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/ea8af2ab9641e248055b608189041bff.jpg" alt="编译实战 | 手摸手教你在Windows环境下运行Redis6.x"></p> <p>先解释了cygwin是什么：</p> <ul> <li>cygwin是<code>GNU</code>和开源工具的大型集合，它提供了类似于在windows上运行linux发行版的模拟环境功能</li> <li>cygwin是一个动态链接库<code>cygwin1.dll</code>，它提供了大量<code>POSIX</code>的API功能</li> </ul> <p>再纠正了大家的常见误区：</p> <ul> <li>cygwin并不能让原生的linux应用程序运行在windows上，如果想让它运行在windows上，那么你必须通过源代码重新构建你的应用</li> <li>cygwin并不能神奇地让原生的windows应用程序感知到unix的功能，例如信号、伪终端等</li> </ul> <p>其实可以用一句话来概括一下它的功能，<strong>cygwin是一个可运行于原生windows系统上的POSIX兼容环境，可以通过重新编译将linux应用移植到windows中</strong>。</p> <p>好了，这样简单了解一下cygwin的功能对我们来说暂时就足够了，下面我们看看如何使用它来编译windows版本redis。</p> <h2 id="cygwin安装">Cygwin安装</h2> <p>下面我们先进行编译工具<code>Cygwin</code>的下载和安装，在它的官网上就可以直接下载，完成后就可以开始安装了。下面我会贴出一些需要特殊配置的步骤，如果没有特殊说明的话，那么直接痛快的点击下一步就可以了。</p> <p>网络连接配置这里选择第二项，也就是直接连接，不需要任何代理方式：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e4b3ca56da0944ec542b46e0e1ce8321.jpg" alt="编译实战 | 手摸手教你在Windows环境下运行Redis6.x"></p> <p>在选择下载源这一步，先手动输入<code>User URL</code>，添加阿里云的镜像<code>http://mirrors.aliyun.com/cygwin</code>，点击<code>add</code>后再选择我们刚才添加的这个源，然后点击下一步：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/8f5aa5f2491126022c8371e76f70f650.jpg" alt="编译实战 | 手摸手教你在Windows环境下运行Redis6.x"></p> <p>接下来选择需要下载安装的组件包，我们只需要下载我们编译相关的模块即可。先通过上面的搜索框进行定位，选择安装<code>Devel</code>模块下面的<code>make</code>、<code>gcc-core</code>，<code>gcc-g++</code>，以及<code>Libs</code>模块下的<code>libgcc1</code> 、<code>libgccpp1</code>，然后点击<code>New</code>这一列的<code>Skip</code>，选择要安装的版本号，全部添加完成后点击下一步：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/ad417681378ceb9248443b9d64d4205a.jpg" alt="编译实战 | 手摸手教你在Windows环境下运行Redis6.x"></p> <p>接下来会自动进行下载上面选择的模块，等待全部下载结束后安装就完成了：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/cb5b3f42256e0e9c90ca45a334ea9521.jpg" alt="编译实战 | 手摸手教你在Windows环境下运行Redis6.x"></p> <p>安装完成后，我们运行<code>Cygwin64 Terminal</code>，通过命令检测可以看到<code>Status</code>为<code>OK</code>，表示cygwin运行正常：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/daafc3629d2ccc78b920d195c536b0a5.jpg" alt="编译实战 | 手摸手教你在Windows环境下运行Redis6.x"></p> <h2 id="编译redis源码">编译redis源码</h2> <p>准备好编译工具后，我们接下来先下载<code>redis6.x</code>版本的源码，<code>6.0.16</code>的下载地址为：</p> <blockquote> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://download.redis.io/releases/redis-6.0.16.tar.gz"  target="_blank" rel="nofollow">https://download.redis.io/releases/redis-6.0.16.tar.gz</a></p> </blockquote> <p>cygwin安装完成后，会在它的安装路径的<code>home</code>目录下，创建一个以你登录系统的用户名来命名的目录，我们把下载完成后的压缩包放到这个<code>cygwin64\home\${user}</code>目录下，在cygwin命令行中先执行解压命令：</p> <pre><code class="language-shell">tar -xvf redis-6.0.16.tar.gz</code></pre> <p>使用下面的命令先切换到解压后的根目录，然后执行编译和安装：</p> <pre><code class="language-shell">cd redis-6.0.16  make &amp;&amp; make install</code></pre> <p>点击回车，然后就开始漫长的等待吧，不得不说编译和安装的过程真的很慢，我这大概花了20分钟才全部完成。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/ad71ef5847173a589917a59815422214.jpg" alt="编译实战 | 手摸手教你在Windows环境下运行Redis6.x"></p> <p>不出意外的最后果然出现了意外，报了两个<code>Error</code>，不过貌似没有什么太大影响，切换到<code>src</code>目录下，就已经可以看到编译完成后已经生成了6个<code>exe</code>可执行文件了：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e9c5f4292d93d0041499d27d67f6e5fc.jpg" alt="编译实战 | 手摸手教你在Windows环境下运行Redis6.x"></p> <p>但是如果这个时候双击<code>redis-server.exe</code>尝试进行启动的话，那么就会报错提示缺少<code>dll</code>动态链接库：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/33f4e7af94c73fbb615281cd61bd71bc.jpg" alt="编译实战 | 手摸手教你在Windows环境下运行Redis6.x"></p> <p>我们可以在cygwin的<code>bin</code>目录下找到这个文件，为了方便，把可执行文件、动态链接库文件、redis配置文件拷贝到一个单独的目录下再次尝试启动：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/81f00688ac33b0160a7b3ee6271d3846.jpg" alt="编译实战 | 手摸手教你在Windows环境下运行Redis6.x"></p> <p>这次能够正常启动成功，我们再使用客户端连接工具连接并进行测试，终于，6.0.16版本的redis可以在windows环境下正常运行了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d360554c620909125dd973a9130c9147.jpg" alt="编译实战 | 手摸手教你在Windows环境下运行Redis6.x"></p> <h2 id="最后">最后</h2> <p>忙活一大顿总算成功了，我们也终于可以在windows上体验<code>redis6.x</code>版本了，不过这里还是给小伙伴们提个醒，这样编译的redis我们平常自己在学习中体验一下就可以了，尽量不要用在生产上。</p> <p>因为cygwin编译后的程序，相当于在windows系统上模拟实现了<code>POSIX</code>兼容层，应用程序在底层多了一层函数调用，因此效率比运行在linux系统的原生应用低了很多。因此，这样在windows上运行的redis，无疑会损失掉它引以为傲的高性能这一优势。</p> <p></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-54942.htm">新手开什么店赚钱（新手开店开什么店最好）</a></p>
+                                        <p>下一个：<a href="/news/article-55503.htm">动物疫苗管理工作总结范文（动物疫苗的管理方法）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-17-node-share-links.htm" title="Mihomo Party节点订阅每天更新19.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-49076.htm" title="动物疫苗过敏打什么药好（动物疫苗过敏打什么药好呢）">动物疫苗过敏打什么药好（动物疫苗过敏打什么药好呢）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-16-node-share.htm" title="Mihomo Party节点订阅每天更新19.9M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.9M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新20.5M/S免费节点订阅链接">Mihomo Party节点订阅每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-36282.htm" title="动物疫苗检测中心上班时间（动物疫苗检测中心上班时间是几点）">动物疫苗检测中心上班时间（动物疫苗检测中心上班时间是几点）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新22.1M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新19M/S免费节点订阅链接">Mihomo Party节点订阅每天更新19M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-23534.htm" title="山东聊城宠物产业基地在哪里（聊城宠物店地址）">山东聊城宠物产业基地在哪里（聊城宠物店地址）</a></li>
+                        <li class="py-2"><a href="/news/article-23531.htm" title="狗粮一般在哪买比较正宗（狗粮去哪里买比较好）">狗粮一般在哪买比较正宗（狗粮去哪里买比较好）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-3-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新18.9M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.9M/S免费节点订阅链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
