@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-58909.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）</title>
+        <meta name="description" content="文章目录  前言 一、环境准备 二、SpringBoot项目打jar包   1.1 使用Maven的package插件打包 1.2 上传至Linux服务器   三、Vue项目打包   1.1 修改后台" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-58909.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/5747bf776b430b44733134e6a6c5b742.webp" />
+        <meta property="og:release_date" content="2025-02-18T09:47:16" />
+    <meta property="og:updated_time" content="2025-02-18T09:47:16" />
+        <meta property="og:description" content="文章目录  前言 一、环境准备 二、SpringBoot项目打jar包   1.1 使用Maven的package插件打包 1.2 上传至Linux服务器   三、Vue项目打包   1.1 修改后台" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#_4" rel="nofollow">前言</a></li> <li><a href="#_11" rel="nofollow">一、环境准备</a></li> <li><a href="#SpringBootjar_23" rel="nofollow">二、SpringBoot项目打jar包</a></li> <li> <ul> <li><a href="#11_Mavenpackage_24" rel="nofollow">1.1 使用Maven的package插件打包</a></li> <li><a href="#12_Linux_27" rel="nofollow">1.2 上传至Linux服务器</a></li> </ul> </li> <li><a href="#Vue_31" rel="nofollow">三、Vue项目打包</a></li> <li> <ul> <li><a href="#11__32" rel="nofollow">1.1 修改后台请求地址</a></li> <li><a href="#12_dist_36" rel="nofollow">1.2 生成dist文件</a></li> <li><a href="#13_linux_46" rel="nofollow">1.3 上传至linux服务器</a></li> </ul> </li> <li><a href="#Nginx_55" rel="nofollow">三、配置Nginx</a></li> <li><a href="#_102" rel="nofollow">四、启动项目</a></li> <li> <ul> <li><a href="#11_Nginx_103" rel="nofollow">1.1 启动Nginx服务器</a></li> <li><a href="#12_SpringBoot_105" rel="nofollow">1.2 启动SpringBoot</a></li> <li><a href="#13__114" rel="nofollow">1.3 访问项目</a></li> </ul> </li> <li><a href="#_118" rel="nofollow">总结</a></li> </ul> </div> <hr color="#000000" size="1&quot;"/> </h1> <p>Java企业开发少不了Spring Boot 加 Vue，在如今大街小巷都遍布的前后端分离项目标配，已经成为公司开发必不可少的技术，最近小编开源了一个关于RBAC的项目，也是用Spring Boot 和 Vue写的，想获取源码，最下方有Gitee链接，今天就以我的个人项目做列子。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/fcf0d979949ee1cf776d8dedc088b70c.jpg" alt="详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）"></p> <hr color="#000000" size="1&quot;"/> </h1> <p><strong>1、web服务器</strong></p> <p><strong>2、MySql数据库</strong></p> <p><strong>3、Nginx服务器</strong></p> <p><strong>4、Java环境</strong></p> <p>以后环境准备就绪之后，我们就开始打包进行部署，关于Nginx的使用，以及Docker后面的文章会有专题进行学习。</p> </h1> <h2><a id="11_Mavenpackage_24" rel="nofollow"></a>1.1 使用Maven的package插件打包</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/6a35c5af6e6925f47e6014101915fcc1.jpg" alt="详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）"></p> <h2><a id="12_Linux_27" rel="nofollow"></a>1.2 上传至Linux服务器</h2> <p>将打包后Jar包上传至Linux服务器，随便找个目录：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/22a36215a58af43fc1b9dbac7d579323.jpg" alt="详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）"></p> </h1> <h2><a id="11__32" rel="nofollow"></a>1.1 修改后台请求地址</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/28e17be0440510fb3ca2868c9de8b97d.jpg" alt="详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）"><br /> 现在部署上想了，需要将你前端的启动端口，全部改成后端项目的端口，保持一致，然后修改后端请求的IP地址。就是你服务器的IP地址或者域名。</p> <h2><a id="12_dist_36" rel="nofollow"></a>1.2 生成dist文件</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/de094823eed96581c31a43d49677b5d2.jpg" alt="详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）"><br /> 当然你也可以以下使用命令进行打包：</p> <pre><code class="prism language-java">npm run build</code></pre> <p>打包成功后会生成一个dist静态文件夹，里面都是我们vue项目打包编译后css、js等静态资源文件。</p> <h2><a id="13_linux_46" rel="nofollow"></a>1.3 上传至linux服务器</h2> <p>将dist一整个文件上传至Linux中，创建一个目录，用于存放dist文件，记住存放地址，下面配置Nginx静态资源需要使用：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/fa70fce9ff87102c3a864de051a04414.jpg" alt="详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）"><br /> 为了方便管理，我都放在一个文件目录下：</p> <pre><code class="prism language-java"><span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>dt</code></pre> </h1> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/e1b295b9920407068684c6622ae29be4.jpg" alt="详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）"><br /> 由于Nginx服务器都部署在一台服务器上面，并且我们没有域名，也不做什么负载均衡，所以这里的配置就很简单，IP就写本机，服务器本机即是localhost，后面我们会有部署升级的文章，比如关于配置负载均衡、静态资源压缩、Https证书等等。</p> <p>关键的地方：</p> <p><strong>Vue的静态资源文件路径：</strong></p> <pre><code class="prism language-java">root<span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>dt<span class="token operator">/</span>dist<span class="token punctuation">;</span></code></pre> <p><strong>Spring Boot的接口地址：</strong></p> <pre><code class="prism language-java">proxy_pass  http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>localhost<span class="token operator">:</span><span class="token number">9090</span><span class="token operator">/</span>api<span class="token operator">/</span><span class="token punctuation">;</span></code></pre> <p>小编所有接口都有一个api作为前缀，因为这样好做权限资源的拦截。</p> <p><strong>完整配置：</strong></p> <pre><code class="prism language-json">server<span class="token punctuation">{<!-- --></span>         listen<span class="token number">80</span><span class="token punctuation">;</span>         server_name  localhost<span class="token punctuation">;</span>  		#前端页面         location<span class="token operator">/</span><span class="token punctuation">{<!-- --></span> 			#Linux上的前端工程打包目录 			root<span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>dt<span class="token operator">/</span>dist<span class="token punctuation">;</span>  			#防止重定向页面刷新 路由失效 			try_files $uri $uri<span class="token operator">/</span><span class="token operator">/</span>index<span class="token punctuation">.</span>html<span class="token punctuation">;</span> 			index index<span class="token punctuation">.</span>html index<span class="token punctuation">.</span>htm<span class="token punctuation">;</span><span class="token punctuation">}</span> 		 		#后台接口地址 	    location<span class="token operator">/</span>api<span class="token operator">/</span><span class="token punctuation">{<!-- --></span> 			 proxy_set_header Host $host<span class="token punctuation">;</span> 			 proxy_set_header<span class="token constant">X</span><span class="token operator">-</span>Real<span class="token operator">-</span><span class="token constant">IP</span> $remote_addr<span class="token punctuation">;</span> 			 proxy_set_header<span class="token constant">REMOTE</span><span class="token operator">-</span><span class="token constant">HOST</span> $remote_addr<span class="token punctuation">;</span> 			 proxy_set_header<span class="token constant">X</span><span class="token operator">-</span>Forwarded<span class="token operator">-</span>For $proxy_add_x_forwarded_for<span class="token punctuation">;</span> 			 #填写你接口地址和端口，利用 nginx 反向代理进行服务转发 			 proxy_pass  http<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>localhost<span class="token punctuation">:</span><span class="token number">9090</span><span class="token operator">/</span>api<span class="token operator">/</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p>一切配置好之后，我们就可以开始启动项目了。</p> </h1> <h2><a id="11_Nginx_103" rel="nofollow"></a>1.1 启动Nginx服务器</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/8d917e0ed386729cb63702aa268dfc65.jpg" alt="详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）"></p> <h2><a id="12_SpringBoot_105" rel="nofollow"></a>1.2 启动SpringBoot</h2> <p>推荐后台启动方式：</p> <pre><code class="prism language-java">nohup java<span class="token operator">-</span>jar cms<span class="token operator">-</span>manage<span class="token operator">-</span><span class="token number">1.0</span><span class="token operator">-</span>SNAPSHOT<span class="token punctuation">.</span>jar<span class="token operator">&gt;</span>online<span class="token punctuation">.</span>log<span class="token number">2</span><span class="token operator">&gt;</span><span class="token operator">&amp;</span><span class="token number">1</span><span class="token operator">&amp;</span></code></pre> <p>online.log为启动试试日志，可通过cat命令进行查看。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/37c40bc7bebb9c8e7d1485d0341d8f6d.jpg" alt="详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）"></p> <h2><a id="13__114" rel="nofollow"></a>1.3 访问项目</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/be1efa73b251939740f73ff09de2ac7b.jpg" alt="详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）"><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/778d217658d88cd4b7e412e6312d3aec.jpg" alt="详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）"></p> </h1> <p>由于Nginx服务器都部署在一台服务器上面，并且我们没有域名，也不做什么负载均衡，所以这里的配置就很简单，IP就写本机，服务器本机即是localhost，后面我们会有部署升级的文章，比如关于配置负载均衡、静态资源压缩、Https证书等等。后面我们会结合使用Docker部署，并且小编有文章也有些写，大家可自行查阅。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-58908.htm">mysql查看第二页_MySql实现分页查询的SQL</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-16-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新19.2M/S免费节点订阅链接">Mihomo Party节点订阅每天更新19.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-53298.htm" title="有没有免费领养狗狗的网站 有没有免费领养狗狗的网站啊">有没有免费领养狗狗的网站 有没有免费领养狗狗的网站啊</a></li>
+                        <li class="py-2"><a href="/news/article-32921.htm" title="微信上买狗被欺骗怎么办（微信买狗被骗一千五百块钱法院会受理吗）">微信上买狗被欺骗怎么办（微信买狗被骗一千五百块钱法院会受理吗）</a></li>
+                        <li class="py-2"><a href="/news/article-22163.htm" title="springboot 新建 AutoConfiguration">springboot 新建 AutoConfiguration</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-18-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新21.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新21.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-31964.htm" title="动物打疫苗要多少钱一针（动物打疫苗要多少钱一针呢）">动物打疫苗要多少钱一针（动物打疫苗要多少钱一针呢）</a></li>
+                        <li class="py-2"><a href="/news/article-40183.htm" title="Vue利用js实现点击菜单导航栏实现平滑滚动定位">Vue利用js实现点击菜单导航栏实现平滑滚动定位</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-8-node-share-links.htm" title="Mihomo Party节点订阅每天更新21.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新21.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-49613.htm" title="宠物领养须知图片大全大图（宠物领养须知图片大全大图高清）">宠物领养须知图片大全大图（宠物领养须知图片大全大图高清）</a></li>
+                        <li class="py-2"><a href="/news/article-44634.htm" title="Java中的多态">Java中的多态</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">54</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
