@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-59451.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>Spring Boot 容器镜像分层构建</title>
+        <meta name="description" content="一、场景 最常见的是容器镜像，将依赖、代码、配置分层后可以利用容器镜像层缓存机制加快构建和下载，这个场景使用分层是最优最简单的。 k8s 移除 Docker 后，文档中的 Docker 都去掉了…现在" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-59451.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="Spring Boot 容器镜像分层构建" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/ba7e340a08e51746c1e4ca9dfe38fd12.webp" />
+        <meta property="og:release_date" content="2025-02-19T06:38:10" />
+    <meta property="og:updated_time" content="2025-02-19T06:38:10" />
+        <meta property="og:description" content="一、场景 最常见的是容器镜像，将依赖、代码、配置分层后可以利用容器镜像层缓存机制加快构建和下载，这个场景使用分层是最优最简单的。 k8s 移除 Docker 后，文档中的 Docker 都去掉了…现在" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Spring Boot 容器镜像分层构建">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">Spring Boot 容器镜像分层构建</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h2>一、场景</h2> <p>最常见的是容器镜像，将依赖、代码、配置分层后可以利用容器镜像层缓存机制加快构建和下载，这个场景使用分层是最优最简单的。</p> <p>k8s 移除 Docker 后，文档中的 Docker 都去掉了…现在也把常说的<strong>Docker 镜像</strong>&nbsp;改成了<strong>容器镜像</strong></p> <h2>二、分层配置</h2> <p>如果不需要自定义分层，这一步可以跳过</p> <p>在项目根目录中添加<strong>layers.xml</strong>&nbsp;配置文件，文件内容如下：</p> <pre>&lt;layers xmlns="http://www.springframework.org/schema/boot/layers"         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"         xsi:schemaLocation="http://www.springframework.org/schema/boot/layers                           https://www.springframework.org/schema/boot/layers/layers-2.6.xsd"&gt;     &lt;application&gt;         &lt;into layer="spring-boot-loader"&gt;             &lt;include&gt;org/springframework/boot/loader/**&lt;/include&gt;         &lt;/into&gt;         &lt;into layer="application"/&gt;     &lt;/application&gt;     &lt;dependencies&gt;         &lt;into layer="application"&gt;             &lt;includeModuleDependencies/&gt;         &lt;/into&gt;         &lt;into layer="snapshot-dependencies"&gt;             &lt;include&gt;*:*:*SNAPSHOT&lt;/include&gt;         &lt;/into&gt;         &lt;into layer="sencond-dependencies"&gt;             &lt;include&gt;com.example:*:*&lt;/include&gt;         &lt;/into&gt;         &lt;into layer="dependencies"/&gt;     &lt;/dependencies&gt;     &lt;layerOrder&gt;         &lt;layer&gt;dependencies&lt;/layer&gt;         &lt;layer&gt;spring-boot-loader&lt;/layer&gt;         &lt;layer&gt;sencond-dependencies&lt;/layer&gt;         &lt;layer&gt;snapshot-dependencies&lt;/layer&gt;         &lt;layer&gt;application&lt;/layer&gt;     &lt;/layerOrder&gt; &lt;/layers&gt;</pre> <p>和官方示例相比这里增加了<strong>sencond-dependencies</strong>&nbsp;，算是二方库依赖，如果公司有自己框架，自己平台，根据依赖的稳定性（修改频率）进行更细的分层。</p> <p>依赖分层设计，可以参考<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gitbook.cn/gitchat/activity/5e10b5812a3a513b4f607934"  title="企业 Maven 依赖管理层次结构设计" rel="nofollow">企业 Maven 依赖管理层次结构设计</a>&nbsp;。</p> <p>使用 IDEA，并且下载<strong>layers-2.6.xsd</strong>&nbsp;的情况下，<code>&lt;includeModuleDependencies/&gt;</code>&nbsp;会报红，如下图所示：</p> <p class="img-center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220602/78cbfa843a63411c017b5d9849842e3d.jpg"></p> <p>通过查看官方文档和 spring boot 代码，发现文档、代码和 xsd 定义存在不一致的地方，提了<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/spring-projects/spring-boot/issues/31115"  title="issues#31115" rel="nofollow">issues#31115</a>&nbsp;、<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/spring-projects/spring-boot/pull/31117"  title="pr#31117&nbsp;" rel="nofollow">pr#31117</a>、<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/spring-projects/spring-boot/pull/31126"  title="pr#31126" rel="nofollow">pr#31126</a>&nbsp;，<strong>代码已经合并， xsd经过修改，和文档保持一致。</strong></p> <p>增加上面的配置后，修改插件使用该配置：</p> <pre>&lt;plugin&gt;     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;     &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;     &lt;version&gt;${spring-boot.version}&lt;/version&gt;     &lt;executions&gt;         &lt;execution&gt;             &lt;id&gt;repackage&lt;/id&gt;             &lt;goals&gt;                 &lt;goal&gt;repackage&lt;/goal&gt;             &lt;/goals&gt;         &lt;/execution&gt;     &lt;/executions&gt;     &lt;configuration&gt;         &lt;layers&gt;             &lt;enabled&gt;true&lt;/enabled&gt;             &lt;configuration&gt;${project.basedir}/layers.xml&lt;/configuration&gt;         &lt;/layers&gt;     &lt;/configuration&gt; &lt;/plugin&gt;</pre> <h2>三、容器镜像</h2> <p>构建镜像有多种方式，官方文档介绍了 Dockerfile 和 Buildpacks 两种。</p> <h3>3.1 Dockerfile</h3> <p>通过<code>layertools</code>&nbsp;可以将 fat jar 按照分层定义中的层进行解压，命令如下：</p> <pre>Usage:   java -Djarmode=layertools -jar my-app.jar  Available commands:   list     List layers from the jar that can be extracted   extract  Extracts layers from the jar for image creation   help     Help about any command</pre> <p>通过<code>java -Djarmode=layertools -jar my-app.jar extract</code>&nbsp;即可解压 jar 包到当前目录。为了方便，可以直接通过 Dockerfile 的多阶段构建进行，Dockerfile 如下：</p> <pre>FROM eclipse-temurin:11-jre as builder WORKDIR application ARG JAR_FILE=target/*.jar COPY ${JAR_FILE} application.jar RUN java -Djarmode=layertools -jar application.jar extract  FROM eclipse-temurin:11-jre WORKDIR application COPY --from=builder application/dependencies/ ./ COPY --from=builder application/spring-boot-loader/ ./ COPY --from=builder application/snapshot-dependencies/ ./ COPY --from=builder application/application/ ./ ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]</pre> <p>如果有自定义分层，记得按顺序加入到 COPY 部分</p> <p>一般情况下 target 下面只有一个 jar 后缀的包，此时可以直接执行下面的 Docker 命令：</p> <pre>docker build --tag imageName:version .</pre> <p>如果有多个 jar，需要通过参数指定：</p> <pre>docker build  --build-arg JAR_FILE=path/to/myapp.jar --tag imageName:version .</pre> <p>构建后查看镜像信息：</p> <pre>IMAGE          CREATED          CREATED BY                                      SIZE      COMMENT e1d22f48893d   11 seconds ago   ENTRYPOINT ["java" "org.springframework.boot…   0B        buildkit.dockerfile.v0 &lt;missing&gt;      11 seconds ago   COPY application/application/ ./ # buildkit     55.1kB    buildkit.dockerfile.v0 &lt;missing&gt;      11 seconds ago   COPY application/snapshot-dependencies/ ./ #…   46.1MB    buildkit.dockerfile.v0 &lt;missing&gt;      12 seconds ago   COPY application/spring-boot-loader/ ./ # bu…   252kB     buildkit.dockerfile.v0 &lt;missing&gt;      12 seconds ago   COPY application/dependencies/ ./ # buildkit    216MB     buildkit.dockerfile.v0 &lt;missing&gt;      10 minutes ago   WORKDIR /application                            0B        buildkit.dockerfile.v0 &lt;missing&gt;      2 months ago     /bin/sh -c set -eux;   arch="$(dpkg --print-…   210MB      &lt;missing&gt;      2 months ago     /bin/sh -c #(nop)  ENV JAVA_VERSION=8u322       0B         &lt;missing&gt;      2 months ago     /bin/sh -c #(nop)  ENV LANG=C.UTF-8             0B         &lt;missing&gt;      2 months ago     /bin/sh -c #(nop)  ENV PATH=/usr/local/openj…   0B         &lt;missing&gt;      2 months ago     /bin/sh -c { echo '#/bin/sh'; echo 'echo "$J…   27B        &lt;missing&gt;      2 months ago     /bin/sh -c #(nop)  ENV JAVA_HOME=/usr/local/…   0B         &lt;missing&gt;      2 months ago     /bin/sh -c set -eux;  apt-get update;  apt-g…   4.88MB     &lt;missing&gt;      2 months ago     /bin/sh -c #(nop)  CMD ["bash"]                 0B         &lt;missing&gt;      2 months ago     /bin/sh -c #(nop) ADD file:d48a85028743f16ed…   80.4MB</pre> <p>层信息：</p> <pre>"RootFS": {       "Type": "layers",     "Layers": [         "sha256:1401df2b50d5de5a743b7bac3238ef3b7ce905ae39f54707b0ebb8eda3ab10bc",         "sha256:43015d7c36457e91ff0994082e7016335d5aa7690e8b5c799d41c2bab47f086c",         "sha256:f1bceed991c5891bd4bf3ad6e1ade5334e2c40ada40305b59fbf0a275ebbed17",         "sha256:7a49a2f5a65e2f57886dd32ffe85542283b249ccefd7a1b5379632030912d804",         "sha256:8791c93670dee0e973efce4424ea9b33caa49e7ef15c8e0bde1912b51c349524",         "sha256:94c6796cee53f42ae2478affbfc8510c97c76e65015ec46309f83265df078ef8",         "sha256:033be8a54968fe881ce71510862eacc0c3f3bdb6eb2af1a9130704bbe7442ae8",         "sha256:ab0700832472168ad4a9060b3fbedf8cc44f22ff1d074aebb67d9ee466796515",         "sha256:06a62903d01189112c0c8b6b68debaa170228e9d7cf868e1b9959001e877a4c4"     ] }</pre> <p>对代码进行简单修改后，重新构建镜像，再次查看：</p> <pre>IMAGE          CREATED          CREATED BY                                      SIZE      COMMENT cc399ec3ba61   13 seconds ago   ENTRYPOINT ["java" "org.springframework.boot…   0B        buildkit.dockerfile.v0 &lt;missing&gt;      13 seconds ago   COPY application/application/ ./ # buildkit     52.9kB    buildkit.dockerfile.v0 &lt;missing&gt;      3 minutes ago    COPY application/snapshot-dependencies/ ./ #…   46.1MB    buildkit.dockerfile.v0 &lt;missing&gt;      3 minutes ago    COPY application/spring-boot-loader/ ./ # bu…   252kB     buildkit.dockerfile.v0 &lt;missing&gt;      3 minutes ago    COPY application/dependencies/ ./ # buildkit    216MB     buildkit.dockerfile.v0 &lt;missing&gt;      13 minutes ago   WORKDIR /application                            0B        buildkit.dockerfile.v0 &lt;missing&gt;      2 months ago     /bin/sh -c set -eux;   arch="$(dpkg --print-…   210MB      &lt;missing&gt;      2 months ago     /bin/sh -c #(nop)  ENV JAVA_VERSION=8u322       0B         &lt;missing&gt;      2 months ago     /bin/sh -c #(nop)  ENV LANG=C.UTF-8             0B         &lt;missing&gt;      2 months ago     /bin/sh -c #(nop)  ENV PATH=/usr/local/openj…   0B         &lt;missing&gt;      2 months ago     /bin/sh -c { echo '#/bin/sh'; echo 'echo "$J…   27B        &lt;missing&gt;      2 months ago     /bin/sh -c #(nop)  ENV JAVA_HOME=/usr/local/…   0B         &lt;missing&gt;      2 months ago     /bin/sh -c set -eux;  apt-get update;  apt-g…   4.88MB     &lt;missing&gt;      2 months ago     /bin/sh -c #(nop)  CMD ["bash"]                 0B         &lt;missing&gt;      2 months ago     /bin/sh -c #(nop) ADD file:d48a85028743f16ed…   80.4MB</pre> <p>层信息：</p> <pre>"RootFS": {       "Type": "layers",     "Layers": [         "sha256:1401df2b50d5de5a743b7bac3238ef3b7ce905ae39f54707b0ebb8eda3ab10bc",         "sha256:43015d7c36457e91ff0994082e7016335d5aa7690e8b5c799d41c2bab47f086c",         "sha256:f1bceed991c5891bd4bf3ad6e1ade5334e2c40ada40305b59fbf0a275ebbed17",         "sha256:7a49a2f5a65e2f57886dd32ffe85542283b249ccefd7a1b5379632030912d804",         "sha256:8791c93670dee0e973efce4424ea9b33caa49e7ef15c8e0bde1912b51c349524",         "sha256:94c6796cee53f42ae2478affbfc8510c97c76e65015ec46309f83265df078ef8",         "sha256:033be8a54968fe881ce71510862eacc0c3f3bdb6eb2af1a9130704bbe7442ae8",         "sha256:ab0700832472168ad4a9060b3fbedf8cc44f22ff1d074aebb67d9ee466796515",         "sha256:4c0f187537195a34793722097d719f0c1247fec1648a6bdcf08f42556348af74"     ] }</pre> <p>和上面相比只有最上面的一层不同，通过分层尽可能利用Docker层缓存，可以减小镜像的差异，使得镜像更新时，只需要下载有差异的这一小部分。</p> <p>构建镜像后，我们通过<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/anchore/grype"  title="grype" rel="nofollow">grype</a>&nbsp;检测镜像是否存在安全漏洞：</p> <pre>$ grype 镜像名:版本  ✔ Vulnerability DB        [no update available]  ✔ Loaded image              ✔ Parsed image              ✔ Cataloged packages      [521 packages]  ✔ Scanned image           [136 vulnerabilities]  NAME                           INSTALLED           FIXED-IN                 TYPE          VULNERABILITY        SEVERITY    apt                            2.2.4                                        deb           CVE-2011-3374        Negligible   aviator                        3.3.0                                        java-archive  GHSA-xpv2-8ppj-79hh  Critical     bsdutils                       1:2.36.1-8+deb11u1                           deb           CVE-2022-0563        Negligible   coreutils                      8.32-4+b1                                    deb           CVE-2017-18018       Negligible   coreutils                      8.32-4+b1           (won't fix)              deb           CVE-2016-2781        Low          e2fsprogs                      1.46.2-2            (won't fix)              deb           CVE-2022-1304        High         gzip                           1.10-4              1.10-4+deb11u1           deb           CVE-2022-1271        Unknown      libapt-pkg6.0                  2.2.4                                        deb           CVE-2011-3374        Negligible   ...</pre> <p>还可以对代码进行检查（<code>dir:.</code>&nbsp;当前目录）：</p> <pre>$ grype dir:.    ✔ Vulnerability DB        [no update available]  ✔ Indexed .                 ✔ Cataloged packages      [378 packages]  ✔ Scanned image           [36 vulnerabilities]  NAME                           INSTALLED     FIXED-IN      TYPE          VULNERABILITY        SEVERITY  aviator                        3.3.0                       java-archive  GHSA-xpv2-8ppj-79hh  Critical   maven-aether-provider          3.1.1                       java-archive  CVE-2021-26291       Critical   maven-artifact                 3.1.1                       java-archive  CVE-2021-26291       Critical   maven-common-artifact-filters  3.2.0                       java-archive  CVE-2021-26291       Critical   maven-core                     3.1.1                       java-archive  CVE-2021-26291       Critical   maven-model                    3.1.1                       java-archive  CVE-2021-26291       Critical   maven-model-builder            3.1.1                       java-archive  CVE-2021-26291       Critical   maven-repository-metadata      3.1.1                       java-archive  CVE-2021-26291       Critical   maven-settings                 3.1.1                       java-archive  CVE-2021-26291       Critical   maven-settings-builder         3.1.1                       java-archive  CVE-2021-26291       Critical   maven-shared-utils             3.3.3                       java-archive  CVE-2021-26291       Critical   minio                          8.3.8                       java-archive  CVE-2021-21390       Medium     minio                          8.3.8                       java-archive  CVE-2020-11012       High       minio                          8.3.8                       java-archive  CVE-2021-21287       High</pre> <h3>3.2 Buildpacks</h3> <p>Spring Boot 插件集成了 Buildpacks 功能，插件配置如下：</p> <pre>&lt;build&gt;     &lt;plugins&gt;         &lt;plugin&gt;             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;             &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;             &lt;executions&gt;                 &lt;execution&gt;                     &lt;goals&gt;                         &lt;goal&gt;build-image&lt;/goal&gt;                     &lt;/goals&gt;                 &lt;/execution&gt;             &lt;/executions&gt;         &lt;/plugin&gt;     &lt;/plugins&gt; &lt;/build&gt;</pre> <p>执行<code>mvn org.springframework.boot:spring-boot-maven-plugin:build-image</code>&nbsp;即可构建镜像。</p> <p>构建完镜像后，运行时可能会遇到中文乱码，可以通过下面两种方式解决：</p> <p>1 运行镜像时，通过环境变量指定编码:</p> <p><code>docker run -e JAVA_OPTS="-Dfile.encoding=UTF-8" &lt;image_name&gt;</code></p> <p>2 配置 spring boot 插件，添加默认的 JVM 配置：</p> <pre>&lt;plugin&gt;     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;     &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;     &lt;version&gt;${spring-boot.version}&lt;/version&gt;     &lt;executions&gt;         &lt;execution&gt;             &lt;goals&gt;                 &lt;goal&gt;build-image&lt;/goal&gt;             &lt;/goals&gt;         &lt;/execution&gt;     &lt;/executions&gt;     &lt;configuration&gt;         &lt;image&gt;             &lt;env&gt;                 &lt;BPE_DELIM_JAVA_TOOL_OPTIONS xml:space="preserve"&gt; &lt;/BPE_DELIM_JAVA_TOOL_OPTIONS&gt;                 &lt;BPE_APPEND_JAVA_TOOL_OPTIONS&gt;-Dfile.encoding=UTF-8&lt;/BPE_APPEND_JAVA_TOOL_OPTIONS&gt;             &lt;/env&gt;         &lt;/image&gt;     &lt;/configuration&gt; &lt;/plugin&gt;</pre> <p>环境变量配置规则文档</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/paketo-buildpacks/environment-variables"  title="GitHub - paketo-buildpacks/environment-variables: A Cloud Native Buildpack that embeds environment variables into an image" rel="nofollow">GitHub - paketo-buildpacks/environment-variables: A Cloud Native Buildpack that embeds environment variables into an image</a></p> <p>上面两个ENV配置介绍如下：</p> <ol> <li>追加分隔符使用空格&nbsp;，xml配置保留空格（<code>xml:space="preserve"</code>&nbsp;）。</li> <li>追加JVM参数</li> </ol> <h2>四、Jar 包运行</h2> <p>除了使用镜像外，当使用 Jar 包运行时，通过<code>jar xf xxxx.jar</code>&nbsp;可以解压 jar 包到当前目录，解压后通过下面命令启动：</p> <pre>java org.springframework.boot.loader.JarLauncher</pre> <p>通过这种方式运行时，可以相对方便的修改配置文件，可以替换更新某些 jar 依赖，不用在对整个 fat jar 进行操作。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-58909.htm">详细解析Spring Boot结合Vue前后端分离项目打包部署步骤（搭配Nginx）</a></p>
+                                        <p>下一个：<a href="/news/article-59452.htm">宠物店利润大吗（宠物店盈利模式是什么）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新18M/S免费节点订阅链接">Mihomo Party节点订阅每天更新18M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-24414.htm" title="宠物医院收费价目表（诸城宠物医院收费价目表）">宠物医院收费价目表（诸城宠物医院收费价目表）</a></li>
+                        <li class="py-2"><a href="/news/article-35221.htm" title="宠物领养网站的设计与实现的致谢 宠物领养网站html模板">宠物领养网站的设计与实现的致谢 宠物领养网站html模板</a></li>
+                        <li class="py-2"><a href="/news/article-26343.htm" title="宠物医院好评文案100字 宠物店优质点评100字">宠物医院好评文案100字 宠物店优质点评100字</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-2-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新22.4M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.4M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-10-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新19.1M/S免费节点订阅链接">Mihomo Party节点订阅每天更新19.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-51186.htm" title="Vue项目如何设置反向代理和cookie设置问题_vue.js">Vue项目如何设置反向代理和cookie设置问题_vue.js</a></li>
+                        <li class="py-2"><a href="/news/article-38700.htm" title="宠物免费领养平台下载手机版大全的简单介绍">宠物免费领养平台下载手机版大全的简单介绍</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-28-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新20M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新20M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-57737.htm" title="宠物领养手续协议（宠物领养手续协议书）">宠物领养手续协议（宠物领养手续协议书）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">63</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

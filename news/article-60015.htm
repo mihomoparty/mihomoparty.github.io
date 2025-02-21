@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-60015.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具</title>
+        <meta name="description" content="最近有小伙伴遇到了明明安装了 python 第三方库，但是在 pycharm 当中却导入不成功的问题。。        一直以来，也有不少初学 python 的小伙伴，一不小心就跳进了虚拟环境和系统环" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-60015.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/5003ca06755b1a10ce28d4b03bafbedc.webp" />
+        <meta property="og:release_date" content="2025-02-20T09:57:57" />
+    <meta property="og:updated_time" content="2025-02-20T09:57:57" />
+        <meta property="og:description" content="最近有小伙伴遇到了明明安装了 python 第三方库，但是在 pycharm 当中却导入不成功的问题。。        一直以来，也有不少初学 python 的小伙伴，一不小心就跳进了虚拟环境和系统环" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<p>最近有小伙伴遇到了明明安装了 python 第三方库，但是在 pycharm 当中却导入不成功的问题。。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/ec6b9256cf74273e7e509304cc21b62e.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p> </p> <p>一直以来，也有不少初学 python 的小伙伴，一不小心就跳进了虚拟环境和系统环境的【陷阱】中。。</p> <p>本文就基于此问题，来说说在 pycharm 当中如何使用系统环境、虚拟环境。</p> <p>pycharm 当中，每一个项目在运行时，都需要指定一个 python 环境，比如 python3.7，python3.8 等。</p> <p> </p> <h2 id="1-你的项目是否用的虚拟环境-">1、你的项目是否用的虚拟环境？</h2> <p><strong>在 pycharm 创建 project 时，需要选择 python 环境</strong>，默认是创建一个虚拟环境。</p> <p>很多小伙伴，这一步没有去处理。自然而然的就会创建一个虚拟环境而不自知。</p> <p>如下图所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/bd8b9aea7799cf0ef31914f37d53e2c7.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p> </p> <p>点开之后，默认选中的虚拟环境。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/665070ac4594d424f3f1685571d03818.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p>虚拟环境创建成功之后，在项目下面会有一个 venv 目录。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/98f8b3cd2fd09af691750200c86302e4.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/db243f6e7e76068e0e76cd3376fb9747.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p>如果你的项目下面有这个目录，那么说明你用的就是虚拟环境。</p> <p>在 pycharm 当中，执行这个项目的代码时，会自动使用虚拟环境中的第三方库。</p> <p>如果虚拟环境中没有，则会导入失败。</p> <p>所以本文一开头遇到的问题，其实就是这个原因。</p> <p>第三方库安装在本地 python 环境中，而运行代码时，使用的是虚拟环境中的。</p> <p><strong>对于 python 初学者，不要用虚拟环境，不要用虚拟环境，不要用虚拟环境！</strong></p> <p>先用本地系统环境好好学会 python，以后再考虑使用虚拟环境。</p> <p> </p> <h2 id="2-项目环境切换---如何从虚拟环境切换到本地环境">2、项目环境切换 - 如何从虚拟环境切换到本地环境</h2> <p>那么，已经不小心掉到了这个【陷阱】里的同学，想将项目从虚拟环境，切换到本地 python 环境，怎么办呢？</p> <p>在【File -&gt; Settings -&gt; project:你的项目名称 -&gt; python interpreter】中，可以指定当前项目的 python 环境。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/b888c8350e45daba9c4fca9f83c7cf7a.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p> <img decoding="async" src="http://img.555519.xyz/uploads3/20220506/6be23e1270b02d9a99dd8f353fcba37b.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p> </p> <p>点击 Show All 会显示所有的环境，如下图。如果环境路径中带有【venv】表示为虚拟环境</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/cfb860847e1e6001b5fa62b0b64b917b.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p>我们要选择本地的 python 环境，而不是虚拟环境。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/0b476fdae41cb25da7d6e320dd943efa.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p> </p> <p>环境切换成功之后，【External Libraries】下会显示本地 python 环境路径。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/5e81dfc98a5b1a06c90f84a19b8ea5ba.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p> </p> <p>在 pycharm 当中运行时，就会使用本地环境去执行代码了。。</p> <p>在编写 python 代码时，导包也是从这个 python 环境下面去导。</p> <p> </p> <h2 id="3-pycharm中-python虚拟环境中第三方库管理">3、pycharm 中，python 虚拟环境中第三方库管理</h2> <p>一般在开发 python 项目时，会使用虚拟环境。</p> <p>虚拟环境的目的是，项目与项目之间的 python 环境隔离，项目所使用的 python 第三方库隔离。</p> <p>如果你的项目当前正在虚拟环境当中，如何进入虚拟环境安装第三方库呢？</p> <p><strong>虚拟环境中安装和卸载第三方库的 2 种方式。</strong></p> <h4 id="3-1-在pycharm的终端安装和卸载-">3.1）在 pycharm 的终端安装和卸载。</h4> <h5 id="第一步-将pycharm的Terminal终端从powershell更换成cmd-exe--windows环境-">第一步：将 pycharm 的 Terminal 终端从 powershell 更换成 cmd.exe。(windows 环境)</h5> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/ed4d6bf91331a38f2b4cb253e6066a57.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p> </p> <p>这种情况下，我们需要手动执行命令，进入虚拟环境当中。</p> <p>如果将 windows powershell 换成 cmd.exe，那么打开 Terminal 之后，就会自动进入虚拟环境当中。</p> <p>这样就不用每次去切换了。</p> <p>切换步骤：【File - Settings - Tools - Terminal - Shell path - 选择有 cmd.exe 的】</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/6dbbb9653c78902707e047c020e054b3.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p> </p> <p>关掉之前打开的 Terminal，重新打开一个。就会自动切换到虚拟环境当中。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/a3b16be51a65f64b626eeb4d1227b7de.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p> </p> <h5 id="第二步-使用pip命令进行安装和卸载即可-">第二步：使用 pip 命令进行安装和卸载即可。</h5> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/7e1202442ad1d02d0c40f48cad99cedc.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/4487b35fb1a50b81cce2c70bb61c41f3.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/b835e98e85fcfda90b909068cb012d69.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p> </p> <h4 id="3-2-在项目的解释器配置界面安装和卸载第三方库">3.2）在项目的解释器配置界面安装和卸载第三方库</h4> <h5 id="第一步-进入项目解释器配置界面-">第一步：进入项目解释器配置界面。</h5> <p>操作步骤：【File - Settings - Project:你的项目名称 - Python Interpreter】</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/5f97764d1678d0e47f5b48db9ea7d452.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p> </p> <h5 id="第二步-点-进入安装第三方库界面-">第二步：点 + 进入安装第三方库界面。</h5> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/d3c0820029909c7992a6c3f654b82dec.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p> </p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/62471c5908b6b487462eb3b9de74af57.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p> </p> <p><strong>要卸载已安装的包</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/755843ac50e5d89c2c6f3561edd64553.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/482bc42c3328ff4e80e2a4b93ee37129.jpg" alt="pycharm 的虚拟环境【陷阱】，你中招了吗？_在线工具"></p> <p> </p> <p> </p> <p> </p> <p> </p> <h4 id="关于第三方库安装时很慢或者读取超时问题处理-">关于第三方库安装时很慢或者读取超时问题处理：</h4> <p>可以在安装第三方库时使用以下国内源：</p> <ol> <li>阿里云 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://testingpai.com/forward?goto=http%3A%2F%2Fmirrors.aliyun.com%2Fpypi%2Fsimple%2F"   target="_blank" rel="nofollow">http://mirrors.aliyun.com/pypi/simple/</a> </li> <li>豆瓣(douban) <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://testingpai.com/forward?goto=http%3A%2F%2Fpypi.douban.com%2Fsimple%2F"   target="_blank" rel="nofollow">http://pypi.douban.com/simple/</a> </li> <li>清华大学 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://testingpai.com/forward?goto=https%3A%2F%2Fpypi.tuna.tsinghua.edu.cn%2Fsimple%2F"   target="_blank" rel="nofollow">https://pypi.tuna.tsinghua.edu.cn/simple/</a> </li> <li>中国科学技术大学 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://testingpai.com/forward?goto=http%3A%2F%2Fpypi.mirrors.ustc.edu.cn%2Fsimple%2F"   target="_blank" rel="nofollow">http://pypi.mirrors.ustc.edu.cn/simple/</a> </li> </ol> <p>pip 安装命令为：</p> <p>pip install XXXX -i <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://testingpai.com/forward?goto=http%3A%2F%2Fmirrors.aliyun.com%2Fpypi%2Fsimple"   target="_blank" rel="nofollow">http://mirrors.aliyun.com/pypi/simple</a> --trusted-host mirrors.aliyun.com</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-60014.htm">聚类算法——python实现层次聚类（AGNES）</a></p>
+                                        <p>下一个：<a href="/news/article-60624.htm">动物防疫疫苗管理办法最新 动物防疫疫苗管理办法最新版</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新18.7M/S免费节点订阅链接">Mihomo Party节点订阅每天更新18.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-48456.htm" title="猫没打疫苗不能绝育（猫没打疫苗不能绝育吗）">猫没打疫苗不能绝育（猫没打疫苗不能绝育吗）</a></li>
+                        <li class="py-2"><a href="/news/article-47602.htm" title="Springboot 连接 Mysql">Springboot 连接 Mysql</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-11-node-share-links.htm" title="Mihomo Party节点订阅每天更新22.5M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-34821.htm" title="免费问诊在线医生（免费问诊在线医生皮肤科）">免费问诊在线医生（免费问诊在线医生皮肤科）</a></li>
+                        <li class="py-2"><a href="/news/article-48097.htm" title="Java-多线程-线程安全-同步代码块">Java-多线程-线程安全-同步代码块</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-26-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新20.3M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新20.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-31-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新22.1M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-60014.htm" title="聚类算法——python实现层次聚类（AGNES）">聚类算法——python实现层次聚类（AGNES）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新19.7M/S免费节点订阅链接">Mihomo Party节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">63</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
