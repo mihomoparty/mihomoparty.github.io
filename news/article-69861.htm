@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-69861.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>QtWebEngine性能问题_在线工具</title>
+        <meta name="description" content="目录  1. 概述 2. 详论  2.1. 图形属性设置 2.2. 硬件加速设置 2.3. Qt6   3. 参考    Qt的Qt WebEngine模块是基于Chromium项目，但是本人在使用Q" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-69861.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="QtWebEngine性能问题_在线工具" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/8ed37b9be3b153a615e721359ab5df83.webp" />
+        <meta property="og:release_date" content="2025-03-08T05:07:04" />
+    <meta property="og:updated_time" content="2025-03-08T05:07:04" />
+        <meta property="og:description" content="目录  1. 概述 2. 详论  2.1. 图形属性设置 2.2. 硬件加速设置 2.3. Qt6   3. 参考    Qt的Qt WebEngine模块是基于Chromium项目，但是本人在使用Q" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="QtWebEngine性能问题_在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">QtWebEngine性能问题_在线工具</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li><a href="#1-%E6%A6%82%E8%BF%B0" rel="nofollow">1. 概述</a></li> <li><a href="#2-%E8%AF%A6%E8%AE%BA" rel="nofollow">2. 详论</a> <ul> <li><a href="#21-%E5%9B%BE%E5%BD%A2%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE" rel="nofollow">2.1. 图形属性设置</a></li> <li><a href="#22-%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F%E8%AE%BE%E7%BD%AE" rel="nofollow">2.2. 硬件加速设置</a></li> <li><a href="#23-qt6" rel="nofollow">2.3. Qt6</a></li> </ul> </li> <li><a href="#3-%E5%8F%82%E8%80%83" rel="nofollow">3. 参考</a></li> </ul> </div> </h1> <p>Qt的Qt WebEngine模块是基于Chromium项目，但是本人在使用QWebEngineView进行Web端的三维渲染（WebGL）时，经过测试发现性能比不上Chrome。查阅了一些资料，记录一下对这个问题的尝试。</p> </h1> <h2 id="21-图形属性设置">2.1. 图形属性设置</h2> <p>在Chrome中通过地址chrome://gpu查看使用的GPU的情况：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/e63a0b1a1f0790d9355de89722df3201.jpg" alt="QtWebEngine性能问题_在线工具"></p> <p>而在Qt的QWebEngineView中同样打开chrome://gpu查看：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/a2f12fd552d568ae5e3139f0c3b90200.jpg" alt="QtWebEngine性能问题_在线工具"></p> <p>可以看到两者的GL_RENDERER是不一样的，原生的Chrome采用的是ANGLE渲染的，而不是像Qt WebEngine那样采用显卡驱动中OpenGL4.6渲染。</p> <p>根据参考[1]，ANGLE是Google的一个开源项目，目的是将OpenGL ES API调用映射到 Vulkan、桌面OpenGL、OpenGL ES、Direct3D 9 和 Direct3D 11中。文中还提到了ANGLE是Windows平台上Google Chrome和Mozilla Firefox的默认WebGL后端：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/320698c2581f6998f44c328a5fc7a360.jpg" alt="QtWebEngine性能问题_在线工具"></p> <p>那么问题可能在于这里，一般会认为使用D3d的性能比OpenGL要高。按照参考[2]中所述，我们可以将Qt的图形属性设置成ANGLE:<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/01a2734090e16d19ddd91801693a9e69.jpg" alt="QtWebEngine性能问题_在线工具"></p> <p>具体的代码为：</p> <pre><code class="language-cpp">QCoreApplication::setAttribute(Qt::AA_UseOpenGLES); //... QApplication a(argc, argv); //...</code></pre> <p>根据参考[2]中所述，这样会让ANGLE自动选择最合适的图形接口。这时通过chrome://gpu查看如下：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/dfb11957bc987eacdbd3ec51a1ea3c92.jpg" alt="QtWebEngine性能问题_在线工具"></p> <p>这时的ANGLE已经启用了，并且调用了D3d11。不过很可惜，经过测试，我这边性能并没有提高，并且在后台会报错。</p> <p>更进一步的，参考[2]中还提到了可以通过环境变量QT_ANGLE_PLATFORM来选择d3d11、d3d9或者warp，来选择具体的图形接口实现。可惜这三种配置对我都没什么效果。</p> <h2 id="22-硬件加速设置">2.2. 硬件加速设置</h2> <p>参考[3]和参考[4]提到了Chromium有一些命令行参数，用于进行硬件加速。例如"--ignore-gpu-blacklist", "--enable-gpu-rasterization", "--enable-native-gpu-memory-buffers", "--num-raster-threads=4"。参考[5]中提到了具体的设置方法：</p> <pre><code class="language-cpp">qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--ignore-gpu-blacklist"); //... QApplication a(argc, argv); //...</code></pre> <p>但是很可惜，经过测试，我这边性能还是并没有提高。</p> <h2 id="23-qt6">2.3. Qt6</h2> <p>在Qt的一篇官方博客，也就是参考[6]中，提到了一些信息：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/701e3aa716acdca23d052dedd6ce62e1.jpg" alt="QtWebEngine性能问题_在线工具"><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/27feef54547537a4b211682b456892de.jpg" alt="QtWebEngine性能问题_在线工具"></p> <p>似乎目前Qt的ANGLE并没有真正渲染到D3D上，相应的硬件加速也没有作用。如果可以，尽量跟进Qt6的最新版，可能会解决这个性能问题。</p> </h1> <ol> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://chromium.googlesource.com/angle/angle/"  target="_blank" rel="nofollow">ANGLE - Almost Native Graphics Layer Engine</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://doc.qt.io/qt-5/windows-requirements.html"  target="_blank" rel="nofollow">Qt for Windows - Requirements</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/qutebrowser/qutebrowser/issues/5378"  target="_blank" rel="nofollow">Investigate Chromium GPU flags</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/qutebrowser/qutebrowser/issues/2671"  target="_blank" rel="nofollow">Enable hardware acceleration with QtWebEngine</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://stackoverflow.com/questions/55319933/setting-arguments-for-qtwebengineprocess"  target="_blank" rel="nofollow">Setting arguments for QtWebEngineProcess</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.qt.io/blog/qt-webengine-in-qt-6"  target="_blank" rel="nofollow">Qt WebEngine in Qt 6</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://forum.qt.io/topic/82530/qt5-can-webgl-work-with-angle-on-windows-via-qtwebengine/2"  target="_blank" rel="nofollow">Qt5: can WebGL work with ANGLE on Windows via QtWebEngine?</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/weixin_42101997/article/details/105049963"  target="_blank" rel="nofollow">qt QWebEngineView 和 quick 渲染的问题的解决</a></li> </ol> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-69226.htm">什么生肖不适合养狗,养不好会损害主人运势（什么生肖不适宜养狗）</a></p>
+                                        <p>下一个：<a href="/news/article-69862.htm">动物疫苗官网查询网站下载（动物疫苗查询系统）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-41665.htm" title="SpringBoot实现热部署，修改代码不用重启服务">SpringBoot实现热部署，修改代码不用重启服务</a></li>
+                        <li class="py-2"><a href="/news/article-40673.htm" title="宠物粮食创业项目名称有哪些 宠物粮食创业项目名称有哪些呢">宠物粮食创业项目名称有哪些 宠物粮食创业项目名称有哪些呢</a></li>
+                        <li class="py-2"><a href="/news/article-64181.htm" title="Docker Compose编排工具">Docker Compose编排工具</a></li>
+                        <li class="py-2"><a href="/news/article-51186.htm" title="Vue项目如何设置反向代理和cookie设置问题_vue.js">Vue项目如何设置反向代理和cookie设置问题_vue.js</a></li>
+                        <li class="py-2"><a href="/news/article-64799.htm" title="猫咪驱虫一般多少钱一支猫粮啊（猫猫驱虫多少钱?）">猫咪驱虫一般多少钱一支猫粮啊（猫猫驱虫多少钱?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-7-node-share.htm" title="Mihomo Party节点订阅每天更新21.7M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新21.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-62963.htm" title="动物医院诊疗许可证办理要多少钱一个（动物诊疗许可证哪里办）">动物医院诊疗许可证办理要多少钱一个（动物诊疗许可证哪里办）</a></li>
+                        <li class="py-2"><a href="/news/article-54388.htm" title="卖宠物粮食的店名（宠物粮食店铺）">卖宠物粮食的店名（宠物粮食店铺）</a></li>
+                        <li class="py-2"><a href="/news/article-47104.htm" title="宠物粮食厂家有些款不能网上销售（宠物粮食销售需要许可证吗）">宠物粮食厂家有些款不能网上销售（宠物粮食销售需要许可证吗）</a></li>
+                        <li class="py-2"><a href="/news/article-64795.htm" title="狗粮厂家联系方式怎么写（狗粮生产公司）">狗粮厂家联系方式怎么写（狗粮生产公司）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

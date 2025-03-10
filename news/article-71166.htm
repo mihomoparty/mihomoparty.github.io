@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-71166.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>机器学习基础：奇异值分解（SVD）</title>
+        <meta name="description" content="SVD 原理 奇异值分解（Singular Value Decomposition）是线性代数中一种重要的矩阵分解，也是在机器学习领域广泛应用的算法，它不光可以用于降维算法中的特征分解，还可以用于推荐" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-71166.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="机器学习基础：奇异值分解（SVD）" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/3f6923f7b9651f52b9a57610fc39c258.webp" />
+        <meta property="og:release_date" content="2025-03-10T04:37:39" />
+    <meta property="og:updated_time" content="2025-03-10T04:37:39" />
+        <meta property="og:description" content="SVD 原理 奇异值分解（Singular Value Decomposition）是线性代数中一种重要的矩阵分解，也是在机器学习领域广泛应用的算法，它不光可以用于降维算法中的特征分解，还可以用于推荐" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="机器学习基础：奇异值分解（SVD）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">机器学习基础：奇异值分解（SVD）</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<h2 id="svd-原理">SVD 原理</h2> <p>奇异值分解（Singular Value Decomposition）是线性代数中一种重要的矩阵分解，也是在机器学习领域广泛应用的算法，它不光可以用于降维算法中的特征分解，还可以用于推荐系统，以及自然语言处理等领域。</p> <p>有一个????×????的实数矩阵????，我们想要把它分解成如下的形式：$A  = U\Sigma V^T$</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/37dc4d6dee8d9c182c224a574f33df6a.jpg" alt="机器学习基础：奇异值分解（SVD）"></p> <p>其中????和????均为单位正交阵，即有$????????<sup>????=????$和$????????</sup>????=????$，????称为左奇异矩阵，????称为右奇异矩阵，Σ仅在主对角线上有值，我们称它为奇异值，其它元素均为0。</p> <p>上面矩阵的维度分别为$U \in R^{m\times m}$,$\ \Sigma \in R^{m\times n}$,$\ V \in R^{n\times n}$。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/befe5c7bfb148e0845642ad60d015337.jpg" alt="机器学习基础：奇异值分解（SVD）"></p> <p>一般地Σ有如下形式<br /> $$<br /> \Sigma =<br /> \left[<br /> \begin{matrix}<br /> \sigma_1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\<br /> 0 &amp; \sigma_2 &amp; 0 &amp; 0 &amp; 0\<br /> 0 &amp; 0 &amp; \ddots &amp; 0 &amp; 0\<br /> 0 &amp; 0 &amp; 0 &amp; \ddots &amp; 0\<br /> \end{matrix}<br /> \right]_{m\times n}<br /> $$</p> <p>$????_????$ 越大意味着对应的 $????′????$ 的特征值 $\sigma_j^2$ 越大, 从而其主成分 (principal component) $????????_????$ 的样本方差越大, 我们把方差大视为提供了更多信息.</p> <h2 id="求解u-σ-v">求解U, Σ, V</h2> <p>假设我们的矩阵A是一个m×n的矩阵，则$A^TA$是方阵，求其特征值及特征向量：</p> <p>$(A^TA)v_i = \lambda_i v_i$</p> <p>得到矩阵$A^TA$的n个特征值和对应的n个特征向量$v$</p> <p>因<br /> $A<sup>TA=V\Sigma</sup>TU^TU\Sigma V^T$ =$V\Sigma^T\Sigma V^T= V\Sigma<sup>2V</sup>T$</p> <p>将特征向量$v$张成一个$n×n$的矩阵$V$，就是SVD公式里面的$V$矩阵,$V$中的每个特征向量叫做$A$的右奇异向量。</p> <p>同理：$(AA^T)u_i = \lambda_i u_i$，可得$U$矩阵。</p> <p>求得$U ， V$，然后求Σ，因Σ为奇异值矩阵，所以只需要求出每个奇异值$σ$即可。</p> <p>$A=U\Sigma V^T \Rightarrow AV=U\Sigma V^TV \Rightarrow $</p> <p>$AV=U\Sigma \Rightarrow  Av_i = \sigma_i u_i  \Rightarrow  \sigma_i=Av_i / u_i$</p> <p>其实特征值矩阵等于奇异值矩阵的平方，也就是说特征值和奇异值满足如下关系：</p> <p>$\sigma_i = \sqrt{\lambda_i}$</p> <p>所以不用$\sigma_i =  Av_i / u_i$也可以通过求出$A^TA$的特征值取平方根来求奇异值。</p> <h2 id="svd算法">SVD算法</h2> <hr/> <p><strong>输入</strong>：样本数据<br /><strong>输出</strong>：左奇异矩阵，奇异值矩阵，右奇异矩阵</p> <p><strong>1</strong> 计算特征值： 特征值分解$AA^T$，其中$A \in \mathbf{R}^{m\times n}$为原始样本数据<br /> $AA^T=U\Sigma \Sigma<sup>TU</sup>T$</p> <p>得到左奇异矩阵$U \in \mathbf{R}^{m \times m}$和奇异值矩阵$\Sigma' \in \mathbf{R}^{m \times m}$</p> <p><strong>2</strong> 间接求部分右奇异矩阵： 求$V' \in \mathbf{R}^{m \times n}$</p> <p>利用A=UΣ′V′可得</p> <p>$V' = (U\Sigma')^{-1}A = (\Sigma')<sup>{-1}U</sup>TA$</p> <p><strong>3</strong> 返回U, Σ′, V′，分别为左奇异矩阵，奇异值矩阵，右奇异矩阵。</p> <hr/> <h2 id="python-求解svd">Python 求解SVD</h2> <pre><code>from numpy import array from numpy import diag from numpy import zeros from scipy.linalg import svd # define a matrix A = array([ 	[1,2,3,4,5,6,7,8,9,10], 	[11,12,13,14,15,16,17,18,19,20], 	[21,22,23,24,25,26,27,28,29,30]]) print(A)</code></pre> <pre><code>&gt;&gt;&gt; A array([[ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10],        [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],        [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]])</code></pre> <pre><code># Singular-value decomposition U, s, VT = svd(A) # create m x n Sigma matrix Sigma = zeros((A.shape[0], A.shape[1])) # populate Sigma with n x n diagonal matrix Sigma[:A.shape[0], :A.shape[0]] = diag(s) # select n_elements = 2 Sigma = Sigma[:, :n_elements] VT = VT[:n_elements, :] # reconstruct B = U.dot(Sigma.dot(VT)) print(B)</code></pre> <pre><code>&gt;&gt;&gt; B array([[ 1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9., 10.],        [11., 12., 13., 14., 15., 16., 17., 18., 19., 20.],        [21., 22., 23., 24., 25., 26., 27., 28., 29., 30.]])</code></pre> <pre><code># transform T = U.dot(Sigma) print(T)</code></pre> <pre><code>&gt;&gt;&gt; T array([[-18.52157747,   6.47697214],        [-49.81310011,   1.91182038],        [-81.10462276,  -2.65333138]])</code></pre> <pre><code>T = A.dot(VT.T) print(T)</code></pre> <pre><code>[[-18.52157747   6.47697214]  [-49.81310011   1.91182038]  [-81.10462276  -2.65333138]]</code></pre> <p>参考：<br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/pinard/p/6251584.html"  target="_blank" rel="nofollow">https://www.cnblogs.com/pinard/p/6251584.html</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/endlesscoding/p/10033527.html"  target="_blank" rel="nofollow">https://www.cnblogs.com/endlesscoding/p/10033527.html</a></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-70507.htm">动物疫苗注射工作注意事项有哪些内容（动物疫苗知识）</a></p>
+                                        <p>下一个：<a href="/news/article-71167.htm">疫苗检验需要做哪些动物实验（疫苗的检验项目）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-71167.htm" title="疫苗检验需要做哪些动物实验（疫苗的检验项目）">疫苗检验需要做哪些动物实验（疫苗的检验项目）</a></li>
+                        <li class="py-2"><a href="/news/article-67905.htm" title="被猫咬了怎么判断没事,猫没打疫苗（被猫咬了怎样判断用不用打狂犬疫苗）">被猫咬了怎么判断没事,猫没打疫苗（被猫咬了怎样判断用不用打狂犬疫苗）</a></li>
+                        <li class="py-2"><a href="/news/article-54388.htm" title="卖宠物粮食的店名（宠物粮食店铺）">卖宠物粮食的店名（宠物粮食店铺）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新20M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新20M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-68588.htm" title="动物疫苗打几次最好呢图片（动物疫苗打几次最好呢图片及价格）">动物疫苗打几次最好呢图片（动物疫苗打几次最好呢图片及价格）</a></li>
+                        <li class="py-2"><a href="/news/article-52223.htm" title="河南省动物疫苗管理系统官网查询（河南省动物疫病强制免疫疫苗信息管理系统）">河南省动物疫苗管理系统官网查询（河南省动物疫病强制免疫疫苗信息管理系统）</a></li>
+                        <li class="py-2"><a href="/news/article-42170.htm" title="鲤鱼的做法大全家常（鲤鱼的做法大全家常菜）">鲤鱼的做法大全家常（鲤鱼的做法大全家常菜）</a></li>
+                        <li class="py-2"><a href="/news/article-54387.htm" title="OpenFeign、Feign以及Ribbon关系介绍">OpenFeign、Feign以及Ribbon关系介绍</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-29-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新18.4M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.4M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-44633.htm" title="原生js实现楼层滚动（界面滑动）效果">原生js实现楼层滚动（界面滑动）效果</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
