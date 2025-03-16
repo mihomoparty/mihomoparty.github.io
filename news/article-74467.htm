@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-74467.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>Confluent之Kafka Connector详细分析</title>
+        <meta name="description" content="背景 Apache Kafka 是最大、最成功的开源项目之一，可以说是无人不知无人不晓，在前面的文章《Apache Kafka分布式流处理平台及大厂面试宝典》我们也充分认识了Kafka，Apache " />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-74467.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="Confluent之Kafka Connector详细分析" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/d3d920c091991a131483c832ed57e6e3.webp" />
+        <meta property="og:release_date" content="2025-03-15T07:21:06" />
+    <meta property="og:updated_time" content="2025-03-15T07:21:06" />
+        <meta property="og:description" content="背景 Apache Kafka 是最大、最成功的开源项目之一，可以说是无人不知无人不晓，在前面的文章《Apache Kafka分布式流处理平台及大厂面试宝典》我们也充分认识了Kafka，Apache " />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Confluent之Kafka Connector详细分析">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">Confluent之Kafka Connector详细分析</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				</h1> <h2 id="背景">背景</h2> <p>Apache Kafka 是最大、最成功的开源项目之一，可以说是无人不知无人不晓，在前面的文章《Apache Kafka分布式流处理平台及大厂面试宝典》我们也充分认识了Kafka，Apache Kafka 是LinkedIn 开发并开源的，LinkedIn 核心理念之一数据驱动主要有两点领悟，其一是强调动态数据有效性要远远大于静态数据，何为动态数据和静态数据，可以简单理解静态数据则为我们目前基于各种各样的数据库或文件系统等存储系统，而动态数据是基于事件驱动的理念如现在主流Apache Kafka和Apache Pulsar。其二是要利用所有数据化信息而不仅仅是交易核心数据，非交易核心数据量比交易核心数据量往往要大100倍都不止。作为当时开发出Apache Kafka实时消息流技术的几个团队成员出来创业，其中Jay Kreps带头创立了新公司Confluent，还有饶军也是Confluent联合创始人之一，而Confluent的产品基本都是围绕着Kafka来做的。基于动态数据理念是Apache Kafka 到Confluent企业化之路的主引线。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/4daf3fa74a05f84a014c5959c7611189.jpg" alt="Confluent之Kafka Connector详细分析"></p> <h2 id="confluent公司">Confluent公司</h2> <blockquote> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.confluent.io/"  target="_blank" rel="nofollow">Confluent公司官网地址</a><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.confluent.io/"  target="_blank" rel="nofollow">https://www.confluent.io/</a></p> </blockquote> <p>Confluent 开创了一个新的数据基础设施，专注于他们动态数据 —— 本质上是数据流（流动中的数据），适合实时数据，公司的使命是“让数据动起来”。Confluent 以 Kafka 为核心，是将其商业化最成功的领先独立公司之一。对数据的集成和连接进行实时操作，如果要真正利用Kafka，使用Confluent是目前最佳事先方案。 官网主要产品如下</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/73778f2f91e5bf593bf1e902fdb7aaae.jpg" alt="Confluent之Kafka Connector详细分析"></p> <p>而核心的商业化产品为Confluent Platform（可以在本地进行部署）和Confluent Cloud（托管在云中，并在混合云基础设施的环境中工作）。</p> <ul> <li>Confluent Platform是一个<strong>流数据平台</strong>，实现数据流集成，能够组织管理来自不同数据源的数据，拥有稳定高效的系统。Confluent Platform 很容易的建立实时数据管道和流应用。通过将多个来源和位置的数据集成到公司一个中央数据流平台，Confluent Platform使您可以专注于如何从数据中获得商业价值而不是担心底层机制，如数据是如何被运输或不同系统间摩擦。具体来说，Confluent Platform简化了连接数据源到Kafka，用Kafka构建应用程序，以及安全，监控和管理您的Kafka的基础设施。</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/33535c8926d1b6f9e8e788fd0c0a1c57.jpg" alt="Confluent之Kafka Connector详细分析"></p> <p>Confluent Platform又分为三块</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/c69058039997148f29f260c1900ddffb.jpg" alt="Confluent之Kafka Connector详细分析"></p> <p>提供了KafkaSteams和KsqlDB企业级Kafka应用特性</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/180d4bcea2946fcc8384f11db86d4beb.jpg" alt="Confluent之Kafka Connector详细分析"></p> <h2 id="confluent三要素">Confluent三要素</h2> <ul> <li>完整：利用开源 Apache Kafka 的功能和我们重要的专有功能，为动态数据创建了一个完整的平台。使用特定工具（例如 ksqlDB）并行移动和处理数据，ksqlDB 是一种原生的动态数据数据库，允许用户仅使用几条 SQL 语句以及 100 多个连接器来构建动态数据应用程序。</li> <li>无处不在：已经构建了一个真正的混合和多云产品。可以在客户的云和多云环境中为他们提供支持，本地，或两者的结合。从一开始就认识到云之旅不是一蹴而就的，使用户有效地进行数字化转型，基本的动态数据平台，可以在整个技术环境中无缝集成。</li> <li>云原生。 Confluent 为动态数据提供真正的云功能。 提供完全托管的云原生服务，该服务具有大规模可扩展性、弹性、安全性和全球互联性，可实现敏捷开发。这与采用内部软件并简单地在云虚拟机上提供它所产生的体验完全不同。使用 Confluent，开发人员和企业都可以专注于他们的应用程序并推动价值，而无需担心管理数据基础设施的运营开销。</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/7a161c06c007057272b60f57f0c12f71.jpg" alt="Confluent之Kafka Connector详细分析"></p> <p>存储方式采用云原生的架构，和Apache Pulsar一样采用存储和计算分离的架构，可以很方便实现分布式扩容，存储资源不够单独扩容存储，计算资源不够单独扩容计算。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/ec5b08c8455f5700fb611d2a1d3c576d.jpg" alt="Confluent之Kafka Connector详细分析"></p> </h1> <h2 id="概述-1">概述</h2> <p>Kafka Connect是Apache Kafka的一个组件，用于执行Kafka和其他系统之间的流集成，比如作为用来将Kafka与数据库、key-value存储系统、搜索系统、文件系统等外部系统连接起来的基础框架。通过使用Kafka Connect框架以及现有的连接器可以实现从源数据读入消息到Kafka，再从Kafka读出消息到目的地的功能。Kafka Connect可以很容易地将数据从多个数据源流到Kafka，并将数据从Kafka流到多个目标。Kafka Connect有上百种不同的连接器。Confluent 在 Kafka connect基础上实现了上百种不同的connector连接器免费让大家使用，而且<code>Confluent</code> 在<code>GitHub</code>上提供了源码，可以根据自身业务需求进行修改。其中最流行的有:</p> <ul> <li>RDBMS (Oracle, SQL Server, DB2, Postgres, MySQL)</li> <li>Cloud Object stores (Amazon S3, Azure Blob Storage, Google Cloud Storage)</li> <li>Message queues (ActiveMQ, IBM MQ, RabbitMQ)</li> <li>NoSQL and document stores (Elasticsearch, MongoDB, Cassandra)</li> <li>Cloud data warehouses (Snowflake, Google BigQuery, Amazon Redshift)</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/2e34151d4d01f9b42810411558825473.jpg" alt="Confluent之Kafka Connector详细分析"></p> <p>可以自己运行Kafka Connect，或者利用Confluent Cloud中提供的众多托管连接器来提供一个完全基于云的集成解决方案。除了托管连接器外，Confluent还提供了完全托管的Apache Kafka、Schema Registry和ksqlDB。</p> <ul> <li>Schema-Registry是为元数据管理提供的服务，同样提供了RESTful接口用来存储和获取schemas，它能够保存数据格式变化的所有版本，并可以做到向下兼容。Schema-Registry还为Kafka提供了Avro格式的序列化插件来传输消息。Confluent主要用Schema-Registry来对数据schema进行管理和序列化操作。</li> </ul> <h2 id="kafka-connect使用">Kafka Connect使用</h2> <p>Kafka Connect运行在自己的进程中，独立于Kafka broker。它是分布式的、可伸缩的、容错的，就像Kafka本身一样。使用Kafka Connect不需要编程，因为它只由JSON配置驱动。这使得它可以被广泛的用户使用。除了接收和输出数据，Kafka Connect还可以在数据通过时执行轻量级的转换。</p> <p>Kafka Connect把数据从另一个系统流到Kafka，或者把数据从Kafka流到其他地方，下面是一些使用Kafka Connect的常见方式：</p> <ul> <li>流数据管道：Kafka Connect可以用来从一个源(如事务数据库)获取实时事件流，并将其流到目标系统进行分析。因为Kafka存储每个数据实体(topic)的可配置时间间隔，所以可以将相同的原始数据流到多个目标。这可以是为不同的业务需求使用不同的技术，也可以是将相同的数据提供给业务中的不同领域(业务中有自己的系统来保存数据)。</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/161d2235dd89a5bd097537f3654e8d33.jpg" alt="Confluent之Kafka Connector详细分析"></p> <ul> <li>从应用程序写入数据存储：在应用程序中，可以创建想要写入目标系统的数据。可以是写入文档存储的一系列日志事件或是持久化到关系数据库的数据。通过将数据写入Kafka，并使用Kafka Connect负责将数据写入目标达到简化内存占用。</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/d5ca8653947922f3b80ef9d036ed6b6d.jpg" alt="Confluent之Kafka Connector详细分析"></p> <ul> <li>从旧系统到新系统的演化过程：在NoSQL存储、事件流平台和微服务等最新技术出现之前，关系数据库(RDBMS)实际上是应用程序中所有数据写入的地方。RDBMS在我们构建的系统中仍然扮演着非常重要的角色——但并不总是如此。有时我们会想使用Kafka作为独立服务之间的消息代理以及永久的记录系统。这两种方法非常不同，但与过去的技术变革不同，两者之间是无缝衔接的。通过使用变更数据捕获(CDC)，我们可以近乎实时地从数据库中提取每一个INSERT, UPDATE，甚至DELETE到Kafka事件流中。CDC对源数据库的影响非常小，这意味着现有应用程序可以继续运行(并且不需要对其进行更改)，同时可以由从数据库捕获的事件流驱动构建新的应用程序。当原始的应用程序在数据库中记录一些东西时(例如，下单)，任何在Kafka中订阅事件流的应用程序都将能够基于这些事件采取行动(例如，一个新的订单服务)</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/77747a232410a85e427fd449e9dc2a1e.jpg" alt="Confluent之Kafka Connector详细分析"></p> <ul> <li>使现有的系统处理实时：许多组织在他们的数据库中都有静止的数据，比如Postgres, MySQL或Oracle，并且可以使用Kafka Connect从现有的数据中获取价值，并将其转换为事件流并实现数据驱动分析。</li> </ul> <p>任何Kafka Connect管道的关键组件都是连接器。Kafka Connect由社区、供应商编写，或者偶尔由用户定制编写，它将Kafka Connect与特定的技术集成在一起。例如:</p> <ul> <li>Debezium MySQL源连接器使用MySQL bin日志从数据库读取事件，并将这些事件流到Kafka Connect。</li> <li>Elasticsearch接收器连接器从Kafka Connect获取数据，并使用Elasticsearch api，将数据写入Elasticsearch。</li> <li>Confluent的S3连接器既可以作为源连接器，也可以作为接收连接器，将数据写入S3或将其读入。</li> </ul> <h2 id="kafka-connect部署方式">Kafka Connect部署方式</h2> <p>Connector和任务是逻辑工作单元，并作为流程运行。这个进程在Kafka Connect中被称为worker。Kafka Connect worker可以在两种部署方式中运行:独立的或分布式的。</p> <ul> <li>布式模式(推荐)：在多台机器(节点)上连接工人。它们形成一个Connect集群。Kafka Connect在集群中分布正在运行的连接器。您可以根据需要添加或删除更多节点。连接器是通过Kafka Connect提供的REST API创建和管理的。可以容易地添加额外的worker,从Kafka Connect集群中添加worker时，任务会在可用的worker之间重新平衡，以分配工作负载;如果缩减集群或者worker崩溃了Kafka Connect将再次重新平衡，以确保所有连接器任务仍然被执行。建议的最小worker数量是2个，分布式模式也具有更强的容错能力。如果一个节点意外离开集群，Kafka Connect会自动将该节点的工作分配给集群中的其他节点。并且，因为Kafka Connect将连接器的配置、状态和偏移量信息存储在Kafka集群中，在这里它被安全地复制，所以失去一个Connect worker运行的节点不会导致任何数据的丢失.由于可伸缩性、高可用性和管理优势，建议在生产环境中采用分布式模式。如果您有多个worker同时在一台机器上运行，了解资源限制(CPU和内存)。从默认堆大小设置开始，监视内部指标和系统。检查CPU、内存和网络(10GbE或更高)是否满足负载要求。</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/2617af251e561a596b8fa27af22095b0.jpg" alt="Confluent之Kafka Connector详细分析"></p> <ul> <li>独立模式（单机模式）：在独立模式下，Kafka Connect worker使用文件存储来保存它的状态。连接器是从本地配置文件创建的，而不是REST API。因此，您不能将worker集群在一起，不能扩展吞吐量，也没有容错能力。常用于在本地机器上开发和测试Kafka Connect非常有用。它也可以用于通常使用单个代理的环境(例如，发送web服务器日志到Kafka)</li> </ul> <h2 id="安装连接插件">安装连接插件</h2> <ul> <li> <p>Kafka Connect只有一个必要的先决条件来启动;也就是一组Kafka broker。这些Kafka代理可以是早期的代理版本，也可以是最新的版本。虽然Schema Registry不是Kafka Connect的必需服务，但它可以让你轻松地使用Avro, Protobuf和JSON Schema作为通用的数据格式来读取和写入Kafka记录。这使编写自定义代码的需求最小化，并以灵活的格式标准化数据。</p> </li> <li> <p>Kafka Connect被设计成可扩展的，所以开发者可以创建自定义的连接器、转换或转换器，用户可以安装和运行它们。在一个Connect部署中安装许多插件是很常见的，但需要确保每个插件只安装一个版本。</p> </li> <li> <p>Kafka Connect插件可以是:文件系统上的一个目录，包含所有需要的JAR文件和插件的第三方依赖项。这是最常见和首选的。一个包含插件及其第三方依赖的所有类文件的JAR。一个插件永远不应该包含任何由Kafka Connect运行时提供的库。</p> </li> <li> <p>Kafka Connect使用一个定义为逗号分隔的插件目录路径列表来查找插件。worker路径配置属性配置如下：plugin.path=/usr/local/share/kafka/plugins。安装插件时，将插件目录或JAR(或一个解析到这些目录之一的符号链接)放置在插件路径中已经列出的目录中。或者可以通过添加包含插件的目录的绝对路径来更新插件路径。使用上面的插件路径的例子，可以在每台运行Connect的机器上创建一个/usr/local/share/kafka/plugins目录，然后把插件目录(或者超级jar)放在那里。</p> </li> </ul> <h2 id="基本概念">基本概念</h2> <ul> <li>Connectors：通过管理task来协调数据流的高级抽象 <ul> <li>Kafka Connect中的connector定义了数据应该从哪里复制到哪里。connector实例是一种逻辑作业，负责管理Kafka与另一个系统之间的数据复制。</li> <li>我们在大多数情况下都是使用一些平台提供的现成的connector。但是，也可以从头编写一个新的connector插件。在高层次上，希望编写新连接器插件的开发人员遵循以下工作流。</li> </ul> </li> <li>Tasks：如何将数据复制到Kafka或从Kafka复制数据的实现 <ul> <li>Task是Connect数据模型中的主要处理数据的角色，也就是真正干活的。每个connector实例协调一组实际复制数据的task。通过允许connector将单个作业分解为多个task，Kafka Connect提供了内置的对并行性和可伸缩数据复制的支持，只需很少的配置。</li> <li>这些任务没有存储任何状态。任务状态存储在Kafka中的特殊主题<code>config.storage.topic</code>和<code>status.storage.topic</code>中。因此，可以在任何时候启动、停止或重新启动任务，以提供弹性的、可伸缩的数据管道。</li> <li>Task Rebalance <ul> <li>当connector首次提交到集群时，workers会重新平衡集群中的所有connector及其tasks，以便每个worker的工作量大致相同。当connector增加或减少它们所需的task数量，或者更改connector的配置时，也会使用相同的重新平衡过程。</li> <li>当一个worker失败时，task在活动的worker之间重新平衡。当一个task失败时，不会触发再平衡，因为task失败被认为是一个例外情况。因此，失败的task不会被框架自动重新启动，应该通过REST API重新启动。</li> </ul> </li> </ul> </li> <li>Workers：执行Connector和Task的运行进程。</li> <li>Converters： 用于在Connect和外部系统发送或接收数据之间转换数据的代码。在向Kafka写入或从Kafka读取数据时，Converter是使Kafka Connect支持特定数据格式所必需的。task使用Converters将数据格式从字节转换为连接内部数据格式，反之亦然。并且Converter与Connector本身是解耦的，以便在Connector之间自然地重用Converter。默认提供一些Converters： <ul> <li>AvroConverter（建议）：与Schema Registry一起使用</li> <li>JsonConverter：适合结构数据</li> <li>StringConverter：简单的字符串格式</li> <li>ByteArrayConverter：提供不进行转换的“传递”选项</li> </ul> </li> <li>Transforms：更改由连接器生成或发送到连接器的每个消息的简单逻辑。 <ul> <li>Connector可以配置Transforms，以便对单个消息进行简单且轻量的修改。这对于小数据的调整和事件路由十分方便，且可以在connector配置中将多个Transforms连接在一起。然而，应用于多个消息的更复杂的Transforms最好使用KSQL和Kafka Stream来实现。</li> <li>Transforms是一个简单的函数，输入一条记录，并输出一条修改过的记录。Kafka Connect提供许多Transforms，它们都执行简单但有用的修改。可以使用自己的逻辑定制实现转换接口，将它们打包为Kafka Connect插件，将它们与connector一起使用。</li> <li>当Transforms与Source Connector一起使用时，Kafka Connect通过第一个Transforms传递connector生成的每条源记录，第一个Transforms对其进行修改并输出一个新的源记录。将更新后的源记录传递到链中的下一个Transforms，该Transforms再生成一个新的修改后的源记录。最后更新的源记录会被转换为二进制格式写入到Kafka。Transforms也可以与Sink Connector一起使用。</li> </ul> </li> </ul> </h1> <h2 id="kafka安装目录">Kafka安装目录</h2> <p>在Kafka安装目录下也已自带Connect脚本和简单模板配置文件，而Confluent Platform中也会包含了更多worker示例配置属性文件（如etc/schema-registry/connect-avro-distributed.properties、etc/schema-registry/connect-avro-standalone.properties）。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/019e18f0110d2f7ece8d3f4e2b89b788.jpg" alt="Confluent之Kafka Connector详细分析"></p> <p>官方使用说明</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/7953628a90905cbb8daf9801186660cc.jpg" alt="Confluent之Kafka Connector详细分析"></p> <ul> <li><code>group.id</code> (默认<code>connect-cluster</code>) - Connect cluster group使用唯一的名称；注意这不能和consumer group ID（消费者组）冲突。</li> <li><code>config.storage.topic</code> (默认<code>connect-configs</code>) - topic用于存储connector和任务配置；注意，这应该是一个单个的partition，多副本的topic。你需要手动创建这个topic，以确保是单个partition（自动创建的可能会有多个partition）。</li> <li><code>offset.storage.topic</code> (默认<code>connect-offsets</code>) - topic用于存储offsets；这个topic应该配置多个partition和副本。</li> <li><code>status.storage.topic</code> (默认<code>connect-status</code>) - topic 用于存储状态；这个topic 可以有多个partitions和副本</li> </ul> <p>建议允许Kafka Connect自动创建内部管理的Topics。如果需要手动创建示例如下</p> <pre><code class="language-shell"># config.storage.topic=connect-configs bin/kafka-topics --create --bootstrap-server localhost:9092 --topic connect-configs --replication-factor 3 --partitions 1 --config cleanup.policy=compact  # offset.storage.topic=connect-offsets bin/kafka-topics --create --bootstrap-server localhost:9092 --topic connect-offsets --replication-factor 3 --partitions 50 --config cleanup.policy=compact  # status.storage.topic=connect-status bin/kafka-topics --create --bootstrap-server localhost:9092 --topic connect-status --replication-factor 3 --partitions 10 --config cleanup.policy=compact</code></pre> <h2 id="插件下载">插件下载</h2> <p>Confluent已提供很多Kafka Connect的实现的Connector连接器，可以先到这里搜索插件下载<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.confluent.io/hub/"  target="_blank" rel="nofollow">Confluent Hub插件下载地址</a><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.confluent.io/hub/"  target="_blank" rel="nofollow">https://www.confluent.io/hub/</a></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/4a9896bbfbdacbcbc6304c854ce5bcc3.jpg" alt="Confluent之Kafka Connector详细分析"></p> <h2 id="独立模式使用">独立模式使用</h2> <p>这里不做演示，独立模式通常用于开发和测试，或者轻量级、单代理环境(例如，发送web服务器日志到Kafka)。单机模式启动worker的示例命令:</p> <pre><code class="language-shell">bin/connect-standalone worker.properties connector1.properties [connector2.properties connector3.properties ...]</code></pre> <h2 id="分布式模式">分布式模式</h2> <h3 id="rest-api">REST API</h3> <p>Kafka Connect是作为一个服务运行的，支持REST API来管理连接器。默认情况下，该服务运行在端口8083上。当在分布式模式下执行时，REST API将成为集群的主要接口；你可以向任何集群发出请求REST API会自动转发请求。目前REST API只支持application/json作为请求和响应实体内容类型。请求通过HTTP Accept头指定预期的响应内容类型和或者提交请求content - type报头指定请求实体的内容类型</p> <pre><code class="language-shell">Accept: application/json Content-Type: application/json</code></pre> <ul> <li> <p><code>GET /</code> - 顶级(根)请求，获取服务REST请求的Connect worker的版本，源代码的git提交ID，以及该worker连接的Kafka集群ID</p> </li> <li> <p><code>GET /connectors</code> - 返回活跃的connector列表</p> </li> <li> <p><code>POST /connectors</code> - 创建一个新的connector；请求的主体是一个包含字符串name字段和对象config字段（connector的配置参数）的JSON对象。</p> </li> <li> <p><code>GET /connectors/{name}</code> - 获取指定connector的信息</p> </li> <li> <p><code>GET /connectors/{name}/config</code> - 获取指定connector的配置参数</p> </li> <li> <p><code>PUT /connectors/{name}/config</code> - 更新指定connector的配置参数</p> </li> <li> <p><code>GET /connectors/{name}/status</code> - 获取connector的当前状态，包括它是否正在运行，失败，暂停等。</p> </li> <li> <p><code>GET /connectors/{name}/tasks</code> - 获取当前正在运行的connector的任务列表。</p> </li> <li> <p><code>GET /connectors/{name}/tasks/{taskid}/status</code> - 获取任务的当前状态，包括是否是运行中的，失败的，暂停的等，</p> </li> <li> <p><code>PUT /connectors/{name}/pause</code> - 暂停连接器和它的任务，停止消息处理，直到connector恢复。</p> </li> <li> <p><code>PUT /connectors/{name}/resume</code> - 恢复暂停的connector（如果connector没有暂停，则什么都不做）</p> </li> <li> <p><code>POST /connectors/{name}/restart</code> - 重启connector（connector已故障）</p> </li> <li> <p><code>POST /connectors/{name}/tasks/{taskId}/restart</code> - 重启单个任务 (通常这个任务已失败)</p> </li> <li> <p><code>DELETE /connectors/{name}</code> - 删除connector, 停止所有的任务并删除其配置</p> </li> <li> <p><code>GET /connector-plugins</code>- 返回已在Kafka Connect集群安装的<code>connector plugin</code>列表。请注意，API仅验证处理请求的worker的connector。这以为着你可能看不不一致的结果，特别是在滚动升级的时候（添加新的connector jar）</p> </li> <li> <p><code>PUT /connector-plugins/{connector-type}/config/validate</code> - 对提供的配置值进行验证，执行对每个配置验证，返回验证的建议值和错误信息。</p> </li> </ul> <h3 id="本地文件输入写入hdfs示例">本地文件输入写入HDFS示例</h3> <pre><code class="language-shell"># FileStreamSource是Kafka本身就提供Connector实现，直接配置使用即可 # 将confluentinc-kafka-connect-hdfs-10.1.6.zip解压到指定插件目录，我这里在Kafka安装目录下的config/connect-distributed.properties配置项 plugin.path=/opt/kafka/connectors vim /home/commons/kafka_2.13-3.1.0/config/connect-distributed.properties</code></pre> <pre><code class="language-shell"># Broker Server的访问ip和端口号 bootstrap.servers=server1:9092,server2:9092,server3:9092 # 指定集群id group.id=connect-cluster # 指定rest服务的端口号 rest.port=8083 # 指定Connect插件包的存放路径 plugin.path=/opt/kafka/connectors # 配置转换器 key.converter=org.apache.kafka.connect.storage.StringConverter value.converter=org.apache.kafka.connect.storage.StringConverter key.converter.schemas.enable=false value.converter.schemas.enable=false internal.key.converter=org.apache.kafka.connect.json.JsonConverter internal.value.converter=org.apache.kafka.connect.json.JsonConverter internal.key.converter.schemas.enable=false internal.value.converter.schemas.enable=false</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/48b5e6e6799387126d5fd2c48d1369c8.jpg" alt="Confluent之Kafka Connector详细分析"></p> <pre><code class="language-shell"># 在Kafka根目录下启动worker ./bin/connect-distributed.sh -daemon config/connect-distributed.properties</code></pre> <p>创建FileStreamSource的json文件filesource.json</p> <pre><code class="language-json">{     "name":"local-file-source",     "config":{         "topic":"distributetest",         "connector.class":"FileStreamSource",         "key.converter":"org.apache.kafka.connect.storage.StringConverter",         "value.converter":"org.apache.kafka.connect.storage.StringConverter",         "converter.internal.key.converter":"org.apache.kafka.connect.storage.StringConverter",         "converter.internal.value.converter":"org.apache.kafka.connect.storage.StringConverter",         "file":"/home/commons/kafka_2.13-3.1.0/distribute-source.txt"     } }</code></pre> <p>创建HdfsSinkConnector的json文件hdfssink.json</p> <pre><code class="language-json">{   "name": "hdfs-sink",   "config": {     "connector.class": "io.confluent.connect.hdfs.HdfsSinkConnector",     "tasks.max": "1",     "topics": "distributetest",     "topics.dir": "/user/hive/warehouse/topictest/",     "hdfs.url": "hdfs://192.168.3.14:8020",     "flush.size": "2"   } }</code></pre> <pre><code class="language-shel">curl -X GET http://localhost:8083/connector-plugins</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/34d6373e054ed74d2b768e745b65e059.jpg" alt="Confluent之Kafka Connector详细分析"></p> <pre><code class="language-shell"># 创建filesource和hdfssink curl -X POST -H 'Content-Type: application/json' -i 'http://localhost:8083/connectors' -d@filesource.json -w '\n' curl -X POST -H 'Content-Type: application/json' -i 'http://localhost:8083/connectors' -d@hdfssink.json -w '\n'</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/8e40c4d577fab15ec890b2a58972c6db.jpg" alt="Confluent之Kafka Connector详细分析"></p> <pre><code class="language-shell"># 写入数据，消费kafka主题也订阅到相应的数据 echo "{"name":"zhangsan"}" &gt;&gt; distribute-source.txt  echo "{"name":"zhangsan1"}" &gt;&gt; distribute-source.txt  echo "{"name":"zhangsan2"}" &gt;&gt; distribute-source.txt  curl -X GET -H 'Content-Type: application/json' -i 'http://localhost:8083/connectors/hdfs-sink/status' -w '\n'</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/5f9116cfbc4f94975ebc9064392828e3.jpg" alt="Confluent之Kafka Connector详细分析"><br /> 查看HDFS中也已经有相应的数据，如果需要更详细的数据可以从官方查找使用，后续我们再详细介绍更多实际使用场景</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/5cb0f72d42d099aa5765aa33e2fef5de.jpg" alt="Confluent之Kafka Connector详细分析"></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-73817.htm">生物疫苗有什么区别（生物疫苗一样吗）</a></p>
+                                        <p>下一个：<a href="/news/article-74468.htm">附近领养宠物小狗的地方 附近领养宠物小狗的地方在哪里</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-60625.htm" title="一片枫叶怎么说好听点（一巴掌怎么说好听）">一片枫叶怎么说好听点（一巴掌怎么说好听）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-24-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新19.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-2-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新19.3M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-38697.htm" title="济南美联众合动物医院怎么样（济南美联众合动物医院怎么样）">济南美联众合动物医院怎么样（济南美联众合动物医院怎么样）</a></li>
+                        <li class="py-2"><a href="/news/article-71841.htm" title="宠物店必定红火的名字 宠物店必定红火的名字有关猫狗的成语">宠物店必定红火的名字 宠物店必定红火的名字有关猫狗的成语</a></li>
+                        <li class="py-2"><a href="/news/article-47602.htm" title="Springboot 连接 Mysql">Springboot 连接 Mysql</a></li>
+                        <li class="py-2"><a href="/news/article-54388.htm" title="卖宠物粮食的店名（宠物粮食店铺）">卖宠物粮食的店名（宠物粮食店铺）</a></li>
+                        <li class="py-2"><a href="/news/article-36282.htm" title="动物疫苗检测中心上班时间（动物疫苗检测中心上班时间是几点）">动物疫苗检测中心上班时间（动物疫苗检测中心上班时间是几点）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-5-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新19.2M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-15-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新22.8M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.8M/S免费节点订阅链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

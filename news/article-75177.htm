@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-75177.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>【ES】springboot使用bulkProcessor定时用quartz同步mysql数据到es中（基本引用即用）</title>
+        <meta name="description" content="1. 首先进入quartz官网，下载安装包   2. 将安装包解压，拿出里面的sql脚本，塞入到mysql服务器中    1.pom文件加上elasticsearch和quartz依赖        " />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-75177.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="【ES】springboot使用bulkProcessor定时用quartz同步mysql数据到es中（基本引用即用）" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/5c785eef31fac9211851e07431ece50e.webp" />
+        <meta property="og:release_date" content="2025-03-16T10:30:21" />
+    <meta property="og:updated_time" content="2025-03-16T10:30:21" />
+        <meta property="og:description" content="1. 首先进入quartz官网，下载安装包   2. 将安装包解压，拿出里面的sql脚本，塞入到mysql服务器中    1.pom文件加上elasticsearch和quartz依赖        " />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="【ES】springboot使用bulkProcessor定时用quartz同步mysql数据到es中（基本引用即用）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">【ES】springboot使用bulkProcessor定时用quartz同步mysql数据到es中（基本引用即用）</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <h3>1. 首先进入quartz官网，下载安装包</h3> </h1> <p><img fetchpriority="high" decoding="async" alt="" height="344" src="http://img.555519.xyz/uploads3/20220608/dac9bafca3343d1055f9c4b92b063e74.jpg"></p> <h3>2. 将安装包解压，拿出里面的sql脚本，塞入到mysql服务器中</h3> <p><img decoding="async" alt="" height="730" src="http://img.555519.xyz/uploads3/20220608/5c2e951cac217d0c99445c43c89dac2b.jpg"></p> <p><img decoding="async" alt="" height="204" src="http://img.555519.xyz/uploads3/20220608/a6c1d058435bfd8f88e4ba8f407a6299.jpg"></p> </h1> <h3>1.pom文件加上elasticsearch和quartz依赖</h3> <pre><code>        &lt;dependency&gt;             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;             &lt;artifactId&gt;spring-boot-starter-quartz&lt;/artifactId&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;             &lt;artifactId&gt;elasticsearch-rest-high-level-client&lt;/artifactId&gt;             &lt;version&gt;7.9.3&lt;/version&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;             &lt;artifactId&gt;elasticsearch-rest-client&lt;/artifactId&gt;             &lt;version&gt;7.9.3&lt;/version&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;org.elasticsearch&lt;/groupId&gt;             &lt;artifactId&gt;elasticsearch&lt;/artifactId&gt;             &lt;version&gt;7.9.3&lt;/version&gt;         &lt;/dependency&gt;</code></pre> <h3>&nbsp;2.properties文件中加上quartz配置（其他mysql配置自行添加）</h3> <pre><code class="language-java"># 调度配置 -- 将任务等保存化到数据库 spring.quartz.job-store-type=jdbc #spring.quartz.jdbc.initialize-schema=always #程序结束时会等待quartz相关的内容结束 spring.quartz.wait-for-jobs-to-complete-on-shutdown=true # 修改定时触发时间能随时生效 spring.quartz.overwrite-existing-jobs=true # scheduler实例名  调度器实例名称 spring.quartz.properties.org.quartz.scheduler.instanceName=myScheduler # 调度器实例编号自动生成 spring.quartz.properties.org.quartz.scheduler.instanceId=AUTO # 持久化方式配置 -- 数据保存方式为数据库持久化 spring.quartz.properties.org.quartz.jobStore.class=org.quartz.impl.jdbcjobstore.JobStoreTX # 数据库代理类，一般org.quartz.impl.jdbcjobstore.StdJDBCDelegate可以满足大部分数据库 spring.quartz.properties.org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.StdJDBCDelegate # 数据表的前缀，默认QRTZ_ spring.quartz.properties.org.quartz.jobStore.tablePrefix=qrtz_ # JobDataMaps是否都为String类型 spring.quartz.properties.org.quartz.jobStore.useProperties=false spring.quartz.properties.org.quartz.jobStore.clusterCheckinInterval=10000 # 是否支持集群 spring.quartz.properties.org.quartz.jobStore.isClustered=false # 线程池相关 -- 线程池的实现类 spring.quartz.properties.org.quartz.threadPool.class=org.quartz.simpl.SimpleThreadPool # 线程池中的线程数量 spring.quartz.properties.org.quartz.threadPool.threadCount=10 # 线程优先级 spring.quartz.properties.org.quartz.threadPool.threadPriority=5 # 配置是否启动自动加载数据库内的定时任务，默认true spring.quartz.properties.org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread=true</code></pre> <h3>3.编写QuartzConfig、ESConfigClient配置类</h3> <pre><code class="language-java">package com.example.gauditdemo.config;  import com.example.gauditdemo.task.MysqlAddEsScheduler; import org.quartz.*; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration;   /**  * @author Frederic.Hu  * @Description  Quartz的相关配置，注册JobDetail和Trigger  * 注意JobDetail和Trigger是org.quartz包下的，不是spring包下的，不要导入错误  * @date 2021/12/08 17:32  */ @Configuration public class QuartzConfig {      /** builder 类创建了一个JobDetail和一个Trigger并注册成为Spring bean，      * 这些bean会自动关联到调度器上，JobDetail和Trigger需要设置组名和自己的名字，用来作为唯一标识      * JobDetail里有一个StartOfDayJob类，这个类就是job接口的一个实现类，里面定义了任务的具体内容      */     @Bean     public JobDetail jobDetail() {         // 指定具体的定时任务类         JobDetail jobDetail = JobBuilder.newJob(MysqlAddEsScheduler.class)                 .withIdentity("myJob1", "myJobGroup1")                 .storeDurably()                 .build();         return jobDetail;     }      /** Trigger通过corn表达式指定了任务执行的周期。 */     @Bean     public Trigger trigger() {         Trigger trigger = TriggerBuilder.newTrigger()                 .forJob(jobDetail())                 .withIdentity("myTrigger1", "myTriggerGroup1")                 .startNow()                 // 0 */1 * * * ?   每分钟执行                 // */5 * * * * ?   每5s执行                 .withSchedule(CronScheduleBuilder.cronSchedule("*/5 * * * * ?"))                 .build();         // 返回任务触发器         return trigger;     }      /** 这边你可以写另外一个定时任务 */ //    @Bean //    public JobDetail jobDetail2() { //        // 指定具体的定时任务类 //        JobDetail jobDetail = JobBuilder.newJob(ElasticSearchUtil.class) //                .withIdentity("myJob2", "myJobGroup2") //                .storeDurably() //                .build(); //        return jobDetail; //    } // //    @Bean //    public Trigger trigger2() { //        Trigger trigger = TriggerBuilder.newTrigger() //                .forJob(jobDetail2()) //                .withIdentity("myTrigger2", "myTriggerGroup2") //                .startNow() //                // 每天0点执行  0 0 0 * * ?   这里设定执行方式 //                // 0 */1 * * * ?   每分钟执行 //                // */5 * * * * ?   每5s执行 //                .withSchedule(CronScheduleBuilder.cronSchedule("*/5 * * * * ?")) //                .build(); //        // 返回任务触发器 //        return trigger; //    }    }</code></pre> <pre><code class="language-java">package com.example.gauditdemo.config;  import org.apache.http.HttpHost; import org.elasticsearch.client.RestClient; import org.elasticsearch.client.RestHighLevelClient; import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.springframework.context.annotation.Bean; import org.springframework.stereotype.Component;   /**  * @author Frederic.Hu  * @Description  * @date 2021/12/02 13:37  */ @Component public class ESConfigClient {      public final Logger logger = LoggerFactory.getLogger(this.getClass());      @Bean     public RestHighLevelClient esClient(){         return new RestHighLevelClient(RestClient.builder(new HttpHost("localhost", 9200, "http")));     }  }</code></pre> <h3>4.写一个bulkProcessor的配置类（ESCommonConfig）</h3> <pre><code class="language-java">package com.example.gauditdemo.utils;  import com.example.gauditdemo.config.ESConfigClient; import org.elasticsearch.action.ActionListener; import org.elasticsearch.action.bulk.BackoffPolicy; import org.elasticsearch.action.bulk.BulkProcessor; import org.elasticsearch.action.bulk.BulkRequest; import org.elasticsearch.action.bulk.BulkResponse; import org.elasticsearch.client.RequestOptions; import org.elasticsearch.client.RestHighLevelClient; import org.elasticsearch.common.unit.ByteSizeUnit; import org.elasticsearch.common.unit.ByteSizeValue; import org.elasticsearch.common.unit.TimeValue; import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Scope; import org.springframework.stereotype.Component;  import javax.annotation.PreDestroy; import java.io.IOException; import java.util.function.BiConsumer;  /**  * @author Frederic.Hu  * @Description  * @date 2021/12/16 10:19  */ @Component public class ESCommonConfig {      public final Logger logger = LoggerFactory.getLogger(this.getClass());      @Autowired     private ESConfigClient esConfigClient;      @PreDestroy     public void destory() {         try {             esConfigClient.esClient().close();             logger.info("esClient客户端已经关闭:{}", esConfigClient.esClient());         } catch (Exception e) {             logger.error("关闭restHighLevelClient异常：", e);         }     }      /**      * @return org.elasticsearch.action.bulk.BulkProcessor      * @description: 构建bulkProcessor接口 异步执行      *      */     @Bean     @Scope("prototype")     public BulkProcessor getBulkAsyncProcessor( ) {         RestHighLevelClient restHighLevelClient = esConfigClient.esClient();         BiConsumer&lt;BulkRequest, ActionListener&lt;BulkResponse&gt;&gt; consumer =                 (bulkRequest, bulkResponseActionListener) -&gt; restHighLevelClient.bulkAsync(                         bulkRequest, RequestOptions.DEFAULT, bulkResponseActionListener);         logger.info("getBulkAsyncProcessor 中 ES客户端地址:{}", restHighLevelClient);          return BulkProcessor.builder(consumer, new BulkProcessor.Listener() {             @Override             public void beforeBulk(long executionId, BulkRequest bulkRequest) {                 //重写beforeBulk,在每次bulk request发出前执行,在这个方法里面可以知道在本次批量操作中有多少操作数                 int numberOfActions = bulkRequest.numberOfActions();                 logger.info("同步数量 Executing bulk [{}] with {} requests", executionId, numberOfActions);             }              @Override             public void afterBulk(long executionId, BulkRequest bulkRequest, BulkResponse bulkResponse) {                 //重写afterBulk方法，每次批量请求结束后执行，可以在这里知道是否有错误发生。                 if (bulkResponse.hasFailures()) {                     logger.error("Bulk [{}] executed with failures,response = {}", executionId, bulkResponse.buildFailureMessage());                 } else {                     logger.info("写入成功 Bulk [{}] completed in {} milliseconds", executionId, bulkResponse.getTook().getMillis());                     try {                         restHighLevelClient.close();                         logger.info("运行到最后时的es客户端地址:{}", restHighLevelClient);                     } catch (IOException e) {                         e.printStackTrace();                     }                 }             }              @Override             public void afterBulk(long l, BulkRequest bulkRequest, Throwable failure) {                 //重写方法，如果发生错误就会调用。                 logger.error("写入失败 Failed to execute bulk", failure);             }          }).setBulkActions(20000)  //  达到刷新的条数                 .setBulkSize(new ByteSizeValue(15L, ByteSizeUnit.MB)) // 达到 刷新的大小                 .setConcurrentRequests(100) // 并发请求数量, 0不并发, 1并发允许执行                 .setFlushInterval(TimeValue.timeValueSeconds(20))  // 固定刷新的时间频率                 .setBackoffPolicy(BackoffPolicy.constantBackoff(                         TimeValue.timeValueSeconds(100L), 3)) // 重试补偿策略                 .build();     }  }</code></pre> <h3>5.写定时任务类MysqlAddEsScheduler类</h3> <pre><code class="language-java">package com.example.gauditdemo.task;  import com.example.gauditdemo.dao.OperationDao; import org.elasticsearch.action.bulk.BulkProcessor; import org.elasticsearch.action.index.IndexRequest; import org.elasticsearch.common.xcontent.XContentType; import org.quartz.JobExecutionContext; import org.quartz.JobExecutionException; import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.beans.factory.annotation.Value; import org.springframework.scheduling.quartz.QuartzJobBean; import org.springframework.stereotype.Component; import org.springframework.transaction.annotation.Transactional;  import javax.annotation.Resource; import java.text.ParseException; import java.text.SimpleDateFormat; import java.util.Calendar; import java.util.List; import java.util.Map;  /**  * @author Frederic.Hu  * @Description  * @date 2021/12/15 10:32  */ @Component public class MysqlAddEsScheduler extends QuartzJobBean {      public final Logger logger = LoggerFactory.getLogger(this.getClass());      @Resource     private OperationDao operationDao;      @Value("${audit.index.prefix.env}")     private String auditIndexPrefixEnv;      @Autowired     private BulkProcessor bulkProcessor;      @Override     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {         long startTime = System.currentTimeMillis();         List&lt;Map&lt;String, Object&gt;&gt; mapList = selectAll();         logger.info("同步数据 tongBuSize:{}条", mapList.size());         try {             if (!mapList.isEmpty()) {                 mapList.parallelStream().forEach(item -&gt; {                     try {                         SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");                         Calendar cal = Calendar.getInstance();                         // 自动生成的operationtime自动映射成date类型                         cal.setTime(sdFormat.parse(item.get("operationtime").toString()));                         // 插入es数据时间相差8小时                         cal.add(Calendar.HOUR_OF_DAY, +8);                         item.replace("operationtime", cal.getTime());                     } catch (ParseException e) {                         logger.error("Failed to convert time:", e);                     }                     bulkProcessor.add(new IndexRequest().index(auditIndexPrefixEnv + item.get("indexsuffix").toString()).source(item, XContentType.JSON));                 });             }             // 刷新             bulkProcessor.flush();             bulkProcessor.close();         } catch (Exception e) {             logger.error("BulkProcessor，插入数据异常", e);         }         logger.info("tongbu use time: " + (System.currentTimeMillis() - startTime) + "ms");     }      @Transactional     List&lt;Map&lt;String, Object&gt;&gt; selectAll() {         return operationDao.selectOperationAndChangeDate();     }  }</code></pre> <h3>6. 控制台打印输出</h3> <p><img loading="lazy" decoding="async" alt="" height="159" src="http://img.555519.xyz/uploads3/20220608/555ff11342d5c7e1678d286a1f57818a.jpg"></p> <h3>7.kibana数据打印输出</h3> <p><img loading="lazy" decoding="async" alt="" height="269" src="http://img.555519.xyz/uploads3/20220608/acaaacb16626974166841af802aaed30.jpg"></p> </h1> <ul> <li> <h3>配置类不用改，需要改的地方就是定时任务MysqlAddEsScheduler类业务需求的地方</h3> </li> <li> <h3>定时任务几分钟同步一次，可以自己写cron表达式，在quartzConfig配置类里面修改时间</h3> </li> <li> <h3>自已已应用到测试、预生产环境，是能正常运行的</h3> </li> </ul> </h1> <ul> <li> <h2>mysql时间类型与es中时间类型不一致</h2> <p> 原因及解决办法：mysql中有一个时间date类型，同步到es中，这个时间类型在es中是text类型，导致查询会报错，预想应该在es中也是date类型才对。解决办法：mybatis中查询出来的结果将时间进行转换，代码中有，我写了注释。最好将es中的索引先删除掉，然后es会自动创建索引和字段类型的。</li> <li> <h2>es中时间比mysql中查询出来的时间少了8个小时</h2> <p> 原因及解决办法：同步的时候发现es中时间少8小时。解决办法：mybatis中查询出来的结果将时间加8个小时，代码中有，可以参考一下，我写了注释。</li> <li> <h2>如果使用@Scheduler注解做定时任务，想要其起效果，需要三个条件</h2> <p> 原因及解决办法：自己搜索0.0</li> <li> <h2>测试的时候，我是在windwos中安装的es和kibana</h2> <p> 原因及解决办法：比较方便，方便我调式</li> <li> <h2>为什么同步es中要用bulkProcessor</h2> <p> 原因及解决办法：当你数据量特别大的时候，不用bulkProcessor，如果一次性同步几百万条数据，会将es弄崩掉的。解决办法：加上bulkProcessor，可以自行设置多少条同步一次，或者几s自动同步一次，也比较方便</li> <li> <h2>定时同步中，之前bulkProcessor一直创建对象，导致长时间运行服务挂掉，内存溢出</h2> </li> </ul> <p>&nbsp; &nbsp; &nbsp; &nbsp; 原因及解决办法：定时任务类中，批量塞入数据时，只创建一个bulkProcessor对象，就不需要批量多少条数据就创建多少个对象。解决办法：将 bulkProcessor 对象给 Spring 容器管理</p> <ul> <li> <h2>定时任务中，bulkProcessor同步完，bulkProcessor要关闭</h2> </li> </ul> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;原因及解决办法：每次批量同步完，记得最后要将bulkProcessor关闭掉，不然长时间同步下去，服务就会宕机。解决办法：在最后同步完，加上bulkProcessor关闭掉。</p> <ul> <li> <h2>定时任务中，当设置每5分钟同步一次时，都是整点同步的</h2> </li> </ul> <p>&nbsp; &nbsp; &nbsp; &nbsp; 现象及解决办法：当我定时任务设置每5分钟执行一次，都会整点执行，不会说你启动服务是在8点53分启动，定时任务就会在8点58分执行，不是这样的，定时任务会在8点55分开始执行一次，下一次则是在9点整执行一次。解决办法：当你有两个定时任务对同一张表操作时，可以将其时间错开，设定一个特定时间。</p> <p><strong style="color:#4f4f4f;font-size:24px;font-weight:bold;">五、测试环境同步日志</strong></p> <p><img loading="lazy" decoding="async" alt="" height="81" src="http://img.555519.xyz/uploads3/20220608/3a1ec932cd72a06deaff25a293e72a52.jpg"></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-74468.htm">附近领养宠物小狗的地方 附近领养宠物小狗的地方在哪里</a></p>
+                                        <p>下一个：<a href="/news/article-75178.htm">哈尔滨宠物王国在哪（哈尔滨宠物店电话号码）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新20M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新20M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-75177.htm" title="【ES】springboot使用bulkProcessor定时用quartz同步mysql数据到es中（基本引用即用）">【ES】springboot使用bulkProcessor定时用quartz同步mysql数据到es中（基本引用即用）</a></li>
+                        <li class="py-2"><a href="/news/article-43169.htm" title="动物疫苗接种时间表最新查询 动物疫苗接种时间表最新查询官网">动物疫苗接种时间表最新查询 动物疫苗接种时间表最新查询官网</a></li>
+                        <li class="py-2"><a href="/news/article-36281.htm" title="pythonmysql查询转list_python 解决mysql where in 对列表(list,,array)问题">pythonmysql查询转list_python 解决mysql where in 对列表(list,,array)问题</a></li>
+                        <li class="py-2"><a href="/news/article-43667.htm" title="建议穷人养的10种猫100元以下!（建议穷人养的10种猫100元以下的猫）">建议穷人养的10种猫100元以下!（建议穷人养的10种猫100元以下的猫）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-26-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新20.3M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新20.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-56043.htm" title="北京看动物去哪里好呢（北京可以看动物的公园）">北京看动物去哪里好呢（北京可以看动物的公园）</a></li>
+                        <li class="py-2"><a href="/news/article-67293.htm" title="宠康动物医院电话 宠康动物医院电话号码">宠康动物医院电话 宠康动物医院电话号码</a></li>
+                        <li class="py-2"><a href="/news/article-40183.htm" title="Vue利用js实现点击菜单导航栏实现平滑滚动定位">Vue利用js实现点击菜单导航栏实现平滑滚动定位</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-25-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新22.5M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.5M/S免费节点订阅链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
