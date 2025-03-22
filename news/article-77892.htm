@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-77892.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>进程内优雅管理多个服务</title>
+        <meta name="description" content="前言 在 go-zero 社区里，经常会有同学问，把API gateway 和RPC service 放在同一个进程内可不可以？怎么弄？有时也会有同学把对外服务和消费队列放在一个进程内。咱们姑且不说此" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-77892.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="进程内优雅管理多个服务" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/5747bf776b430b44733134e6a6c5b742.webp" />
+        <meta property="og:release_date" content="2025-03-20T10:02:43" />
+    <meta property="og:updated_time" content="2025-03-20T10:02:43" />
+        <meta property="og:description" content="前言 在 go-zero 社区里，经常会有同学问，把API gateway 和RPC service 放在同一个进程内可不可以？怎么弄？有时也会有同学把对外服务和消费队列放在一个进程内。咱们姑且不说此" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="进程内优雅管理多个服务">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">进程内优雅管理多个服务</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<h2 id="前言">前言</h2> <p>在 go-zero 社区里，经常会有同学问，把<code>API gateway</code> 和<code>RPC service</code> 放在同一个进程内可不可以？怎么弄？有时也会有同学把对外服务和消费队列放在一个进程内。咱们姑且不说此种用法合理与否，因为各个公司的业务场景和开发模式的差异，我们就只来看看此类问题怎么解比较优雅。</p> <h2 id="问题举例">问题举例</h2> <p>我们用两个<code>HTTP</code> 服务来举例，我们有这样两个服务，需要启动在一个进程内的两个不同端口。代码如下：</p> <pre><code class="language-go">package main  import (   "fmt"   "net/http" )  func morning(w http.ResponseWriter, req *http.Request) {   fmt.Fprintln(w, "morning!") }  func evening(w http.ResponseWriter, req *http.Request) {   fmt.Fprintln(w, "evening!") }  type Morning struct{}  func (m Morning) Start() {   http.HandleFunc("/morning", morning)   http.ListenAndServe("localhost:8080", nil) }  func (m Morning) Stop() {   fmt.Println("Stop morning service...") }  type Evening struct{}  func (e Evening) Start() {   http.HandleFunc("/evening", evening)   http.ListenAndServe("localhost:8081", nil) }  func (e Evening) Stop() {   fmt.Println("Stop evening service...") }  func main() {   // todo: start both services here }</code></pre> <p>代码是足够简单的，就是有请求<code>morning</code> 接口，服务返回<code>morning!</code>，请求<code>evening</code> 接口，服务返回<code>evening</code> 。让我们来尝试实现一下～</p> <h2 id="第一次尝试">第一次尝试</h2> <p>启动两个服务，不就是把两个服务在<code>main</code> 里都启动一下吗？我们来试试</p> <pre><code class="language-go">func main() {   var morning Morning   morning.Start()   defer morning.Stop()    var evening Evening   evening.Start()   defer evening.Stop() }</code></pre> <p>启动完，我们用<code>curl</code> 来验证一下</p> <pre><code class="language-shell">$ curl -i http://localhost:8080/morning HTTP/1.1 200 OK Date: Mon, 18 Apr 2022 02:10:34 GMT Content-Length: 9 Content-Type: text/plain; charset=utf-8  morning! $ curl -i http://localhost:8081/evening curl: (7) Failed to connect to localhost port 8081 after 4 ms: Connection refused</code></pre> <p>为什么只有<code>morning</code> 成功，而<code>evening</code> 无法请求呢？</p> <p>我们在<code>main</code> 里面加上打印语句试试</p> <pre><code class="language-go">func main() {   fmt.Println("Start morning service...")   var morning Morning   morning.Start()   defer morning.Stop()    fmt.Println("Start evening service...")   var evening Evening   evening.Start()   defer evening.Stop() }</code></pre> <p>重新启动</p> <pre><code class="language-shell">$ go run main.go Start morning service...</code></pre> <p>发现只打印了<code>Start morning service…</code>，原来<code>evening</code> 服务压根没有启动。究其原因，是因为<code>morning.Start()</code> 阻塞了当前<code>goroutine</code>，后续代码就得不到执行了。</p> <h2 id="第二次尝试">第二次尝试</h2> <p>这时，<code>WaitGroup</code> 就可以派上用场了。<code>WaitGroup</code> 顾名思义，就是用来<code>wait</code> 一组操作，等待它们通知可以继续。让我们来尝试一下。</p> <pre><code class="language-go">func main() {   var wg sync.WaitGroup   wg.Add(2)    go func() {     defer wg.Done()     fmt.Println("Start morning service...")     var morning Morning     defer morning.Stop()     morning.Start()   }()    go func() {     defer wg.Done()     fmt.Println("Start evening service...")     var evening Evening     defer evening.Stop()     evening.Start()   }()    wg.Wait() }</code></pre> <p>启动试试</p> <pre><code class="language-shell">$ go run main.go Start evening service... Start morning service...</code></pre> <p>好，两个服务都起来了，我们用<code>curl</code> 验证一下</p> <pre><code class="language-shell">$ curl -i http://localhost:8080/morning HTTP/1.1 200 OK Date: Mon, 18 Apr 2022 02:28:33 GMT Content-Length: 9 Content-Type: text/plain; charset=utf-8  morning! $ curl -i http://localhost:8081/evening HTTP/1.1 200 OK Date: Mon, 18 Apr 2022 02:28:36 GMT Content-Length: 9 Content-Type: text/plain; charset=utf-8  evening!</code></pre> <p>确实都可以了，我们看到我们使用<code>WaitGroup</code> 的流程是</p> <ol> <li>记得我们有几个需要<code>wait</code> 的服务</li> <li>一个一个添加服务</li> <li>等待所有服务结束</li> </ol> <p>让我们看看<code>go-zero</code> 是怎么做的~</p> <h2 id="第三次尝试">第三次尝试</h2> <p>在<code>go-zero</code> 里，我们提供了一个<code>ServiceGroup</code> 工具，方便管理多个服务的启动和停止。让我们看看带入我们的场景是怎么做的。</p> <pre><code class="language-go">import "github.com/zeromicro/go-zero/core/service"  // more code  func main() {   group := service.NewServiceGroup()   defer group.Stop()   group.Add(Morning{})   group.Add(Evening{})   group.Start() }</code></pre> <p>可以看到，代码的可读性好了很多，并且我们也不会不小心算错该给<code>WaitGroup</code> 加几了。并且<code>ServiceGroup</code> 还保证了后启动的服务先<code>Stop</code>，跟<code>defer</code> 效果一致，这样的行为便于资源的清理。</p> <p><code>ServiceGroup</code> 不光只是管理了每个服务的<code>Start/Stop</code>，同时也提供了<code>graceful shutdown</code>，当收到<code>SIGTERM</code> 信号的时候会主动调用每个服务的<code>Stop</code>  方法，对于<code>HTTP</code> 服务，可以通过<code>server.Shutdown</code> 来优雅退出，对于<code>gRPC</code> 服务来说，可以通过<code>server.GracefulStop()</code> 来优雅退出。</p> <h2 id="总结">总结</h2> <p><code>ServiceGroup</code> 的实现其实也是比较简单的，代码一共82行。</p> <pre><code class="language-shell">$ cloc core/service/servicegroup.go ------------------------------------------------------------------ Language        files          blank        comment           code ------------------------------------------------------------------ Go                 1             22             14             82 ------------------------------------------------------------------</code></pre> <p>虽然代码短小精悍，但是在<code>go-zero</code> 里却每个服务（Restful, RPC, MQ）基本都是通过<code>ServiceGroup</code> 来管理的，可以说非常方便，代码值得一读。</p> <h2 id="项目地址">项目地址</h2> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/zeromicro/go-zero"  target="_blank" rel="nofollow">https://github.com/zeromicro/go-zero</a></p> <p>欢迎使用<code>go-zero</code> 并<strong>star</strong> 支持我们！</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-77207.htm">济南宠物领养机构电话 济南宠物领养机构电话号码</a></p>
+                                        <p>下一个：<a href="/news/article-77893.htm">附近流浪猫收养中心温州（温州流浪猫救助基地）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-54388.htm" title="卖宠物粮食的店名（宠物粮食店铺）">卖宠物粮食的店名（宠物粮食店铺）</a></li>
+                        <li class="py-2"><a href="/news/article-76532.htm" title="springboot项目部署好之后第一次启动慢的解决办法">springboot项目部署好之后第一次启动慢的解决办法</a></li>
+                        <li class="py-2"><a href="/news/article-77893.htm" title="附近流浪猫收养中心温州（温州流浪猫救助基地）">附近流浪猫收养中心温州（温州流浪猫救助基地）</a></li>
+                        <li class="py-2"><a href="/news/article-47602.htm" title="Springboot 连接 Mysql">Springboot 连接 Mysql</a></li>
+                        <li class="py-2"><a href="/news/article-40673.htm" title="宠物粮食创业项目名称有哪些 宠物粮食创业项目名称有哪些呢">宠物粮食创业项目名称有哪些 宠物粮食创业项目名称有哪些呢</a></li>
+                        <li class="py-2"><a href="/news/article-51724.htm" title="优瑞派狗粮批发（优瑞派狗粮怎么样山茶）">优瑞派狗粮批发（优瑞派狗粮怎么样山茶）</a></li>
+                        <li class="py-2"><a href="/news/article-53838.htm" title="动物疫苗合格证怎么办理流程视频（动物疫苗证书）">动物疫苗合格证怎么办理流程视频（动物疫苗证书）</a></li>
+                        <li class="py-2"><a href="/news/article-51725.htm" title="宠物粮食加工厂什么岗位比较好做 宠物粮食加工厂什么岗位比较好做呢">宠物粮食加工厂什么岗位比较好做 宠物粮食加工厂什么岗位比较好做呢</a></li>
+                        <li class="py-2"><a href="/news/article-58908.htm" title="mysql查看第二页_MySql实现分页查询的SQL">mysql查看第二页_MySql实现分页查询的SQL</a></li>
+                        <li class="py-2"><a href="/news/article-58308.htm" title="58同城土狗领养（58同城宠物店领养）">58同城土狗领养（58同城宠物店领养）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">66</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
