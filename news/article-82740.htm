@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-82740.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>你确定你会用Enum枚举了？</title>
+        <meta name="description" content="一般在我们开发时如果能使用枚举罗列的，一般都会定义一个枚举类型。将枚举类型作为方法的参数，可以方便的进行调用，给我们带来不少的遍历，当然有时候它还不如直接用一个int类型带来，带来一定灵活性。但只要能" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-82740.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="你确定你会用Enum枚举了？" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/e39dea8217818b6c97c8bf5790f27fa1.webp" />
+        <meta property="og:release_date" content="2025-03-27T08:16:08" />
+    <meta property="og:updated_time" content="2025-03-27T08:16:08" />
+        <meta property="og:description" content="一般在我们开发时如果能使用枚举罗列的，一般都会定义一个枚举类型。将枚举类型作为方法的参数，可以方便的进行调用，给我们带来不少的遍历，当然有时候它还不如直接用一个int类型带来，带来一定灵活性。但只要能" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="你确定你会用Enum枚举了？">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">你确定你会用Enum枚举了？</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<p>一般在我们开发时如果能使用枚举罗列的，一般都会定义一个枚举类型。将枚举类型作为方法的参数，可以方便的进行调用，给我们带来不少的遍历，当然有时候它还不如直接用一个int类型带来，带来一定灵活性。但只要能满足业务咱们就怎么方便怎么来吧。</p> </h1> <p>我们业务中会经常遇到订单状态的枚举，它罗列出了所有订单状态的可能值，下面是我刚刚编的一个订单状态枚举</p> <pre><code class="language-c#">public&nbsp;enum&nbsp;OrderStatus { &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;未支付 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;WaitPay&nbsp;=&nbsp;0,   &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;已支付 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Payed&nbsp;=&nbsp;1,   &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;已退款 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Refund&nbsp;=&nbsp;2,   &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;已关闭 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Closed&nbsp;=&nbsp;3, }</code></pre> <p>我们都知道C# 枚举成员的类型默认是 int 类型，通过继承可以声明枚举成员为其它类型，例如</p> <pre><code class="language-c#">public&nbsp;enum&nbsp;OrderStatus: byte { &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;未支付 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;WaitPay&nbsp;=&nbsp;0,   &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;已支付 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Payed&nbsp;=&nbsp;1,   &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;已退款 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Refund&nbsp;=&nbsp;2,   &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;已关闭 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Closed&nbsp;=&nbsp;3, }</code></pre> <p>还真是“听君一席话,如听一席话”,别，干货这就来。</p> </h1> <p>我相信大部分人都知道这么玩</p> <pre><code class="language-c#">public&nbsp;enum&nbsp;OrderStatus { &nbsp;&nbsp;&nbsp;&nbsp;[Description("未支付")] &nbsp;&nbsp;&nbsp;&nbsp;WaitPay&nbsp;=&nbsp;0,   &nbsp;&nbsp;&nbsp;&nbsp;[Description("已支付")]&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Payed&nbsp;=&nbsp;1,   &nbsp;&nbsp;&nbsp;&nbsp;[Description("已退款")]&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Refund&nbsp;=&nbsp;2,   &nbsp;&nbsp;&nbsp;&nbsp;[Description("已关闭")] &nbsp;&nbsp;&nbsp;&nbsp;Closed&nbsp;=&nbsp;3, }</code></pre> <p>写一个扩展方法，用于获取<code>Description</code>的描述信息。</p> <pre><code class="language-c#">public&nbsp;static&nbsp;class&nbsp;EnumExtensions { &nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;string&nbsp;GetDescription(this&nbsp;Enum&nbsp;obj) &nbsp;&nbsp;&nbsp;&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object[]?&nbsp;array&nbsp;=&nbsp;obj.GetType().GetField(obj.ToString())?.GetCustomAttributes(typeof(DescriptionAttribute),&nbsp;inherit:&nbsp;true); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(array&nbsp;!=&nbsp;null) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;attr&nbsp;=&nbsp;array.FirstOrDefault(x&nbsp;=&gt;&nbsp;x&nbsp;is&nbsp;DescriptionAttribute); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(attr&nbsp;!=&nbsp;null) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;((DescriptionAttribute)attr).Description; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;string.Empty; &nbsp;&nbsp;&nbsp;&nbsp;} }</code></pre> <p>然后我们就可以很方便的获取枚举的描述信息了，这个好像有点用。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/fdfcef1a701b3763c3d5e5f75bb65110.jpg" alt="你确定你会用Enum枚举了？"></p> </h1> <p>在我们对枚举进行或运算时，如下</p> <pre><code class="language-c#">internal&nbsp;enum&nbsp;Jod { &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;老师 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Teacher&nbsp;=&nbsp;1,   &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;运动员 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Athletes&nbsp;=&nbsp;2 }</code></pre> <p>某人既是老师，又是国家运动员，我们对枚举进行或运算后由于结果是3.<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/e3826d9d07a2bae9af09bf4ae22aa460.jpg" alt="你确定你会用Enum枚举了？"></p> <p>这是因为<code>Jod</code>中不存在这样的一个值为3的枚举，所以会输出3；这一般情况下并不是我们想要的，此时我们只需要对这个枚举加上一个属性<code>[Flags]</code>。</p> <pre><code>[Flags] internal&nbsp;enum&nbsp;Jod { &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;老师 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Teacher&nbsp;=&nbsp;1,   &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;运动员 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Athletes&nbsp;=&nbsp;2 }</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/2c02673e9b3c47499925904872f01dfa.jpg" alt="你确定你会用Enum枚举了？"></p> <p>讲道理，这个有用，但我很少用~</p> </h1> <p>上文中一共提到了两个枚举类型<code>OrderStatus</code>和<code>Jod</code>，他们正好分别对应互斥型和非互斥型，订单的状态某一时刻只能有一种，而工作可以同时有多个（举例可能不恰当，知道意思即可）。</p> <p>枚举类型的值不是所有的情况下都是加单的对新增的成员加1，比如<code>Jod</code>枚举随着业务增加，又新增了歌手和舞者</p> <pre><code class="language-c#">[Flags] internal&nbsp;enum&nbsp;Jod { &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;老师 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Teacher&nbsp;=&nbsp;1,   &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;运动员 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Athletes&nbsp;=&nbsp;2,   &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;歌手 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Singer&nbsp;=&nbsp;3,   &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;舞者 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Dancer&nbsp;=&nbsp;4 }</code></pre> <p>如果你觉得上面的枚举没问题，那问题就严重了，由于对于非互斥关系的枚举，我们可以很方便的进行<code>或运算</code>来表示同时兼多种枚举值的情况。可以通过<code>与运算</code>检查一个枚举值是否包含某个值，可以通过<code>异或</code>，<code>同或</code>操作进行更为有趣的操作，为了能够进行优雅的<code>位运算</code>，枚举值的分配则不能按照上面的12345累加1进行，而是要按照下例：</p> <pre><code class="language-c#">[Flags] internal&nbsp;enum&nbsp;Jod { &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;老师 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Teacher&nbsp;=&nbsp;1,   &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;运动员 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Athletes&nbsp;=&nbsp;2,   &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;歌手 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Singer&nbsp;=&nbsp;4,   &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;舞者 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;Dancer&nbsp;=&nbsp;8,   &nbsp;&nbsp;&nbsp;&nbsp;Jobx&nbsp;=&nbsp;0x10,   &nbsp;&nbsp;&nbsp;&nbsp;JobY&nbsp;=&nbsp;0x20,   &nbsp;&nbsp;&nbsp;&nbsp;JobZ&nbsp;=&nbsp;0x40,     ... }</code></pre> <p>我们知道<code>int</code>转成二进制是由0和1，一共32位组成的，位运算正是二进制运算的方法，上面的枚举继承自int，如果将32位二进制数的每一位表示一种职业，那么一共可以表示32个职业。对应关系如下</p> <table> <thead> <tr> <th>枚举值</th> <th>十进制</th> <th>16进制</th> <th>二进制</th> </tr> </thead> <tbody> <tr> <td>Teacher</td> <td>1</td> <td>0x1</td> <td>0000 0000 0000 0000 0000 0000 0000 0001</td> </tr> <tr> <td>Athletes</td> <td>2</td> <td>0x2</td> <td>0000 0000 0000 0000 0000 0000 0000 0010</td> </tr> <tr> <td>Singer</td> <td>4</td> <td>0x4</td> <td>0000 0000 0000 0000 0000 0000 0000 0100</td> </tr> <tr> <td>Dancer</td> <td>8</td> <td>0x8</td> <td>0000 0000 0000 0000 0000 0000 0000 1000</td> </tr> <tr> <td>JobX</td> <td>16</td> <td>0x10</td> <td>0000 0000 0000 0000 0000 0000 0001 0000</td> </tr> <tr> <td>JobY</td> <td>32</td> <td>0x20</td> <td>0000 0000 0000 0000 0000 0000 0010 0000</td> </tr> <tr> <td>...</td> <td>...</td> <td>...</td> <td>...</td> </tr> </tbody> </table> <p><em><strong>常用操作</strong></em></p> <pre><code class="language-c#">//&nbsp;1.基本的或运算，表示同时有多种枚举值的情况 var&nbsp;jobs&nbsp;=&nbsp;Jod.Teacher&nbsp;|&nbsp;Jod.Athletes;   //&nbsp;2.判断某个人的职业中是否有Athletes if&nbsp;((jobs&nbsp;&amp;&nbsp;Jod.Athletes)&nbsp;==&nbsp;Jod.Athletes) { &nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;是运动员 }</code></pre> <p>我们可以将enum的数值存到数据库，写sql时也可以使用位运算的，从数据库中查到的数据转成Model后在业务代码中就可以优雅的使用位运算进行判断了。</p> </h1> <p>最初知道<code>Flags</code>这个属性的时候就在想，他为什么叫<code>Flags</code>?直到我遇到下面这样的业务场景（瞎编的，非公司实际业务场景，但可以说明问题）。</p> <h2 id="一般场景">一般场景</h2> <p>例如我们电商平台管理的商户，最开始我们会有个商户表<code>merch</code>,字段如下</p> <table> <thead> <tr> <th>字段</th> <th>描述</th> <th>类型</th> </tr> </thead> <tbody> <tr> <td>merch_id</td> <td>商户id</td> <td>long</td> </tr> <tr> <td>merch_name</td> <td>商户名</td> <td>string</td> </tr> <tr> <td>certified</td> <td>已认证?</td> <td>int(0或1)</td> </tr> </tbody> </table> <p>过了几个月，随着产品完善，该表又增加了两个字段</p> <table> <thead> <tr> <th>字段</th> <th>描述</th> <th>类型</th> </tr> </thead> <tbody> <tr> <td>is_vip_merch</td> <td>vip商户?</td> <td>int(0或1)</td> </tr> <tr> <td>is_defect_free</td> <td>商品上架免检</td> <td>int(0或1)</td> </tr> </tbody> </table> <p>又过了几个月，又增加了几个字段</p> <table> <thead> <tr> <th>字段</th> <th>描述</th> <th>类型</th> </tr> </thead> <tbody> <tr> <td>is_frozen</td> <td>是否冻结</td> <td>int(0或1)</td> </tr> <tr> <td>is_mvp</td> <td>是否金牌商户</td> <td>int(0或1)</td> </tr> </tbody> </table> <h2 id="优化">优化</h2> <p>每次新的需要来了，就需要增加字段，最后这张表，光这种标识字段就好快10来个了，这样维护起来太难受了吧。如果我说可以将这10来个标识字段用一个字段搞定，你会不会惊讶！这里是跟新手说的，大佬们自然知道我下面要怎么干了。</p> <p>我将上面的表字段进行了优化，由7个字段，缩减到3个字段。</p> <table> <thead> <tr> <th>字段</th> <th>描述</th> <th>类型</th> </tr> </thead> <tbody> <tr> <td>merch_id</td> <td>商户id</td> <td>long</td> </tr> <tr> <td>merch_name</td> <td>商户名</td> <td>string</td> </tr> <tr> <td>merch_flags</td> <td>各种商户标识</td> <td>int</td> </tr> </tbody> </table> <p>并给这个<code>merch_flags</code>定义了一个枚举</p> <pre><code class="language-c#">[Flags] public&nbsp;enum&nbsp;MerchFlags { &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;已认证?	 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;certified&nbsp;=&nbsp;1, &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;vip商户? &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;is_vip_merc&nbsp;=&nbsp;2, &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;商品上架免检 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;is_defect_free&nbsp;=&nbsp;4, &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;是否冻结 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;s_frozen&nbsp;=&nbsp;8, &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;是否金牌商户 &nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt; &nbsp;&nbsp;&nbsp;&nbsp;is_mvp&nbsp;=&nbsp;0x10,          // ...继续新增各种标志位 }</code></pre> <p>到这里应该明白这是要干嘛了吧，以后再来新的业务需要加标志字段，直接在枚举<code>MerchFlags</code>加一个就行了，数据库不需要加字段了。int类型的枚举可以给你32个标志可以用，long可以存64个，一般场景是够用了。</p> <h2 id="思考一个问题">思考一个问题</h2> <p>你知道<code>Flags</code>属性为什么叫<code>Flags</code>了吗？</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-82739.htm">SpringBoot 实现前后端分离的跨域访问（CORS）</a></p>
+                                        <p>下一个：<a href="/news/article-83453.htm">kerberos kafka 问题解决</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-48456.htm" title="猫没打疫苗不能绝育（猫没打疫苗不能绝育吗）">猫没打疫苗不能绝育（猫没打疫苗不能绝育吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-11-node-share.htm" title="Mihomo Party节点订阅每天更新18.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-73145.htm" title="动物用狂犬病疫苗的作用（动物用狂犬病疫苗的作用是什么）">动物用狂犬病疫苗的作用（动物用狂犬病疫苗的作用是什么）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-5-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新19.2M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-10-node-share.htm" title="Mihomo Party节点订阅每天更新20.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新20.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-38700.htm" title="宠物免费领养平台下载手机版大全的简单介绍">宠物免费领养平台下载手机版大全的简单介绍</a></li>
+                        <li class="py-2"><a href="/news/article-78579.htm" title="和田市宠物店（和田市宠物市场）">和田市宠物店（和田市宠物市场）</a></li>
+                        <li class="py-2"><a href="/news/article-39702.htm" title="孩子10几天后才说被猫咬了,打个狂犬疫苗能喝点小酒吗（打了狂犬疫苗六个月后又被猫抓伤了能茶喝吗?）">孩子10几天后才说被猫咬了,打个狂犬疫苗能喝点小酒吗（打了狂犬疫苗六个月后又被猫抓伤了能茶喝吗?）</a></li>
+                        <li class="py-2"><a href="/news/article-71841.htm" title="宠物店必定红火的名字 宠物店必定红火的名字有关猫狗的成语">宠物店必定红火的名字 宠物店必定红火的名字有关猫狗的成语</a></li>
+                        <li class="py-2"><a href="/news/article-44154.htm" title="动物疫苗厂家有哪些品牌生产 动物疫苗厂家有哪些品牌生产的">动物疫苗厂家有哪些品牌生产 动物疫苗厂家有哪些品牌生产的</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

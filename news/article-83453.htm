@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-83453.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>kerberos kafka 问题解决</title>
+        <meta name="description" content="修改 kafka界面 security.inter.broker.protocol SASL_PLAINTEXT 登录添加用户生成keytab kadmin.local add_principal f" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-83453.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="kerberos kafka 问题解决" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/3f6923f7b9651f52b9a57610fc39c258.webp" />
+        <meta property="og:release_date" content="2025-03-28T09:56:29" />
+    <meta property="og:updated_time" content="2025-03-28T09:56:29" />
+        <meta property="og:description" content="修改 kafka界面 security.inter.broker.protocol SASL_PLAINTEXT 登录添加用户生成keytab kadmin.local add_principal f" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="kerberos kafka 问题解决">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">kerberos kafka 问题解决</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>修改 kafka界面 security.inter.broker.protocol SASL_PLAINTEXT<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221228/708512055aec312fe0d4357fb302ff31.jpg" alt="kerberos kafka 问题解决"></p> <p><strong>登录添加用户生成keytab</strong></p> <pre><code>kadmin.local add_principal flink/master@AQ.COM add_principal flink/worker-1@AQ.COM add_principal flink/worker-2@AQ.COM 生成文件 xst -k /usr/local/keytab/flink/flink-master.keytab flink/master@AQ.COM xst -k /usr/local/keytab/flink/flink-worker-1.keytab flink/worker-1@AQ.COM xst -k /usr/local/keytab/flink/flink-worker-2.keytab flink/worker-2@AQ.COM 或者 kadmin.local -q "xst -k /usr/local/keytab/flink/flink-master.keytab flink/master@AQ.COM" </code></pre> <p><strong>keytab合并</strong></p> <pre><code>ktutil rkt /usr/local/keytab/flink/flink-master.keytab rkt /usr/local/keytab/flink/flink-worker-1.keytab rkt /usr/local/keytab/flink/flink-worker-2.keytab wkt /usr/local/keytab/flink/flink.keytab </code></pre> <p><strong>查看keytab</strong></p> <pre><code>klist -ket user.keytab  </code></pre> <p><strong>kinit登录与kadmin.local不能同时存在</strong></p> <pre><code>kinit -kt /usr/local/keytab/flink/flink-master.keytab flink/master@AQ.COM </code></pre> <p><strong>删除认证缓存</strong></p> <pre><code>kdestroy </code></pre> <p><strong>kafka生产消费</strong></p> <pre><code>1.客户端操作kafka生产消费需要jaas.conf以及各自的生产消费的配置文件 2.代码需要设置两个变量 </code></pre> <p><strong>jaas.conf</strong></p> <pre><code>KafkaClient{  com.sun.security.auth.module.Krb5LoginModule required  keyTab="/usr/local/keytab/flink/flink.keytab"  principal="flink/master@AQ.COM"  useKeyTab=true  useTicketCache=true; }; Client{  com.sun.security.auth.module.Krb5LoginModule required  keyTab="/usr/local/keytab/flink/flink.keytab"  principal="flink/master@AQ.COM"  useKeyTab=true  useTicketCache=true; }; KafkaServer{  com.sun.security.auth.module.Krb5LoginModule required  keyTab="/usr/local/keytab/flink/flink.keytab"  principal="flink/master@AQ.COM"  useKeyTab=true  useTicketCache=true; }; </code></pre> <p><strong>producer.properties</strong></p> <pre><code>security.protocol=SASL_PLAINTEXT sasl.mechanism=GSSAPI sasl.kerberos.service.name=kafka </code></pre> <p><strong>consumer.properties</strong></p> <pre><code>security.protocol=SASL_PLAINTEXT sasl.mechanism=GSSAPI sasl.kerberos.service.name=kafka group.id=testClient </code></pre> <p><strong>客户端消费命令</strong></p> <pre><code>export KAFKA_OPTS="-Djava.security.auth.login.config=/usr/local/keytab/kafka/jaas.conf" kafka-console-consumer --bootstrap-server master:9092 --topic tes  --consumer.config /usr/local/keytab/kafka/consumer.properties kafka-console-producer --broker-list master:9092 --topic tes --producer.config /usr/local/keytab/kafka/producer.properties  </code></pre> <p><strong>springboot-kafka配置问题</strong><br /> yml配置</p> <pre><code>  kafka:     bootstrap-servers: master:9092,worker-2:9092     producer:       #procedure要求leader在考虑完成请求之前收到的确认数，用于控制发送记录在服务端的持久化，其值可以为如下：       #acks = 0 如果设置为零，则生产者将不会等待来自服务器的任何确认，该记录将立即添加到套接字缓冲区并视为已发送。在这种情况下，无法保证服务器已收到记录，并且重试配置将不会生效（因为客户端通常不会知道任何故障），为每条记录返回的偏移量始终设置为-1。       #acks = 1 这意味着leader会将记录写入其本地日志，但无需等待所有副本服务器的完全确认即可做出回应，在这种情况下，如果leader在确认记录后立即失败，但在将数据复制到所有的副本服务器之前，则记录将会丢失。       #acks = all 这意味着leader将等待完整的同步副本集以确认记录，这保证了只要至少一个同步副本服务器仍然存活，记录就不会丢失，这是最强有力的保证，这相当于acks = -1的设置。       #可以设置的值为：all, -1, 0, 1       acks: 1       key-serializer: org.apache.kafka.common.serialization.StringSerializer       value-serializer: org.apache.kafka.common.serialization.StringSerializer       #=============== provider  =======================       # 写入失败时，重试次数。当leader节点失效，一个repli节点会替代成为leader节点，此时可能出现写入失败，       # 当retris为0时，produce不会重复。retirs重发，此时repli节点完全成为leader节点，不会产生消息丢失。       retries: 0     consumer:       group-id: mysqltestUserBehaviorGroup       enable-auto-commit: true       auto-offset-reset: latest       key-serializer: org.apache.kafka.common.serialization.StringSerializer       value-serializer: org.apache.kafka.common.serialization.StringSerializer     jaas:       enabled: true     properties:       security.protocol: SASL_PLAINTEXT       sasl.kerberos.service.name: kafka  </code></pre> <p>java flink 消费时候getKerberosJaas就好</p> <pre><code> import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication;  @SpringBootApplication(scanBasePackages = "org.fuwushe") public class KafkaApplication {     public static void main(String []args){         getKerberosJaas();         SpringApplication.run(KafkaApplication.class,args);     }      public static void getKerberosJaas(){         System.setProperty("java.security.krb5.conf", "/etc/krb5.conf");         //加载本地jass.conf文件         System.setProperty("java.security.auth.login.config", "/usr/local/keytab/kafka/jaas.conf");          //System.setProperty("javax.security.auth.useSubjectCredsOnly", "false");         //System.setProperty("sun.security.krb5.debug","true");         //System.setProperty("java.security.auth.login.config", "/load/data/flink.keytab");      }  }   import org.apache.kafka.clients.consumer.ConsumerConfig; import org.apache.kafka.common.serialization.StringDeserializer; import org.fuwushe.da.kafka.ConsumerListener; import org.springframework.beans.factory.annotation.Value; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import org.springframework.kafka.annotation.EnableKafka; import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory; import org.springframework.kafka.config.KafkaListenerContainerFactory; import org.springframework.kafka.core.ConsumerFactory; import org.springframework.kafka.core.DefaultKafkaConsumerFactory; import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;  import java.net.InetAddress; import java.net.UnknownHostException; import java.util.HashMap; import java.util.Map;   @Configuration @EnableKafka public class KafkaConsumerConfig {      @Value("${spring.kafka.bootstrap-servers}")     private String servers;      @Value("${spring.kafka.consumer.enable-auto-commit}")     private boolean enableAutoCommit;       @Value("${spring.kafka.consumer.group-id}")     private String groupId;      @Value("${spring.kafka.consumer.auto-offset-reset}")     private String autoOffsetReset;      @Bean     public KafkaListenerContainerFactory&lt;ConcurrentMessageListenerContainer&lt;String, String&gt;&gt; kafkaListenerContainerFactory() {          ConcurrentKafkaListenerContainerFactory&lt;String, String&gt; factory = new ConcurrentKafkaListenerContainerFactory&lt;&gt;();         factory.setConsumerFactory(consumerFactory());         factory.getContainerProperties().setPollTimeout(1500);         return factory;     }      public ConsumerFactory&lt;String, String&gt; consumerFactory() {          return new DefaultKafkaConsumerFactory&lt;&gt;(consumerConfigs());     }       public Map&lt;String, Object&gt; consumerConfigs() {          Map&lt;String, Object&gt; propsMap = new HashMap&lt;&gt;();         try {             String addr = InetAddress.getLocalHost().getHostAddress().replaceAll("\\.", "");//获得本机IP             propsMap.put(ConsumerConfig.GROUP_ID_CONFIG, groupId + addr);         } catch (UnknownHostException e) {             e.printStackTrace();         }  //        propsMap.put("security.protocol", "SASL_PLAINTEXT"); //        propsMap.put("sasl.kerberos.service.name", "kafka"); //        propsMap.put("java.security.auth.login.config","/load/data/jaas.conf"); //        propsMap.put("java.security.krb5.conf","/load/data/krb5.conf");         propsMap.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, servers);         propsMap.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, enableAutoCommit);         propsMap.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);         propsMap.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);          propsMap.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, autoOffsetReset);         return propsMap;     }      /**      * kafka监听      * @return      */     @Bean     public ConsumerListener listener() {          return new ConsumerListener();     }  } </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-82740.htm">你确定你会用Enum枚举了？</a></p>
+                                        <p>下一个：<a href="/news/article-83454.htm">河南十大兽药品牌公司（河南兽药排行前50名）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-11-node-share-links.htm" title="Mihomo Party节点订阅每天更新22.5M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.5M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-51187.htm" title="动物打疫苗后的不良反应有哪些症状图片（动物打预防针的作用）">动物打疫苗后的不良反应有哪些症状图片（动物打预防针的作用）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-16-node-share.htm" title="Mihomo Party节点订阅每天更新19.9M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.9M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-66658.htm" title="动物美容培训（宠物美容培训视频）">动物美容培训（宠物美容培训视频）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新20.9M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新20.9M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-52764.htm" title="动物疫苗的种类及作用有哪些药物（动物疫苗的种类及作用有哪些药物）">动物疫苗的种类及作用有哪些药物（动物疫苗的种类及作用有哪些药物）</a></li>
+                        <li class="py-2"><a href="/news/article-70505.htm" title="宠物店怎么赚钱（宠物店如何盈利）">宠物店怎么赚钱（宠物店如何盈利）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-28-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新20M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新20M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-77206.htm" title="专门卖宠物的软件（售卖宠物的软件）">专门卖宠物的软件（售卖宠物的软件）</a></li>
+                        <li class="py-2"><a href="/news/article-60625.htm" title="一片枫叶怎么说好听点（一巴掌怎么说好听）">一片枫叶怎么说好听点（一巴掌怎么说好听）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
