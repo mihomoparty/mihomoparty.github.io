@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-87761.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>Springboot过滤器和拦截器详解及使用场景</title>
+        <meta name="description" content="1、过滤器和拦截器触发时机不一样，过滤器是在请求进入容器后，但请求进入servlet之前进行预处理的。请求结束返回也是，是在servlet处理完后，返回给前端之前。 2、拦截器可以获取IOC容器中的各" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-87761.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="Springboot过滤器和拦截器详解及使用场景" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/5747bf776b430b44733134e6a6c5b742.webp" />
+        <meta property="og:release_date" content="2025-04-03T08:34:13" />
+    <meta property="og:updated_time" content="2025-04-03T08:34:13" />
+        <meta property="og:description" content="1、过滤器和拦截器触发时机不一样，过滤器是在请求进入容器后，但请求进入servlet之前进行预处理的。请求结束返回也是，是在servlet处理完后，返回给前端之前。 2、拦截器可以获取IOC容器中的各" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Springboot过滤器和拦截器详解及使用场景">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">Springboot过滤器和拦截器详解及使用场景</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p><img fetchpriority="high" decoding="async" alt="" height="671" src="http://img.555519.xyz/uploads/20221130/537d7086993083b8bd6a8e2d9b0cb26d.jpg"></p> <p>1、过滤器和拦截器<strong>触发时机不一样</strong>，<strong>过滤器是</strong>在请<strong>求进入容器后</strong>，但请求<strong>进入servlet之前</strong>进<strong>行预处理</strong>的。请求结束返回也是，是在servlet处理完后，返回给前端之前。</p> <p>2、<strong>拦截器</strong>可以获取IOC容器中的各个bean，而过滤器就不行，因为拦<strong>截器是spring提供并管理的</strong>，spring的功能可以被拦截器使用，在拦截器里注入一个service，可以调用业务逻辑。而过滤器是JavaEE标准，只需依赖servlet api ，不需要依赖spring。</p> <p>3、<strong>过滤器的实现</strong>基于<strong>回调函数</strong>。而<strong>拦截器</strong>（代理模式）的实现<strong>基于反射</strong></p> <p>4、<strong>Filter</strong>是依<strong>赖于Servlet容</strong>器，<strong>属于Servlet规范的一部分</strong>，而<strong>拦截器则是独立存</strong>在的，可以在任何情况下使用。</p> <p>5、<strong>Filte</strong>r的执行由<strong>Servlet容器回调完成</strong>，而<strong>拦截器</strong>通常通<strong>过动态代理（反射）</strong>的方式来执行。</p> <p>6、<strong>Filter的生命周</strong>期<strong>由Servlet容器管理</strong>，而<strong>拦截器则</strong>可以通过I<strong>oC容器来管理</strong>，因此可以通过注入等方式来获取其他Bean的实例，因此使用会更方便。</p> <p>过滤器和拦截器非常相似，但是它们有很大的区别<br /> 最简单明了的区别就是**过滤器可以修改request，而拦截器不能<br /> 过滤器需要在servlet容器中实现，拦截器可以适用于javaEE，javaSE等各种环境<br /> 拦截器可以调用IOC容器中的各种依赖，而过滤器不能<br /> 过滤器只能在请求的前后使用，而拦截器可以详细到每个方法**<br /> 区别很多，大家可以去查下</p> <p>总的来说<br /> 过滤器就是筛选出你要的东西，比如requeset中你要的那部分<br /> 拦截器在做安全方面用的比较多，比如终止一些流程<br /> 网上有一张图片很不错，这里拷过来给大家看一下</p> <p><img decoding="async" alt="" height="488" src="http://img.555519.xyz/uploads/20221130/a895b222b36e06e51be0e18aadbf1f3e.jpg"></p> <p>过滤器（Filter） ：可以拿到原始的http请求，但是拿不到你请求的控制器和请求控制器中的方法的信息。</p> <p>拦截器（Interceptor）：可以拿到你请求的控制器和方法，却拿不到请求方法的参数。</p> <p>切片（Aspect）: 可以拿到方法的参数，但是却拿不到http请求和响应的对象</p> <p><img decoding="async" alt="" height="635" src="http://img.555519.xyz/uploads/20221130/03c2363854ecbb90c8b301daebefec50.jpg"></p> </h1> <p><strong>两种方式：</strong><br /><strong>1、</strong>使用spring boot提供的<strong>FilterRegistrationBean注册Filter</strong><br /><strong>2、</strong>使用<strong>原生servlet注解定义Filter</strong><br /> 两种方式的本质都是一样的，<strong>都是去FilterRegistrationBean注册自定义Filter</strong></p> <p><strong>方式一: （使用spring boot提供的FilterRegistrationBean注册Filter ）</strong><br /> ①、先定义Filter：</p> <pre><code>package com.corwien.filter;import javax.servlet.*;import java.io.IOException;public class MyFilter implements Filter {    @Override public void init(FilterConfig filterConfig) throws ServletException {    }    @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { // do something 处理request 或response     // doFilter()方法中的servletRequest参数的类型是ServletRequest，需要转换为HttpServletRequest类型方便调用某些方法      System.out.println("filter1"); // 调用filter链中的下一个filter   HttpServletRequest request = (HttpServletRequest) servletRequest;        HttpServletResponse response = (HttpServletResponse) servletResponse;         String ip = request.getRemoteAddr();        String url = request.getRequestURL().toString();        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        Date d = new Date();        String date = sdf.format(d);         System.out.printf("%s %s 访问了 %s%n", date, ip, url);                filterChain.doFilter(request, response);    }    @Override public void destroy() {    }}</code></pre> <p>②、注册自定义Filter</p> <pre><code>@Configurationpublic class FilterConfig {    @Bean    public FilterRegistrationBean registrationBean() {       ** FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new** **MyFilter());**        filterRegistrationBean.addUrlPatterns("/*");        return filterRegistrationBean;    }}</code></pre> <p><strong>方式一的①②步骤可以用下面这段代码代替：</strong></p> <pre><code>@Configuration public class FilterConfig {     @Bean public **FilterRegistrationBean** registFilter() {        **FilterRegistrationBean registration** **= new FilterRegistrationBean();        registration.setFilter(new** **LogCostFilter());**        registration.addUrlPatterns("/*");        registration.setName("LogCostFilter");        registration.setOrder(1); return registration;    } }</code></pre> <pre><code>public class LogCostFilter implements Filter {    @Override public void init(FilterConfig filterConfig) throws ServletException {     }     @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { long start = System.currentTimeMillis();        filterChain.doFilter(servletRequest,servletResponse);        System.out.println("Execute cost="+(System.currentTimeMillis()-start));    }     @Override public void destroy() {     }</code></pre> <p><strong>方式二：（使用</strong>原生servlet注解定义Filter<strong>&nbsp;）</strong></p> <pre><code>// 注入spring容器@Component // 定义filterName 和过滤的url@WebFilter(filterName = "my2Filter" ,urlPatterns = "/*") public class My2Filter implements Filter {    @Override public void init(FilterConfig filterConfig) throws ServletException {    }    @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {        System.out.println("filter2");    }    @Override public void destroy() {    }}</code></pre> <p>这里直接用<strong>@WebFilter就</strong>可以进行配置，同样，可<strong>以设置url匹配模式，过滤器名称</strong>等。这里需要注意一点的是<strong>@WebFilter这个注解是Servlet3.0的规范，并不是Spring boot提供</strong>的。除了这个注解以外，我们还需在<strong>启动类中加另外一个注解：@ServletComponetScan，指定扫描的包。</strong></p> </h1> <p>实现拦截器可以通过继承&nbsp;HandlerInterceptorAdapter类也可以通过实现HandlerInterceptor这个接口。另外，如果preHandle方法return true，则继续后续处理。</p> <p><strong>首先我们实现拦截器类：</strong></p> <pre><code>public class LogCostInterceptor implements HandlerInterceptor { long start = System.currentTimeMillis();    @Override public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {        start = System.currentTimeMillis(); return true;    }     @Override public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {        System.out.println("Interceptor cost="+(System.currentTimeMillis()-start));    }     @Override public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {    }}</code></pre> <p>我们<strong>还需要</strong>实现<strong>HandlerInterceptor这个接口</strong>，这个接口包括三个方法，p<strong>reHandle是请求执行前</strong>执行的，<strong>postHandler是请求结束</strong>执行的，但<strong>只有preHandle方法返回true的时候才会执</strong>行，<strong>afterCompletion是视图渲染完成后才执行</strong>，同样需要preHandle返回true，该方法通常用于清理资源等工作。除了实现上面的接口外，我们还需对其进行配置：</p> <pre><code>@Configuration public class InterceptorConfig extends WebMvcConfigurerAdapter {     @Override public void addInterceptors(InterceptorRegistry registry) {        registry.addInterceptor(new LogCostInterceptor()).addPathPatterns("/**"); super.addInterceptors(registry);    }}</code></pre> <p>这里我们<strong>继承了WebMVCConfigurerAdapter</strong>，这里我们<strong>重写了addInterceptors这个方法</strong>，进行拦截器的配置，<strong>主要配置项就两个</strong>，一个是<strong>指定拦截器</strong>，第二个是<strong>指定拦截的URL</strong>。</p> <p>坑坑坑：<br /> 拦截器不生效常见问题：<br /> 1）是否有加@Configuration<br /> 2）拦截路径是否有问题&nbsp;**&nbsp;和&nbsp;*<br /> 3）拦截器最后路径一定要 “/**”， 如果是目录的话则是&nbsp;/*/</p> <p>总结一下:创建拦截器需要两步：</p> <blockquote> <p>1、自定义拦截器<br /> 2、注册拦截器</p> </blockquote> </h1> <p>拦截器是在DispatcherServlet这个servlet中执行的，因此所有的请求最先进入Filter，最后离开Filter。其顺序如下。</p> <p>Filter-&gt;Interceptor.preHandle-&gt;Handler-&gt;Interceptor.postHandle-&gt;Interceptor.afterCompletion-&gt;Filter</p> </h1> <p>拦截器本质上是面向切面编程（AOP），符合横切关注点的功能都可以放在拦截器中来实现，主要的应用场景包括：</p> <ul> <li>登录验证，判断用户是否登录。</li> <li>权限验证，判断用户是否有权限访问资源，如校验token</li> <li>日志记录，记录请求操作日志（用户ip，访问时间等），以便统计请求访问量。</li> <li>处理cookie、本地化、国际化、主题等。</li> <li>性能监控，监控请求处理时长等。</li> <li>通用行为：读取cookie得到用户信息并将用户对象放入请求，从而方便后续流程使用，还有如提取Locale、Theme信息等，只要是多个处理器都需要的即可使用拦截器实现）</li> </ul> </h1> <p>1）过滤敏感词汇（防止sql注入）<br /> 2）设置字符编码<br /> 3）URL级别的权限访问控制<br /> 4）压缩响应信息</p> <p><img loading="lazy" decoding="async" alt="" height="407" src="http://img.555519.xyz/uploads/20221130/439f90e7896c0a9c8f2a451f70b31f33.jpg"></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-87044.htm">中国兽药10强企业（中国兽药前十强企业名单）</a></p>
+                                        <p>下一个：<a href="/news/article-87762.htm">中国兽药十强企业排名（中国兽药公司前50名）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-4-node-share-links.htm" title="Mihomo Party节点订阅每天更新18.3M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-11-node-share.htm" title="Mihomo Party节点订阅每天更新18.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-22-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新18.4M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.4M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-79277.htm" title="宣传领养流浪动物文案（领养流浪猫文案）">宣传领养流浪动物文案（领养流浪猫文案）</a></li>
+                        <li class="py-2"><a href="/news/article-69225.htm" title="兽用疫苗怎样保存最好（兽用疫苗运输与储存规范）">兽用疫苗怎样保存最好（兽用疫苗运输与储存规范）</a></li>
+                        <li class="py-2"><a href="/news/article-69226.htm" title="什么生肖不适合养狗,养不好会损害主人运势（什么生肖不适宜养狗）">什么生肖不适合养狗,养不好会损害主人运势（什么生肖不适宜养狗）</a></li>
+                        <li class="py-2"><a href="/news/article-66655.htm" title="vue3.0引入axios">vue3.0引入axios</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-27-node-share-links.htm" title="Mihomo Party节点订阅每天更新22M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-1-node-share.htm" title="Mihomo Party节点订阅每天更新18.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-84163.htm" title="猫咪3针疫苗间隔多久打一次好一点（猫三针疫苗间隔多久打）">猫咪3针疫苗间隔多久打一次好一点（猫三针疫苗间隔多久打）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
