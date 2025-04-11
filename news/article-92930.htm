@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-92930.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>Django 获取请求参数</title>
+        <meta name="description" content="　　HttpRequest中方法使用 目录  			   　　引言 　　我们在使用python做接口测试的时候，通常使用的是requests库。而大家都知道还有一个request东西，很多人对requ" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-92930.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="Django 获取请求参数" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/7952f8b7870befff35708a02999179b1.webp" />
+        <meta property="og:release_date" content="2025-04-10T08:19:54" />
+    <meta property="og:updated_time" content="2025-04-10T08:19:54" />
+        <meta property="og:description" content="　　HttpRequest中方法使用 目录  			   　　引言 　　我们在使用python做接口测试的时候，通常使用的是requests库。而大家都知道还有一个request东西，很多人对requ" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Django 获取请求参数">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">Django 获取请求参数</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				  			 <div id="log-box">  				<div id="catalog"><ul id="catalog-ul"> <li><i class="be be-arrowright"></i> <a href="#title-0" title="　　HttpRequest中方法使用">　　HttpRequest中方法使用</a></li> </ul><span class="log-zd"><span class="log-close"><a title="隐藏目录"><i class="be be-cross"></i><strong>目录</strong></a></span></span></div>  			</div> <div id="content_views" class="htmledit_views"> <div id="cnblogs_post_body" class="blogpost-body"> <h2>　　引言</h2> <p>　　我们在使用python做接口测试的时候，通常使用的是requests库。而大家都知道还有一个request东西，很多人对requests与request两个东西傻傻分不清。下面我简单来介绍一下。</p> <h2>　　Requests与Request</h2> <p>　　本文所讲python3，因为python2于2020年已经停更。那requests和request有什么区别呢？</p> <p>1.requests是python3的一个http请求库，request是urllib库的一个方法，所以一个是库，一个是方法。<strong><br /></strong></p> <p>urllib具体使用：</p> <ul> <li>　　　　urllib.request 用于打开和读取URL,</li> <li>　　　　urllib.error 用于处理前面request引起的异常,</li> <li>　　　　urllib.parse 用于解析URL,</li> <li>　　　　urllib.robotparser用于解析robots.txt文件</li> </ul> <p>2.python3网络请求主要使用urllib,requests,urllib3，其实requests底层就是urllib3，所以urllib3没有单独使用，直接使用requests更加简洁，但功能没urllib强大。还有一点就是python3.3后urllib2已经不能再用，只能用urllib.request来代替。</p> <p>所以python3主要使用urllib和requests去请求接口。</p> <h2>　　Django 获取请求参数原理</h2> <p>　　上面我简单介绍了requests库与request方法的区别，而在django中，是如何获取请求参数呢？</p> <p>请记住一点：requests是用来发送请求的，在django中request是用来获取请求参数的。</p> <p>使用形式：</p> <p>发送请求: requests.post()</p> <p>django获取请求参数：request.POST.get()</p> <p>那么问题来了，django视图函数中的request到底哪里来的？</p> <p>views每个方法的参数都是request，那么问题来了，request为何物？</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230108/86ca25e8f37624cb9a8a307a71f4e5fd.jpg" alt="Django 获取请求参数"></p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <h2>　　HttpRequest对象</h2> <p>　　当请求一个页面时，Django 把请求的 metadata 数据包装成一个 HttpRequest 对象，然后 Django 加载合适的 view 方法，把这个 HttpRequest 对象作为第一个参数传给 view 方法。任何 view 方法都应该返回一个 HttpResponse 对象。</p> <p>&nbsp;<img decoding="async" src="http://img.555519.xyz/uploads/20230108/9f28d9580ca795074a890491a6098430.jpg" alt="Django 获取请求参数"></p> <p>&nbsp;</p> <span class="directory"></span><h4 id="title-0">　　HttpRequest中方法使用</h4> <p>　　HttpRequest 对象表示来自某客户端的一个单独的 HTTP 请求。HttpRequest 对象是 Django 自动创建的。</p> <p>它的属性有很多，可以参考 DjangoBook，比较常用的有以下几个：</p> <p>&nbsp;1. method 请求方法，如：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230108/00f96267b324599c296054667e0c9715.jpg" alt="Django 获取请求参数"></p> <p>&nbsp;</p> <p>&nbsp;这里不介绍了，具体可以参考官方文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.djangoproject.com/zh-hans/2.2/ref/request-response/#django.http.HttpRequest"  rel="nofollow">https://docs.djangoproject.com/zh-hans/2.2/ref/request-response/#django.http.HttpRequest</a></p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230108/101d5ff95a93128253a3c0de6e9ad057.jpg" alt="Django 获取请求参数"></p> <p><strong>2.获取url中的请求参数</strong></p> <p>需求：假设用户访问127.0.0.1/user/1/2，你想获取1，2。应该怎么操作呢？</p> <p>(1)未命名参数(位置参数)</p> <div class="cnblogs_Highlighter"> <pre><code class="language-csharp"># 在项目下的urls.py下增加设置： url(r'^user/(\d+)/(\d+)$',views.index)  # 在user.views的index视图中： def index(request,a,b):            # 接受的参数按顺序的     return HttpResponse("获得数据 %s %s"%(a,b)) </code></pre> </p></div> <p>&nbsp;</p> <p>(2)命名参数(关键字参数)</p> <div class="cnblogs_Highlighter"> <pre><code class="language-csharp"># 在项目下的urls.py下增加设置： url(r'^user/(?P&lt;category&gt;\d+)/(?P&lt;id&gt;\d+)$',views.index)  # 在user.views的index视图中： def index(request,id,category):            # 接受的参数可以不用按顺序的     return HttpResponse("获得数据 %s %s"%(category,id)) </code></pre> </p></div> <p>输出结果均是&nbsp; 获得数据 1 2</p> <p>另一种形式：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230108/d80f825fbded8649e068c3009fe38c50.jpg" alt="Django 获取请求参数"></p> <p>&nbsp;</p> <p>结果：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230108/dff6dbed100a2b7dc8c89da75f305b6c.jpg" alt="Django 获取请求参数"></p> <p>&nbsp;</p> <p><strong>3.获取查询字符串</strong></p> <p>&nbsp;需求：获取127.0.0.1:8000/user?id=1&amp;pid=99的查询字符串的值</p> <div class="cnblogs_Highlighter"> <pre><code class="language-csharp"># 在项目下的urls.py下增加设置： url(r'^user/$',views.index)  # 在user.views的index视图中： def index(request):     id = request.GET.get("id")     pid = request.GET.get("pid")     return HttpResponse("获得数据 %s %s"%(id,pid)) </code></pre> </p></div> <p>　　<span style="color:#ff0000;"><strong>注意：查询字符串的获取与请求方式无关：不管是&nbsp;<code>GET</code>&nbsp;还是&nbsp;<code>POST</code>请求，都可以通过<code>request.GET</code>&nbsp;属性来获取！！！</strong></span></p> <p><strong>4.获取表单数据</strong></p> <p><strong><img decoding="async" src="http://img.555519.xyz/uploads/20230108/6eb9550872cb15499f11015170e612e3.jpg" alt="Django 获取请求参数"></strong></p> <p>&nbsp;</p> <p><span style="color:#ff0000;">&nbsp;　　<strong>注意：<code>request.POST</code>&nbsp;只能用来获取POST方式的请求体表单数据！</strong></span></p> <p>使用postman请求</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230108/9c8ac55953a0f3446439ce0480a490e3.jpg" alt="Django 获取请求参数"></p> <p>&nbsp;</p> <p>控制台日志：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230108/a4bfcc00a7401f7b7091c21bdca55025.jpg" alt="Django 获取请求参数"></p> <p>&nbsp;<strong>5.获取非表单类型</strong></p> <ul> <li> <code>request.body</code>属性：获取非表单类型的请求体数据，如：JSON、XML等，获取到的数据类型为<strong><code>bytes</code></strong>类型</li> <li>获取数据后，自己解析数据取出参数</li> </ul> <div class="cnblogs_Highlighter"> <pre><code class="language-csharp">def index(request):     json_str = request.body     json_str = json_str.decode()  # python3.6及以上不用这一句代码     dict_data = json.loads(json_str)  # loads把str转换为dict，dumps把dict转换为str     id = dict_data.get("id")     pid = dict_data.get("pid")     return HttpResponse("获得数据 %s %s"%(id,pid))</code></pre> </p></div> <p>再看一个接口：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230108/c3fcbee8be5b660898bb89452283b525.jpg" alt="Django 获取请求参数"></p> <p>接口路径：/v1/add_user，使用postman模拟一下</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230108/c3193fd32199ddfa9dae4b396d34814b.jpg" alt="Django 获取请求参数"></p> <p>看看官方怎么说的：</p> <p>&nbsp;<img decoding="async" src="http://img.555519.xyz/uploads/20230108/a44061fea979b7df300e59a1dc7f263b.jpg" alt="Django 获取请求参数"></p> <p>截图中大致意思是如果请求数据是原始数据或非表单数据，可以使用httprequest.body来访问，也就是request.body方法。方法就介绍到这里，这些都是最常用的。</p> <h2>　　附录</h2> <p>获取请求头的内容：</p> <div class="cnblogs_Highlighter"> <pre><code class="language-csharp">CONTENT_LENGTH – The length of the request body (as a string). CONTENT_TYPE – The MIME type of the request body. HTTP_ACCEPT – Acceptable content types for the response. HTTP_ACCEPT_ENCODING – Acceptable encodings for the response. HTTP_ACCEPT_LANGUAGE – Acceptable languages for the response. HTTP_HOST – The HTTP Host header sent by the client. HTTP_REFERER – The referring page, if any. HTTP_USER_AGENT – The client’s user-agent string. QUERY_STRING – The query string, as a single (unparsed) string. REMOTE_ADDR – The IP address of the client. REMOTE_HOST – The hostname of the client. REMOTE_USER – The user authenticated by the Web server, if any. REQUEST_METHOD – A string such as "GET" or "POST". SERVER_NAME – The hostname of the server. SERVER_PORT – The port of the server (as a string). </code></pre> </p></div> <p>&nbsp;</p> <p>获取请求头内容的用META</p> <p>示例：</p> <div class="cnblogs_Highlighter"> <pre><code class="language-csharp">def index(request):     ip = request.META.get("REMOTE_ADDR")     return HttpResponse("你的ip地址是%s"%ip) </code></pre> </p></div> <p>&nbsp;</p> <p>获取自定义请求头的内容</p> <p>用postman增加一个自定义的请求头，key=id，value=1。那么应该怎么取呢？</p> <p>代码如下：</p> <div class="cnblogs_Highlighter"> <pre><code class="language-csharp">def index(request):     id = request.META.get("HTTP_ID")     return HttpResponse("你的id:%s"%id) </code></pre> </p></div> <p><span style="color:#ff0000;"><strong>　　注意：获取自定义的请求头属性值时，需要添加前缀&nbsp;<code>HTTP_</code>&nbsp;并转成大写，作为键来获取值</strong></span></p> <p>&nbsp;<img decoding="async" src="http://img.555519.xyz/uploads/20230108/8226b4c2bcb928ec8c69d6134c0ab3ea.jpg" alt="Django 获取请求参数"></p> </div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-92928.htm">一个 Java8 的线程池 BUG 引发线上偶发 Bug 重现分析</a></p>
+                                        <p>下一个：<a href="/news/article-93688.htm">兰州哪有狗市场?（兰州哪有狗市场卖）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-14-node-share.htm" title="Mihomo Party节点订阅每天更新18.2M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-89183.htm" title="宠物店一年的纯利润能挣多少钱（宠物店生意好的一般多少收入一个月）">宠物店一年的纯利润能挣多少钱（宠物店生意好的一般多少收入一个月）</a></li>
+                        <li class="py-2"><a href="/news/article-89949.htm" title="做梦梦见抱着小女孩是什么意思呀（梦见抱着个小女孩什么意思）">做梦梦见抱着小女孩是什么意思呀（梦见抱着个小女孩什么意思）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-19-node-share-links.htm" title="Mihomo Party节点订阅每天更新19.2M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-86314.htm" title="动物疫苗政府采购管理办法最新（动物疫苗管理法律法规）">动物疫苗政府采购管理办法最新（动物疫苗管理法律法规）</a></li>
+                        <li class="py-2"><a href="/news/article-92930.htm" title="Django 获取请求参数">Django 获取请求参数</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-26-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新22.1M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-66011.htm" title="动物疫苗接种时间表格模板图片高清（动物疫苗接种时间表格模板图片高清大图）">动物疫苗接种时间表格模板图片高清（动物疫苗接种时间表格模板图片高清大图）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-1-node-share.htm" title="Mihomo Party节点订阅每天更新18.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-86315.htm" title="打预防猫瘟的针一般多少钱（猫瘟预防针有效吗）">打预防猫瘟的针一般多少钱（猫瘟预防针有效吗）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
