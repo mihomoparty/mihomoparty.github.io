@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-94479.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar</title>
+        <meta name="description" content="大家好，我给大家分享一下仿豆瓣app的教程。当然了，我们不是用原生去实现，而是用前端框架vuejs来实现豆瓣app。————第一次写文章，写得不好请见谅。  为什么我们选择豆瓣app 来做这样一个教程" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-94479.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/90e04b6b57e5dcabdfb5b7a748eb6097.webp" />
+        <meta property="og:release_date" content="2025-04-12T08:59:27" />
+    <meta property="og:updated_time" content="2025-04-12T08:59:27" />
+        <meta property="og:description" content="大家好，我给大家分享一下仿豆瓣app的教程。当然了，我们不是用原生去实现，而是用前端框架vuejs来实现豆瓣app。————第一次写文章，写得不好请见谅。  为什么我们选择豆瓣app 来做这样一个教程" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div class="article fmt article__content"> <blockquote> <p>大家好，我给大家分享一下仿豆瓣app的教程。当然了，我们不是用原生去实现，而是用前端框架vuejs来实现豆瓣app。————第一次写文章，写得不好请见谅。</p> </blockquote> <p><strong>为什么我们选择豆瓣app 来做这样一个教程？</strong></p> <blockquote> <p>是因为我很早就接触豆瓣这个网站，我比较喜欢看豆瓣里面电影和文章的点评。并且豆瓣提供了非常丰富的一个api接口供我们使用。也就是说我们可以不通过后端，直接通过前端ajax来获取电影和图书的数据，来组装我们app。</p> </blockquote> <p>我们可以看一下豆瓣app首页是一个什么样子 gif</p> <p><span class="img-wrap"><img decoding="async" src="http://img.555519.xyz/uploads/20230108/4130e85b363c093d230e8017d7eb7835.jpg" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar"></span></p> <p>以上就是豆瓣app的一个截图。</p> <p><strong>我们先来分析一下</strong></p> <blockquote> <p>首页分为四个部分。第一个就是顶部的搜索框。搜索框下面就是一个banner图切换。在下面就是一些热点的文章列表。最底部就是一个tab切换。在这篇教程中，我们通过vue的组件来实现这样一个首页的布局。</p> </blockquote> <ul> <li> <ul> <li> <ul> <li> <ul> <li> <p>*<br /><strong>创建豆瓣项目</strong></p> </li> </ul> </li> </ul> </li> </ul> </li> </ul> <p>我们可以通过官方vue-cli初始化项目,这里我们采用webpack示例</p> <pre><code>vue init webpack douban</code></pre> <p>填写项目描述，作者，安装vue-router</p> <pre><code>? Project name douban ? Project description douban ? Author afei ? Vue build standalone ? Install vue-router? Yes ? Use ESLint to lint your code? No ? Setup unit tests with Karma + Mocha? No ? Setup e2e tests with Nightwatch? No     vue-cli · Generated "douban".     To get started:       cd douban      npm install      npm run dev     Documentation can be found at https://vuejs-templates.github.io/webpack</code></pre> <p>初始化后，通过npm install安装依赖</p> <pre><code>cd douban npm install</code></pre> <p>运行项目,可以看到基于官方vue-cli的模版就创建好了</p> <pre><code>npm run dev</code></pre> <p><span class="img-wrap"><img decoding="async" src="http://img.555519.xyz/uploads/20230108/b773e01c3639c091675ec779452e9110.jpg" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar"></span></p> <p>将所需要用的资源，拷贝到项目中，这里我通过解压豆瓣app获得他的一些图片素材，拷入到src/assets/images目录里。</p> <p>css这里我用到了normaliz.css</p> <p>在src下，新建了一个pages目录，存放每一个页面组件，可以看一下我们的目录</p> <p><span class="img-wrap"><img decoding="async" src="http://img.555519.xyz/uploads/20230108/e4c1c9f4724be814222c2735c7a71e6d.jpg" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar"></span></p> <p>由于我们的首页更改了位置，所以在router里面的index.js需要更改为</p> <pre><code>import Vue from 'vue' import Router from 'vue-router' import Index from '../pages/Index'  Vue.use(Router)  export default new Router({   routes: [     {       path: '/',       name: 'Index',       component: Index     }   ] }) </code></pre> <p>每一个组件的css我们通过less来编写，所有需要通过npm安装less插件</p> <pre><code>npm install less less-loader --save</code></pre> <p>使用less预处理器需要在页面添加 lang='less'</p> <pre><code>&lt;style scoped lang="less"&gt;      &lt;/style&gt;</code></pre> <p><strong>第一个组件 tabbar</strong></p> <p>如何创建自定义组件tabbar，也就是豆瓣app底部的工具栏。这里的结构我们参考了<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/ElemeFE/mint-ui"  rel="nofollow">mint-ui</a></p> <p>这是我们将要实现的效果图。</p> <p><span class="img-wrap"><img decoding="async" src="http://img.555519.xyz/uploads/20230108/85b65dcb3d2126d418bc0b0204219134.jpg" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar"></span></p> <p>我们先来分析一下这个组件的结构。</p> <p>这个组件分为两部分：第一个是组件的外层容器，第二个是组件的子容器item，子组件里面又分为图片和文字组合。子组件有2个状态，一个默认灰色的状态，一个选中状态，我们来实现一下这个组件的布局。在index.vue里面</p> <p>template</p> <pre><code>&lt;div class="m-tabbar"&gt;   &lt;a class="m-tabbar-item is-active"&gt;     &lt;span class="m-tabbar-item-icon"&gt;        &lt; img src="../assets/images/ic_tab_home_normal.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt=""&gt;     &lt;/span&gt;      &lt;span class="m-tabbar-item-text"&gt;             首页     &lt;/span&gt;   &lt;/a&gt;    &lt;a class="m-tabbar-item"&gt;     &lt;span class="m-tabbar-item-icon"&gt;        &lt; img src="../assets/images/ic_tab_subject_normal.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt=""&gt;     &lt;/span&gt;      &lt;span class="m-tabbar-item-text"&gt;             书影音     &lt;/span&gt;   &lt;/a&gt;    &lt;a class="m-tabbar-item"&gt;     &lt;span class="m-tabbar-item-icon"&gt;        &lt; img src="../assets/images/ic_tab_status_normal.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt=""&gt;     &lt;/span&gt;      &lt;span class="m-tabbar-item-text"&gt;             广播     &lt;/span&gt;   &lt;/a&gt;    &lt;a class="m-tabbar-item"&gt;     &lt;span class="m-tabbar-item-icon"&gt;        &lt; img src="../assets/images/ic_tab_group_normal.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt=""&gt;     &lt;/span&gt;      &lt;span class="m-tabbar-item-text"&gt;             小组     &lt;/span&gt;   &lt;/a&gt;    &lt;a class="m-tabbar-item"&gt;     &lt;span class="m-tabbar-item-icon"&gt;        &lt; img src="../assets/images/ic_tab_profile_normal.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt=""&gt;     &lt;/span&gt;      &lt;span class="m-tabbar-item-text"&gt;             我的     &lt;/span&gt;   &lt;/a&gt;  &lt;/div&gt;</code></pre> <p>style</p> <pre><code>&lt;style lang="less"&gt; .m-tabbar{     display: flex;     flex-direction: row;     position: fixed;     bottom: 0;     left: 0;     right: 0;     width: 100%;     overflow: hidden;     height: 50px;     background: #fff;     border-top: 1px solid #e4e4e4;          .m-tabbar-item{       flex: 1;       text-align: center;       .m-tabbar-item-icon{           display: block;           padding-top: 2px;           img{               width: 28px;               height: 28px;           }       }       .m-tabbar-item-text{           display: block;           font-size: 10px;           color:#949494;       }       &amp;.is-active{           .m-tabbar-item-text{               color: #42bd56;           }       }   } } &lt;/style&gt;</code></pre> <p>布局大功告成~~~~</p> <p>前面我们说的是，通过组件的方式来实现这个app。</p> <p>如果像上面代码这样的话肯定是不行的！既然我们大体布局已经写好了，现在就可以通过组件的方式来调用。当然我们还要改造一下代码。</p> <p>先在components文件夹下面，新建两个组件，通过这两个组件来组合实现我们底部的tab组件：</p> <p><strong>一个是tabbar-item.vue，实现子组件的item项，</strong></p> <p><strong>tabbar-item.vue</strong></p> <pre><code>&lt;template&gt;     &lt;a class="m-tabbar-item" &gt;         &lt;span class="m-tabbar-item-icon"&gt;&lt;slot name="icon-normal"&gt;&lt;/slot&gt;&lt;/span&gt;         &lt;span class="m-tabbar-item-text"&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/span&gt;     &lt;/a&gt; &lt;/template&gt;  &lt;style lang="less"&gt; .m-tabbar-item{     flex: 1;     text-align: center;     .m-tabbar-item-icon{         display: block;         padding-top: 2px;         img{             width: 28px;             height: 28px;         }      }     .m-tabbar-item-text{         display: block;         font-size: 10px;         color:#949494;     }     &amp;.is-active{         .m-tabbar-item-text{             color: #42bd56;         }     } } &lt;/style&gt;</code></pre> <p><strong>一个是tabbar.vue，实现tab的外层容器，</strong></p> <p><strong>tabbar.vue</strong></p> <pre><code>&lt;template&gt;     &lt;div class="m-tabbar"&gt;        &lt;slot&gt;&lt;/slot&gt;     &lt;/div&gt; &lt;/template&gt; &lt;style lang="less"&gt; .m-tabbar{     display: flex;     flex-direction: row;     position: fixed;     bottom: 0;     left: 0;     right: 0;     width: 100%;     overflow: hidden;     height: 50px;     background: #fff;     border-top: 1px solid #e4e4e4; } &lt;/style&gt;</code></pre> <p>在Index.vue中组合这两个组件，实现tab组件效果</p> <pre><code>&lt;template&gt;   &lt;div&gt;     &lt;m-tabbar&gt;       &lt;m-tabbar-item id='tab1'&gt;         &lt; img src="../assets/images/ic_tab_home_normal.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt="" slot="icon-normal"&gt;          首页       &lt;/m-tabbar-item&gt;       &lt;m-tabbar-item id='tab2'&gt;         &lt; img src="../assets/images/ic_tab_subject_normal.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt="" slot="icon-normal"&gt;          书影音       &lt;/m-tabbar-item&gt;       &lt;m-tabbar-item id='tab3'&gt;         &lt; img src="../assets/images/ic_tab_status_normal.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt="" slot="icon-normal"&gt;          广播       &lt;/m-tabbar-item&gt;       &lt;m-tabbar-item id='tab4'&gt;         ![](../assets/images/ic_tab_group_normal.png)          小组       &lt;/m-tabbar-item&gt;        &lt;m-tabbar-item id='tab5'&gt;         &lt; img src="../assets/images/ic_tab_profile_normal.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt="" slot="icon-normal"&gt;          我的       &lt;/m-tabbar-item&gt;     &lt;/m-tabbar&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt;   import mTabbar from '../components/tabbar'   import mTabbarItem from '../components/tabbar-item'   export default {     name: 'index',     components: {       mTabbar,       mTabbarItem     }   } &lt;/script&gt; </code></pre> <p>完成的效果。</p> <p><span class="img-wrap"><img decoding="async" src="http://img.555519.xyz/uploads/20230108/c167a4273bb9f4bbbb3453c8067c3552.jpg" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar"></span></p> <ul> <li> <ul> <li> <ul> <li> <ul> <li> <p>*</p> </li> </ul> </li> </ul> </li> </ul> </li> </ul> <p><strong>光有一个死的界面，没有点击切换的效果怎么能行？</strong></p> <p>以下我们通过vue使用自定义事件的表单输入组件来实现点击切换的效果。</p> <ul> <li> <ul> <li> <ul> <li> <ul> <li> <p>*</p> </li> </ul> </li> </ul> </li> </ul> </li> </ul> <p>先给Index.vue里面的tab组件加上v-model 来进行数据双向绑定，通过select来达到选择item，在item里面再添加一个选中的active图片</p> <pre><code>&lt;template&gt;   &lt;div&gt;     测试     &lt;m-tabbar v-model="select"&gt;       &lt;m-tabbar-item id='tab1'&gt;         &lt; img src="../assets/images/ic_tab_home_normal.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt="" slot="icon-normal"&gt;          &lt; img src="../assets/images/ic_tab_home_active.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt="" slot="icon-active"&gt;          首页       &lt;/m-tabbar-item&gt;       &lt;m-tabbar-item id='tab2'&gt;         &lt; img src="../assets/images/ic_tab_subject_normal.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt="" slot="icon-normal"&gt;          &lt; img src="../assets/images/ic_tab_subject_active.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt="" slot="icon-active"&gt;          书影音       &lt;/m-tabbar-item&gt;       &lt;m-tabbar-item id='tab3'&gt;         &lt; img src="../assets/images/ic_tab_status_normal.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt="" slot="icon-normal"&gt;          &lt; img src="../assets/images/ic_tab_status_active.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt="" slot="icon-active"&gt;          广播       &lt;/m-tabbar-item&gt;       &lt;m-tabbar-item id='tab4'&gt;         &lt; img src="../assets/images/ic_tab_group_normal.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt="" slot="icon-normal"&gt;          &lt; img src="../assets/images/ic_tab_group_active.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt="" slot="icon-normal"&gt;          小组       &lt;/m-tabbar-item&gt;        &lt;m-tabbar-item id='tab5'&gt;         &lt; img src="../assets/images/ic_tab_profile_normal.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt="" slot="icon-normal"&gt;          &lt; img src="../assets/images/ic_tab_profile_active.png" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar" alt="" slot="icon-normal"&gt;          我的       &lt;/m-tabbar-item&gt;     &lt;/m-tabbar&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt;   import mTabbar from '../components/tabbar'   import mTabbarItem from '../components/tabbar-item'   export default {     name: 'index',     components: {       mTabbar,       mTabbarItem     },     data() {       return {         select:"tab1"       }     }   } &lt;/script&gt;</code></pre> <p>tabbar.vue里面通过props来传递数据vaule</p> <pre><code>&lt;template&gt;     &lt;div class="m-tabbar"&gt;        &lt;slot&gt;&lt;/slot&gt;     &lt;/div&gt; &lt;/template&gt; &lt;script&gt;     import mTabbarItem from './tabbar-item';     export default {         props: ['value']     } &lt;/script&gt; &lt;style lang="less"&gt; .m-tabbar{     display: flex;     flex-direction: row;     position: fixed;     bottom: 0;     left: 0;     right: 0;     width: 100%;     overflow: hidden;     height: 50px;     background: #fff;     border-top: 1px solid #e4e4e4; } &lt;/style&gt;</code></pre> <p>tabbar-item.vue组件：根据父组件的value和当前组件的id判断是否为选中状态,通过 $parent.$emit('input',id) - 触发父组件的自定义事件，添加选中的图片，根据isActive来显示隐藏</p> <pre><code>&lt;template&gt;     &lt;a class="m-tabbar-item" :class="{'is-active':isActive}" @click="$parent.$emit('input',id)"&gt;         &lt;span class="m-tabbar-item-icon" v-show="!isActive"&gt;&lt;slot name="icon-normal"&gt;&lt;/slot&gt;&lt;/span&gt;         &lt;span class="m-tabbar-item-icon" v-show="isActive"&gt;&lt;slot name="icon-active"&gt;&lt;/slot&gt;&lt;/span&gt;         &lt;span class="m-tabbar-item-text"&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/span&gt;     &lt;/a&gt; &lt;/template&gt; &lt;script&gt;     export default{         props: ['id'],         computed: {            isActive(){                if(this.$parent.value===this.id){                    return true;                }            }         }     } &lt;/script&gt; &lt;style lang="less"&gt; .m-tabbar-item{     flex: 1;     text-align: center;     .m-tabbar-item-icon{         display: block;         padding-top: 2px;         img{             width: 28px;             height: 28px;         }      }     .m-tabbar-item-text{         display: block;         font-size: 10px;         color:#949494;     }     &amp;.is-active{         .m-tabbar-item-text{             color: #42bd56;         }     } } &lt;/style&gt;</code></pre> <p>大功告成，tabbar组件就完成了<del>~</del></p> <p><span class="img-wrap"><img decoding="async" src="http://img.555519.xyz/uploads/20230108/e2816005af19a86536cdc33b8987d8c5.jpg" alt="1-vuejs2.0实战：仿豆瓣app项目，创建自定义组件tabbar"></span></p> <p>感谢饿了么团队给我们带来了这么好的ui组件！</p> <p>源码下载 链接：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://pan.baidu.com/s/1qYlR8g0"  rel="nofollow">http://pan.baidu.com/s/1qYlR8g0</a> 密码：9yph</p> <p>下载安装</p> <pre><code>npm install npm run dev</code></pre> </div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-93689.htm">2020年青浦二中最低录取分是多少啊（2020年青浦二中最低录取分是多少啊）</a></p>
+                                        <p>下一个：<a href="/news/article-94480.htm">南京宠物领养中心在哪个位置好（南京宠物领养中心在哪个位置好点）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-4-11-node-share-links.htm" title="Mihomo Party节点订阅每天更新18.3M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.3M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-75842.htm" title="动物生物疫苗有哪几种 动物生物疫苗有哪几种类型">动物生物疫苗有哪几种 动物生物疫苗有哪几种类型</a></li>
+                        <li class="py-2"><a href="/news/article-66658.htm" title="动物美容培训（宠物美容培训视频）">动物美容培训（宠物美容培训视频）</a></li>
+                        <li class="py-2"><a href="/news/article-86314.htm" title="动物疫苗政府采购管理办法最新（动物疫苗管理法律法规）">动物疫苗政府采购管理办法最新（动物疫苗管理法律法规）</a></li>
+                        <li class="py-2"><a href="/news/article-84878.htm" title="动物疫苗管理法律法规有哪些要求呢图片（动物疫苗管理法律法规有哪些要求呢图片大全）">动物疫苗管理法律法规有哪些要求呢图片（动物疫苗管理法律法规有哪些要求呢图片大全）</a></li>
+                        <li class="py-2"><a href="/news/article-95978.htm" title="和田宠物店联系方式电话（和田宠物医院在哪儿）">和田宠物店联系方式电话（和田宠物医院在哪儿）</a></li>
+                        <li class="py-2"><a href="/news/article-82034.htm" title="办理宠物食品厂需要什么手续 办理宠物食品厂需要什么手续和证件">办理宠物食品厂需要什么手续 办理宠物食品厂需要什么手续和证件</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-17-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新22M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-67293.htm" title="宠康动物医院电话 宠康动物医院电话号码">宠康动物医院电话 宠康动物医院电话号码</a></li>
+                        <li class="py-2"><a href="/news/article-81349.htm" title="宠物猫疫苗价格表图（宠物猫疫苗价格表图大全）">宠物猫疫苗价格表图（宠物猫疫苗价格表图大全）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
