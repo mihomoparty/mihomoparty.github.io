@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-101040.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>Python技法：实现简单的递归下降Parser_在线工具</title>
+        <meta name="description" content="1. 算术运算表达式求值 在上一篇博文《Python技法：用re模块实现简易tokenizer》中，我们介绍了用正则表达式来匹配对应的模式，以实现简单的分词器。然而，正则表达式不是万能的，它本质上是一" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-101040.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="Python技法：实现简单的递归下降Parser_在线工具" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/015a25fd5395bc9864054251c826d5a3.webp" />
+        <meta property="og:release_date" content="2025-04-21T06:54:28" />
+    <meta property="og:updated_time" content="2025-04-21T06:54:28" />
+        <meta property="og:description" content="1. 算术运算表达式求值 在上一篇博文《Python技法：用re模块实现简易tokenizer》中，我们介绍了用正则表达式来匹配对应的模式，以实现简单的分词器。然而，正则表达式不是万能的，它本质上是一" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Python技法：实现简单的递归下降Parser_在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">Python技法：实现简单的递归下降Parser_在线工具</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                <div class="xcblog-blog-detail">
+                      				  				  				<h2 id="1-算术运算表达式求值">1. 算术运算表达式求值</h2> <p>在上一篇博文<font color="blue"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/orion-orion/p/16206925.html"  target="_blank"  rel="nofollow">《Python技法：用re模块实现简易tokenizer》</a></font>中，我们介绍了用正则表达式来匹配对应的模式，以实现简单的分词器。然而，正则表达式不是万能的，它本质上是一种有限状态机（finite state machine，FSM）, 无法处理含有递归语法的文本，比如算术运算表达式。</p> <p>要解析这类文本，需要另外一种特定的语法规则。我们这里介绍可以表示上下文无关文法（context free grammer）的语法规则巴科斯范式(BNF)和扩展巴科斯范式(EBNF)。实际上，小到一个算术运算表达式，大到几乎所有程序设计语言，都是通过上下文无关文法来定义的。</p> <p>对于简单的算术运算表达式，假定我们已经用分词技术将其转化为输入的tokens流，如<code>NUM+NUM*NUM</code>（分词方法参见上一篇博文）。</p> <p>在此基础上，我们定义BNF规则定义如下：</p> <pre><code>expr ::= expr + term      | expr - term       | term term ::= term * factor      | term / factor      | factor factor ::= (expr)      | NUM </code></pre> <p>当然，这种计法还不够简洁明了，我们实际采用的为EBNF形式：</p> <pre><code>expr ::= term { (+|-) term }* term ::= factor { (*|/) factor }* factor ::= (expr)         | NUM </code></pre> <p>BNF和EBNF每一条规则(形如<code>::=</code>的式子)都可以看做是一种替换，即左侧的符号可以被右侧的符号所替换。而解析的过程中我们尝试将输入文本同语法规则做匹配，通过BNF/EBNF来完成各种替换和扩展。其中，EBNF中包含在<code>{...}*</code>中的规则是可选的，<code>*</code>意味着零个或多个重复项（参考正则表达式）。</p> <p>下图形象地展示了递归下降解析器(parser)中“递归”和“下降”部分和ENBF的关系：</p> <p><img fetchpriority="high" decoding="async" src="https://images.cnblogs.com/cnblogs_com/blogs/538207/galleries/2102214/o_1c08d01f.png" alt="Python技法：实现简单的递归下降Parser_在线工具" width="550" height="270"></p> <p>在实际的解析过程中，我们对tokens流从左到右进行扫描，在扫描的过程中处理token，如果卡住就产生一个语法错误。对于规则，我们将每一条语法规则转变为一个函数或方法，比如上面的ENBF规则就转换为下列的方法：</p> <pre><code class="language-python">class ExpressionEvaluator():     ...     def expr(self):         ...     def term(self):         ...     def factor(self):         ...          </code></pre> <p>在调用某个规则对应方法的过程中，如果我们发现接下来的符号需要采用另一个规则来匹配，则我们就会“下降”到另一个规则方法（如在<code>expr</code>中调用<code>term</code>，<code>term</code>中调用<code>factor</code>），则也就是递归下降中“下降”的部分。</p> <p>有时也会调用已经在执行的方法（比如在<code>expr</code>中调用<code>term</code>，<code>term</code>中调用<code>factor</code>后，又在<code>factor</code>中调用<code>expr</code>，相当于一条衔尾蛇），这也就是递归下降中“递归”的部分。</p> <p>对于语法中出现的重复部分（例如<code>expr ::= term { (+|-) term }*</code>），我们则通过<code>while</code>循环来实现。</p> <p>下面我们来看具体的代码实现。首先是分词部分，我们参照上一篇介绍分词博客的代码。</p> <pre><code class="language-python">import re import collections  # 定义匹配token的模式 NUM = r'(?P&lt;NUM&gt;\d+)'  # \d表示匹配数字，+表示任意长度 PLUS = r'(?P&lt;PLUS&gt;\+)'  # 注意转义 MINUS = r'(?P&lt;MINUS&gt;-)' TIMES = r'(?P&lt;TIMES&gt;\*)'  # 注意转义 DIVIDE = r'(?P&lt;DIVIDE&gt;/)' LPAREN = r'(?P&lt;LPAREN&gt;\()'  # 注意转义 RPAREN = r'(?P&lt;RPAREN&gt;\))'  # 注意转义 WS = r'(?P&lt;WS&gt;\s+)'  # 别忘记空格，\s表示空格，+表示任意长度  master_pat = re.compile(     '|'.join([NUM, PLUS, MINUS, TIMES, DIVIDE, LPAREN, RPAREN, WS]))  # Tokenizer Token = collections.namedtuple('Token', ['type', 'value'])   def generate_tokens(text):     scanner = master_pat.scanner(text)     for m in iter(scanner.match, None):         tok = Token(m.lastgroup, m.group())         if tok.type != 'WS':  # 过滤掉空格符             yield tok </code></pre> <p>下面是表达式求值器的具体实现：</p> <pre><code class="language-python">class ExpressionEvaluator():     """ 递归下降的Parser实现，每个语法规则都对应一个方法，     使用 ._accept()方法来测试并接受当前处理的token，不匹配不报错，     使用 ._except()方法来测试当前处理的token，并在不匹配的时候抛出语法错误     """      def parse(self, text):         """ 对外调用的接口 """         self.tokens = generate_tokens(text)         self.tok, self.next_tok = None, None  # 已匹配的最后一个token，下一个即将匹配的token         self._next()  # 转到下一个token         return self.expr()  # 开始递归      def _next(self):         """ 转到下一个token """         self.tok, self.next_tok = self.next_tok, next(self.tokens, None)      def _accept(self, tok_type):         """ 如果下一个token与tok_type匹配，则转到下一个token """         if self.next_tok and self.next_tok.type == tok_type:             self._next()             return True         else:             return False      def _except(self, tok_type):         """ 检查是否匹配，如果不匹配则抛出异常 """         if not self._accept(tok_type):             raise SyntaxError("Excepted"+tok_type)      # 接下来是语法规则，每个语法规则对应一个方法          def expr(self):         """ 对应规则： expression ::= term { ('+'|'-') term }* """         exprval = self.term() # 取第一项         while self._accept("PLUS") or self._accept("DIVIDE"): # 如果下一项是"+"或"-"             op = self.tok.type              # 再取下一项，即运算符右值             right = self.term()              if op == "PLUS":                 exprval += right             elif op == "MINUS":                 exprval -= right         return exprval                  def term(self):         """ 对应规则： term ::= factor { ('*'|'/') factor }* """                  termval = self.factor() # 取第一项         while self._accept("TIMES") or self._accept("DIVIDE"): # 如果下一项是"+"或"-"             op = self.tok.type              # 再取下一项，即运算符右值             right = self.factor()              if op == "TIMES":                 termval *= right             elif op == "DIVIDE":                 termval /= right         return termval                                     def factor(self):         """ 对应规则： factor ::= NUM | ( expr ) """         if self._accept("NUM"): # 递归出口             return int(self.tok.value)         elif self._accept("LPAREN"):             exprval = self.expr() # 继续递归下去求表达式值             self._except("RPAREN") # 别忘记检查是否有右括号，没有则抛出异常             return exprval         else:             raise SyntaxError("Expected NUMBER or LPAREN") </code></pre> <p>我们输入以下表达式进行测试：</p> <pre><code class="language-python">e = ExpressionEvaluator() print(e.parse("2")) print(e.parse("2+3")) print(e.parse("2+3*4")) print(e.parse("2+(3+4)*5")) </code></pre> <p>求值结果如下：</p> <pre><code>2 5 14 37 </code></pre> <p>如果我们输入的文本不符合语法规则：</p> <pre><code class="language-python">print(e.parse("2 + (3 + * 4)")) </code></pre> <p>则会抛出<code>SyntaxError</code>异常：<code>Expected NUMBER or LPAREN</code>。<br /> 综上，可见我们的表达式求值算法运行正确。</p> <h2 id="2-生成表达式树">2. 生成表达式树</h2> <p>上面我们是得到表达式的结果，但是如果我们想分析表达式的结构，生成一棵简单的表达式解析树呢？那么我们需要对上述类的方法做一定修改：</p> <pre><code class="language-python">class ExpressionTreeBuilder(ExpressionEvaluator):     def expr(self):             """ 对应规则： expression ::= term { ('+'|'-') term }* """             exprval = self.term() # 取第一项             while self._accept("PLUS") or self._accept("DIVIDE"): # 如果下一项是"+"或"-"                 op = self.tok.type                  # 再取下一项，即运算符右值                 right = self.term()                  if op == "PLUS":                     exprval = ('+', exprval, right)                 elif op == "MINUS":                     exprval -= ('-', exprval, right)             return exprval          def term(self):         """ 对应规则： term ::= factor { ('*'|'/') factor }* """                  termval = self.factor() # 取第一项         while self._accept("TIMES") or self._accept("DIVIDE"): # 如果下一项是"+"或"-"             op = self.tok.type              # 再取下一项，即运算符右值             right = self.factor()              if op == "TIMES":                 termval = ('*', termval, right)             elif op == "DIVIDE":                 termval = ('/', termval, right)         return termval                    def factor(self):         """ 对应规则： factor ::= NUM | ( expr ) """         if self._accept("NUM"): # 递归出口             return int(self.tok.value) # 字符串转整形         elif self._accept("LPAREN"):             exprval = self.expr() # 继续递归下去求表达式值             self._except("RPAREN") # 别忘记检查是否有右括号，没有则抛出异常             return exprval         else:             raise SyntaxError("Expected NUMBER or LPAREN") </code></pre> <p>输入下列表达式测试一下：</p> <pre><code class="language-python">print(e.parse("2+3")) print(e.parse("2+3*4")) print(e.parse("2+(3+4)*5")) print(e.parse('2+3+4')) </code></pre> <p>以下是生成结果：</p> <pre><code>('+', 2, 3) ('+', 2, ('*', 3, 4)) ('+', 2, ('*', ('+', 3, 4), 5)) ('+', ('+', 2, 3), 4) </code></pre> <p>可以看到表达式树生成正确。</p> <p>我们上面的这个例子非常简单，但递归下降的解析器也可以用来实现相当复杂的解析器，例如Python代码就是通过一个递归下降解析器解析的。您要是对此跟感兴趣可以检查Python源码中的<code>Grammar</code>文件来一探究竟。然而，下面我们接着会看到，自己动手写一个解析器会面对各种陷阱和挑战。</p> <h2 id="左递归和运算符优先级陷阱">左递归和运算符优先级陷阱</h2> <p>任何涉及<strong>左递归</strong>形式的语法规则，都没法用递归下降parser来解决。所谓左递归，即规则式子右侧最左边的符号是规则头，比如对于以下规则：</p> <pre><code>items ::= items ',' item        | item </code></pre> <p>完成该解析你可能会定义以下方法：</p> <pre><code class="language-python">def items(self):     itemsval = self.items() # 取第一项，然而此处会无穷递归！     if itemsval and self._accept(','):         itemsval.append(self.item())     else:         itemsval = [self.item()] </code></pre> <p>这样做会在第一行就无穷地调用<code>self.items()</code>从而产生无穷递归错误。</p> <p>还有一种是语法规则自身的错误，比如运算符优先级。我们如果忽视运算符优先级直接将表达式简化如下：</p> <pre><code class="language-python">expr ::= factor { ('+'|'-'|'*'|'/') factor }* factor ::= '(' expr ')'        | NUM </code></pre> <p>这个语法从技术上可以实现，但是没有遵守计算顺序约定，导致<code>"3+4*5"</code>的运算结果为35，而不是预期的23。故此处需要用独立的<code>expr</code>和<code>term</code>规则来确保计算结果的正确性。</p> <h2 id="3-相关包">3. 相关包</h2> <p>最后，对于真正复杂的语法解析，建议采用PyParsing或PLY这样的解析工具。如果你对Python代码的抽象语法树感兴趣，可以看下Python自带的ast模块。</p> <h2 id="参考">参考</h2> <ul> <li>[1] Martelli A, Ravenscroft A, Ascher D. Python cookbook[M]. " O'Reilly Media, Inc.", 2015.</li> <li>[2] <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://cs61a.org/study-guide/regex/"  target="_blank"  rel="nofollow">https://cs61a.org/study-guide/regex/</a> </li> <li>[3] <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://cs61a.org/study-guide/bnf/"  target="_blank"  rel="nofollow">https://cs61a.org/study-guide/bnf/</a> </li> <li>[4] <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://zh.wikipedia.org/wiki/%E5%B7%B4%E7%A7%91%E6%96%AF%E8%8C%83%E5%BC%8F"  target="_blank"  rel="nofollow">https://zh.wikipedia.org/wiki/巴科斯范式</a> </li> </ul> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-100398.htm">广州宠物批发（广州宠物批发市场在哪里进货）</a></p>
+                                        <p>下一个：<a href="/news/article-101041.htm">动物疫苗龙头股一览（动物疫苗上市a股龙头）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-72481.htm" title="动物医院诊疗许可证办理条件有哪些规定呢（动物医院诊疗许可证办理条件有哪些规定呢视频）">动物医院诊疗许可证办理条件有哪些规定呢（动物医院诊疗许可证办理条件有哪些规定呢视频）</a></li>
+                        <li class="py-2"><a href="/news/article-66658.htm" title="动物美容培训（宠物美容培训视频）">动物美容培训（宠物美容培训视频）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-31-node-share-links.htm" title="Mihomo Party节点订阅每天更新18.7M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-66010.htm" title="@DateTimeFormat与@JsonFormat和value-format">@DateTimeFormat与@JsonFormat和value-format</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-1-node-share.htm" title="Mihomo Party节点订阅每天更新18.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-80665.htm" title="带你快速认识NamenodeHA和Yarn HA,为搭建HadoopHA集群打下基础!">带你快速认识NamenodeHA和Yarn HA,为搭建HadoopHA集群打下基础!</a></li>
+                        <li class="py-2"><a href="/news/article-94480.htm" title="南京宠物领养中心在哪个位置好（南京宠物领养中心在哪个位置好点）">南京宠物领养中心在哪个位置好（南京宠物领养中心在哪个位置好点）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-27-node-share-links.htm" title="Mihomo Party节点订阅每天更新22M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-93689.htm" title="2020年青浦二中最低录取分是多少啊（2020年青浦二中最低录取分是多少啊）">2020年青浦二中最低录取分是多少啊（2020年青浦二中最低录取分是多少啊）</a></li>
+                        <li class="py-2"><a href="/news/article-66655.htm" title="vue3.0引入axios">vue3.0引入axios</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">63</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
