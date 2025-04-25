@@ -1,4 +1,4 @@
-# Mihomo Party节点订阅每天更新22.9M/S免费节点订阅链接地址分享  更新时间 2025-04-21 07:11:05
+# Mihomo Party节点订阅每天更新19.1M/S免费节点订阅链接地址分享  更新时间 2025-04-25 07:30:00
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://mihomoparty.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://mihomoparty.github.io/uploads/2025/04/0-20250421.yaml
-- https://mihomoparty.github.io/uploads/2025/04/1-20250421.yaml
-- https://mihomoparty.github.io/uploads/2025/04/2-20250421.yaml
-- https://mihomoparty.github.io/uploads/2025/04/3-20250421.yaml
-- https://mihomoparty.github.io/uploads/2025/04/4-20250421.yaml
+- https://mihomoparty.github.io/uploads/2025/04/0-20250425.yaml
+- https://mihomoparty.github.io/uploads/2025/04/1-20250425.yaml
+- https://mihomoparty.github.io/uploads/2025/04/2-20250425.yaml
+- https://mihomoparty.github.io/uploads/2025/04/3-20250425.yaml
+- https://mihomoparty.github.io/uploads/2025/04/4-20250425.yaml
 
 ### V2ray订阅链接
 
-- https://mihomoparty.github.io/uploads/2025/04/0-20250421.txt
-- https://mihomoparty.github.io/uploads/2025/04/1-20250421.txt
-- https://mihomoparty.github.io/uploads/2025/04/2-20250421.txt
-- https://mihomoparty.github.io/uploads/2025/04/3-20250421.txt
-- https://mihomoparty.github.io/uploads/2025/04/4-20250421.txt
+- https://mihomoparty.github.io/uploads/2025/04/0-20250425.txt
+- https://mihomoparty.github.io/uploads/2025/04/1-20250425.txt
+- https://mihomoparty.github.io/uploads/2025/04/2-20250425.txt
+- https://mihomoparty.github.io/uploads/2025/04/3-20250425.txt
+- https://mihomoparty.github.io/uploads/2025/04/4-20250425.txt
 
 ### Sing-box订阅链接
 
-- https://mihomoparty.github.io/uploads/2025/04/20250421.json
+- https://mihomoparty.github.io/uploads/2025/04/20250425.json
 
 ## 更多clash节点订阅 ：
 
