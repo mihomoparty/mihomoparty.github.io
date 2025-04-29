@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+
+<head>
+        <link rel="canonical" href="https://mihomoparty.github.io/news/article-107524.htm" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <!-- Metas Page details-->
+    <title>SpringBoot导入导出数据</title>
+        <meta name="description" content="今天给大家带来的是一个 SpringBoot导入导出数据  首先我们先创建项目 注意：创建SpringBoot项目时一定要联网不然会报错 项目创建好后我们首先对 application.yml 进行编" />
+        <link rel="icon" href="/assets/website/img/mihomoparty/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mihomo Party免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mihomoparty.github.io/news/article-107524.htm" />
+    <meta property="og:site_name" content="Mihomo Party免费机场订阅节点官网" />
+    <meta property="og:title" content="SpringBoot导入导出数据" />
+    <meta property="og:image" content="https://mihomoparty.github.io/uploads/20241103-1/2bfa959228e635361ae4e25486936113.webp" />
+        <meta property="og:release_date" content="2025-04-29T08:04:21" />
+    <meta property="og:updated_time" content="2025-04-29T08:04:21" />
+        <meta property="og:description" content="今天给大家带来的是一个 SpringBoot导入导出数据  首先我们先创建项目 注意：创建SpringBoot项目时一定要联网不然会报错 项目创建好后我们首先对 application.yml 进行编" />
+        
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="SpringBoot导入导出数据">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/main-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/css3-animations.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/responsive.css">
+    <link type="text/css" rel="stylesheet" id="theme" href="/assets/website/css/mihomoparty/jquery-ui-1.8.16.custom.css">
+    <link type="text/css" rel="stylesheet" href="/assets/website/css/mihomoparty/lightbox.min.css">
+    <!-- Revolution slider css -->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/settings.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/revolution.css">
+    <!-- Owl Carousel css -->
+    <link href="/assets/website/css/mihomoparty/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.theme.css" rel="stylesheet">
+    <link href="/assets/website/css/mihomoparty/owl.transitions.css" rel="stylesheet">
+    <!-- font icon css style-->
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/font-awesome.css">
+    <link rel="stylesheet" href="/assets/website/css/mihomoparty/iconstyle.css">
+    <!--google font style-->
+    <link href='static/css/css.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Oswald;-->
+    <link href='static/css/css1.css' rel='stylesheet' type='text/css'>
+    <!--font-family: Open Sans, 'sans-serif';-->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/website/css/mihomoparty/panel.css">
+    <!-- Style Switch -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/assets/website/css/mihomoparty/color.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="lightblue" href="/assets/website/css/mihomoparty/color1.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/assets/website/css/mihomoparty/color2.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="yellow" href="/assets/website/css/mihomoparty/color3.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="red" href="/assets/website/css/mihomoparty/color4.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-5" href="/assets/website/css/mihomoparty/color5.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-6" href="/assets/website/css/mihomoparty/color6.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-7" href="/assets/website/css/mihomoparty/color7.css">
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="color-8" href="/assets/website/css/mihomoparty/color8.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Style Switch -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3Y5HFGWW2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3Y5HFGWW2');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="top" class="ndhome" data-page="detail">
+        <!-- PRELOADER-->
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo triggerAnimation animated" data-animate="fadeInLeft">NADEA</h4>
+            <h4 class="back-logo">NADEA.</h4>
+            <img src="/assets/website/img/mihomoparty/preloader.gif" class="preload-gif" alt="preload-image">
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+    <!-- Header Section Start -->
+    <header class="header headerStyle1" id="header">
+        <div class="ndheader" id="ndheader">
+            <div class="sticky scrollHeaderWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="logo pull-left">
+                                <a class="navbar-brand" href="/">
+                                                                        <span>Mihomo Party</span>
+                                                                    </a>
+
+                            </div>
+                            <nav class="mainMenu mainNav pull-right" id="mainNav">
+                                <ul class="navTabs">
+                                                                        <li>
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                        <li>
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                    </ul><!-- end of nav tabs -->
+                            </nav><!-- end of main nav -->
+                            <a href="#" class="generalLink" id="responsiveMainNavToggler"><i class="fa fa-bars"></i></a>
+                            <div class="clearfix"></div><!-- end of clearfix -->
+                            <div class="responsiveMainNav"></div><!-- end of responsive main nav -->
+                        </div><!-- end fo col 12 -->
+                    </div><!-- end of row -->
+                </div><!-- end of container -->
+            </div><!-- end of sticky -->
+        </div><!-- end of ndheader -->
+    </header><!-- end of header -->
+    <!-- Nadea PageTitle Section Start -->
+    <section id="page-title" class="clear skype-bg" style="padding-top: 15rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                </div><!-- col 6-->
+                <div class="col-sm-8">
+                    <div class="ndbreadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div><!-- col 6-->
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!-- Nadea PageTitle Section End -->
+    <!-- Nadea Recent Work Start -->
+    <section class="ndprotfolio clear" id="ndrecentwork">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 style="font-size: 2.5rem;">SpringBoot导入导出数据</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="htmledit_views"> <p>今天给大家带来的是一个 <strong>SpringBoot导入导出数据</strong></p> <hr/> <p>首先我们先创建项目 <strong>注意：创建SpringBoot项目时一定要联网不然会报错</strong><img fetchpriority="high" decoding="async" alt="" height="678" src="http://img.555519.xyz/uploads/20221230/92f082aed2c0865b73aaa78c0bea0ccc.jpg"></p> <p>项目创建好后我们首先对 <strong>application.yml 进行编译</strong></p> <p><img decoding="async" alt="" height="101" src="http://img.555519.xyz/uploads/20221230/7f6dd89af4dfa78ec0a21683ccf32d89.jpg"></p> <pre><code>server:   port: 8081  # mysql spring:   datasource:     driver-class-name: com.mysql.cj.jdbc.Driver     url: jdbc:mysql://127.0.0.1:3306/dvd?characterEncoding=utf-8&amp;&amp;severTimezone=utc     username: root     password: root    thymeleaf:     mode: HTML5     cache: false     suffix: .html     prefix: classpath:/  mybatis:   mapperLocations: classpath:mapper/**/*.xml   configuration:     map-underscore-to-camel-case: true  pagehelper:   helper-dialect: mysql   offset-as-page-num: true   params: count=countSql   reasonable: true   row-bounds-with-count: true   support-methods-arguments: true</code></pre> <p><strong>注意：在 ：后一定要空格，这是他的语法，不空格就会运行报错</strong></p> <p>接下来我们进行对项目的构建 <strong>创建好如下几个包</strong><strong> </strong>可根据自己实际需要创建其他的工具包之类的</p> <p><img decoding="async" alt="" height="182" src="http://img.555519.xyz/uploads/20221230/2f73aaeda28e8b0b834fe81406833093.jpg"></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mapper：用于存放dao层接口</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pojo：用于存放实体类</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;service：用于存放service层接口，以及service层实现类</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; controller：用于存放controller控制层&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p> <hr/> <p>接下来我们开始编写代码</p> <p>首先是实体类</p> <pre><code class="language-java">package com.bdqn.springbootexcel.pojo;  import lombok.Data;  import java.io.Serializable; import java.util.List;  @Data public class ExcelData implements Serializable{      //文件名称     private String fileName;     //表头数据     private String[] head;     //数据     private List&lt;String[]&gt; data;  } </code></pre> <p>&nbsp;然后是service层</p> <pre><code class="language-java">package com.bdqn.springbootexcel.service;  import com.bdqn.springbootexcel.pojo.User; import org.apache.ibatis.annotations.Select;  import javax.servlet.http.HttpServletResponse; import java.util.List;  public interface ExcelService {      Boolean exportExcel(HttpServletResponse response, String fileName, Integer pageNum, Integer pageSize);      Boolean importExcel(String fileName);      List&lt;User&gt; find(); } </code></pre> <pre><code class="language-java">package com.bdqn.springbootexcel.service;  import com.bdqn.springbootexcel.mapper.UserMapper; import com.bdqn.springbootexcel.pojo.ExcelData; import com.bdqn.springbootexcel.pojo.User; import com.bdqn.springbootexcel.util.ExcelUtil; import lombok.extern.slf4j.Slf4j; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.stereotype.Service;  import javax.servlet.http.HttpServletResponse; import java.util.ArrayList; import java.util.List;  @Slf4j @Service public class ExcelServiceImpl implements ExcelService {      @Autowired     private UserMapper userMapper;      @Override     public Boolean exportExcel(HttpServletResponse response, String fileName, Integer pageNum, Integer pageSize) {         log.info("导出数据开始。。。。。。");         //查询数据并赋值给ExcelData         List&lt;User&gt; userList = userMapper.find();         List&lt;String[]&gt; list = new ArrayList&lt;String[]&gt;();         for (User user : userList) {             String[] arrs = new String[userList.size()];             arrs[0] = String.valueOf(user.getId());             arrs[1] = String.valueOf(user.getName());             arrs[2] = String.valueOf(user.getAge());             arrs[3] = String.valueOf(user.getSex());             list.add(arrs);         }         //表头赋值         String[] head = {"序列", "名字", "年龄", "性别"};         ExcelData data = new ExcelData();         data.setHead(head);         data.setData(list);         data.setFileName(fileName);         //实现导出         try {             ExcelUtil.exportExcel(response, data);             log.info("导出数据结束。。。。。。");             return true;         } catch (Exception e) {             log.info("导出数据失败。。。。。。");             return false;         }     }      @Override     public Boolean importExcel(String fileName) {         log.info("导入数据开始。。。。。。");         try {             List&lt;Object[]&gt; list = ExcelUtil.importExcel(fileName);             System.out.println(list.toString());             for (int i = 0; i &lt; list.size(); i++) {                 User user = new User();                 user.setName((String) list.get(i)[0]);                 user.setAge((String) list.get(i)[1]);                 user.setSex((String) list.get(i)[2]);                 userMapper.add(user);             }             log.info("导入数据结束。。。。。。");             return true;         } catch (Exception e) {             log.info("导入数据失败。。。。。。");             e.printStackTrace();         }         return false;     }      @Override     public List&lt;User&gt; find() {         return userMapper.find();     } } </code></pre> <p>工具类</p> <pre><code class="language-java">package com.bdqn.springbootexcel.util;  import com.bdqn.springbootexcel.pojo.ExcelData; import com.bdqn.springbootexcel.pojo.User; import lombok.extern.slf4j.Slf4j; import org.apache.poi.hssf.usermodel.*; import org.apache.poi.ss.usermodel.*;  import javax.servlet.http.HttpServletResponse; import java.io.BufferedOutputStream; import java.io.FileInputStream; import java.io.InputStream; import java.io.OutputStream; import java.util.ArrayList; import java.util.List;  import static org.apache.poi.ss.usermodel.CellType.*;  @Slf4j public class ExcelUtil {     public static void exportExcel(HttpServletResponse response, ExcelData data) {         log.info("导出解析开始，fileName:{}",data.getFileName());         try {             //实例化HSSFWorkbook             HSSFWorkbook workbook = new HSSFWorkbook();             //创建一个Excel表单，参数为sheet的名字             HSSFSheet sheet = workbook.createSheet("sheet");             //设置表头             setTitle(workbook, sheet, data.getHead());             //设置单元格并赋值             setData(sheet, data.getData());             //设置浏览器下载             setBrowser(response, workbook, data.getFileName());             log.info("导出解析成功!");         } catch (Exception e) {             log.info("导出解析失败!");             e.printStackTrace();         }     }      private static void setTitle(HSSFWorkbook workbook, HSSFSheet sheet, String[] str) {         try {             HSSFRow row = sheet.createRow(0);             //设置列宽，setColumnWidth的第二个参数要乘以256，这个参数的单位是1/256个字符宽度             for (int i = 0; i &lt;= str.length; i++) {                 sheet.setColumnWidth(i, 15 * 256);             }             //设置为居中加粗,格式化时间格式             HSSFCellStyle style = workbook.createCellStyle();             HSSFFont font = workbook.createFont();             font.setBold(true);             style.setFont(font);             style.setDataFormat(HSSFDataFormat.getBuiltinFormat("m/d/yy h:mm"));             //创建表头名称             HSSFCell cell;             for (int j = 0; j &lt; str.length; j++) {                 cell = row.createCell(j);                 cell.setCellValue(str[j]);                 cell.setCellStyle(style);             }         } catch (Exception e) {             log.info("导出时设置表头失败！");             e.printStackTrace();         }     }      private static void setData(HSSFSheet sheet, List&lt;String[]&gt; data) {         try{             int rowNum = 1;             for (int i = 0; i &lt; data.size(); i++) {                 HSSFRow row = sheet.createRow(rowNum);                 for (int j = 0; j &lt; data.get(i).length; j++) {                     row.createCell(j).setCellValue(data.get(i)[j]);                 }                 rowNum++;             }             log.info("表格赋值成功！");         }catch (Exception e){             log.info("表格赋值失败！");             e.printStackTrace();         }     }      private static void setBrowser(HttpServletResponse response, HSSFWorkbook workbook, String fileName) {         try {             //清空response             response.reset();             //设置response的Header             response.addHeader("Content-Disposition", "attachment;filename=" + fileName);             OutputStream os = new BufferedOutputStream(response.getOutputStream());             response.setContentType("application/vnd.ms-excel;charset=gb2312");             //将excel写入到输出流中             workbook.write(os);             os.flush();             os.close();             log.info("设置浏览器下载成功！");         } catch (Exception e) {             log.info("设置浏览器下载失败！");             e.printStackTrace();         }      }      public static List&lt;Object[]&gt; importExcel(String fileName) {         log.info("导入解析开始，fileName:{}",fileName);         try {             List&lt;Object[]&gt; list = new ArrayList&lt;&gt;();             InputStream inputStream = new FileInputStream(fileName);             Workbook workbook = WorkbookFactory.create(inputStream);             Sheet sheet = workbook.getSheetAt(0);             //获取sheet的行数             int rows = sheet.getPhysicalNumberOfRows();             for (int i = 0; i &lt; rows; i++) {                 //过滤表头行                 if (i == 0) {                     continue;                 }                 //获取当前行的数据                 Row row = sheet.getRow(i);                 Object[] objects = new Object[row.getPhysicalNumberOfCells()];                 int index = 0;                 for (Cell cell : row) {                     if (cell.getCellType().equals(NUMERIC)) {                         objects[index] = (int) cell.getNumericCellValue();                     }                     if (cell.getCellType().equals(STRING)) {                         objects[index] = cell.getStringCellValue();                     }                     if (cell.getCellType().equals(BOOLEAN)) {                         objects[index] = cell.getBooleanCellValue();                     }                     if (cell.getCellType().equals(ERROR)) {                         objects[index] = cell.getErrorCellValue();                     }                     index++;                 }                 list.add(objects);             }             log.info("导入文件解析成功！");             return list;         }catch (Exception e){             log.info("导入文件解析失败！");             e.printStackTrace();         }         return null;     }      //测试导入     public static void main(String[] args) {         try {             String fileName = "G:/test.xlsx";             List&lt;Object[]&gt; list = importExcel(fileName);             for (int i = 0; i &lt; list.size(); i++) {                 User user = new User();                 user.setName((String) list.get(i)[0]);                 user.setAge((String) list.get(i)[1]);                 user.setSex((String) list.get(i)[2]);                 System.out.println(user.toString());             }         } catch (Exception e) {             e.printStackTrace();         }     }  } </code></pre> <p>最后是controller层</p> <pre><code class="language-java">package com.bdqn.springbootexcel.controller;  import com.bdqn.springbootexcel.pojo.User; import com.bdqn.springbootexcel.service.ExcelService; import lombok.extern.slf4j.Slf4j; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.web.bind.annotation.GetMapping; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.ResponseBody; import org.springframework.web.bind.annotation.RestController;  import javax.servlet.http.HttpServletResponse; import java.util.List;  @Slf4j @RestController public class ExcelController {      @Autowired     private ExcelService excelService;      @GetMapping("/export")     public String exportExcel(HttpServletResponse response, String fileName, Integer pageNum, Integer pageSize) {         fileName = "test.xlsx";         if (fileName == null || "".equals(fileName)) {             return "文件名不能为空！";         } else {             if (fileName.endsWith("xls") || fileName.endsWith("xlsx")) {                 Boolean isOk = excelService.exportExcel(response, fileName, 1, 10);                 if (isOk) {                     return "导出成功！";                 } else {                     return "导出失败！";                 }             }             return "文件格式有误！";         }     }      @GetMapping("/import")     public String importExcel(String fileName) {         fileName = "G:/test.xlsx";         if (fileName == null &amp;&amp; "".equals(fileName)) {             return "文件名不能为空！";         } else {             if (fileName.endsWith("xls") || fileName.endsWith("xlsx")) {                 Boolean isOk = excelService.importExcel(fileName);                 if (isOk) {                     return "导入成功！";                 } else {                     return "导入失败！";                 }             }             return "文件格式错误！";         }     }      //饼状图的数据查询     //@ResponseBody     @RequestMapping("/pojos_bing")     public List&lt;User&gt; gotoIndex() {         List&lt;User&gt; pojos = excelService.find();         return pojos;     }  } </code></pre> <hr/> <p>到现在为止我们的后端代码就已经完全搞定了，前端页面如下</p> <p>写了一个简单前端用于测试</p> <p>index.html</p> <pre><code class="language-java">&lt;!DOCTYPE html&gt; &lt;html lang="en" xmlns:th="http://www.thymeleaf.org"&gt; &lt;html lang="en"&gt; &lt;head&gt;     &lt;meta charset="UTF-8"&gt;     &lt;title&gt;Title&lt;/title&gt; &lt;/head&gt; &lt;body&gt;     &lt;div align="center"&gt;         &lt;a th:href="@{'/export'}"&gt;导出&lt;/a&gt;         &lt;a th:href="@{'/import'}"&gt;导入&lt;/a&gt;     &lt;/div&gt; &lt;/body&gt; &lt;/html&gt;</code></pre> <p>当我们点击导出按钮时浏览器会自动下载</p> <p>当我们点击导入按钮时会往数据库中添加表格数据</p> <hr/> <p><strong>今天给大家带来的就是这些内容，感谢观看！</strong></p> <p><strong>有问题可以在评论区指正，我会及时修改！</strong></p> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-107523.htm">TypeScript与javascript优劣势</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-73145.htm" title="动物用狂犬病疫苗的作用（动物用狂犬病疫苗的作用是什么）">动物用狂犬病疫苗的作用（动物用狂犬病疫苗的作用是什么）</a></li>
+                        <li class="py-2"><a href="/news/article-82034.htm" title="办理宠物食品厂需要什么手续 办理宠物食品厂需要什么手续和证件">办理宠物食品厂需要什么手续 办理宠物食品厂需要什么手续和证件</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-15-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新22.8M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.8M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-23-node-share.htm" title="Mihomo Party节点订阅每天更新18.2M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-9-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新22M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-85590.htm" title="养猫要***需要多少钱一次呢（养猫要打哪些针 多少钱）">养猫要***需要多少钱一次呢（养猫要打哪些针 多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-75178.htm" title="哈尔滨宠物王国在哪（哈尔滨宠物店电话号码）">哈尔滨宠物王国在哪（哈尔滨宠物店电话号码）</a></li>
+                        <li class="py-2"><a href="/news/article-102583.htm" title="天津宠物领养中心有哪些地址 天津宠物领养中心有哪些地址和电话">天津宠物领养中心有哪些地址 天津宠物领养中心有哪些地址和电话</a></li>
+                        <li class="py-2"><a href="/news/article-81349.htm" title="宠物猫疫苗价格表图（宠物猫疫苗价格表图大全）">宠物猫疫苗价格表图（宠物猫疫苗价格表图大全）</a></li>
+                        <li class="py-2"><a href="/news/article-89949.htm" title="做梦梦见抱着小女孩是什么意思呀（梦见抱着个小女孩什么意思）">做梦梦见抱着小女孩是什么意思呀（梦见抱着个小女孩什么意思）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </section>
+    <!--Recent Work End -->
+        <!-- Footer Section Start -->
+    <section class="footer-bg clear animation" data-animation="animation-fade-in-up" id="footer">
+        <!-- Footer Bottom Start-->
+        <div class="footer-bottom clear">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="footer-nav pull-left">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Purchase</a></li>
+                        </ul>
+                    </div><!-- col 6 end -->
+                    <div class="col-sm-6">
+                        <p class="copywrite pull-right">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">Mihomo Party免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                        </p>
+                    </div><!-- col 6 end -->
+                </div><!-- row end -->
+            </div><!-- container end -->
+        </div><!-- Footer Bottom End -->
+    </section><!-- footer section end  -->
+    <div class="go-up"><img src="/assets/website/img/mihomoparty/back-top.png" alt="Back-To-Top"></div>
+    <!-- Back To Top End-->
+    <!-- Jquery lib-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/bootstrap.js"></script>
+    <!-- JavaScript -->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.appear.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/owl.carousel.min.js"></script>
+    <!--for portfolio jquery-->
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.isotope.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/jquery.ui.rlightbox.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/website/js/frontend/mihomoparty/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.banner').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1500,
+            startheight: 700,
+            hideThumbs: 200,
+
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 5,
+
+            navigationType: "bullet",
+            navigationArrows: "solo",
+            navigationStyle: "preview3",
+
+
+            navigationHAlign: "center", // Vertical Align top,center,bottom
+            navigationVAlign: "bottom", // Horizontal Align left,center,right
+            navigationHOffset: 0,
+            navigationVOffset: 20,
+
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
+
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
+
+            touchenabled: "off", // Enable Swipe Function : on/off
+            onHoverStop: "off", // Stop Banner Timet at Hover on Slide on/off
+
+            stopAtSlide: -1, // Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+            stopAfterLoops: -1, // Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+            hideCaptionAtLimit: 0, // It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
+            hideAllCaptionAtLilmit: 0, // Hide all The Captions if Width of Browser is less then this value
+            hideSliderAtLimit: 0, // Hide the whole slider, and stop also functions if Width of Browser is less than this value
+
+            shadow: 0, //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+            fullWidth: "on" // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+
+
+        });
+        })
+    </script>
+    
+    <!--Main Js -->
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/nice-scroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/ms-drop-down.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/easy-tabs.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/styleswitch.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/mihomoparty/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
