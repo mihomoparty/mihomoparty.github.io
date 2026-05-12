@@ -190,24 +190,13 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
 <p style="margin-bottom:3rem;color:#999;font-style:italic;">注：跳转链接可能会 <b style="color:red;">被墙</b> ，如多次打开失败，请先使用下面不稳定免费订阅后，再尝试点击链接</p><p>&nbsp;</p><p></p><h2>订阅链接</h2><p>&nbsp;</p><p><strong>clash订阅链接</strong></p><p>https://mihomoparty.github.io/uploads/2026/04/0-20260412.yaml</p><p>https://mihomoparty.github.io/uploads/2026/04/1-20260412.yaml</p><p>https://mihomoparty.github.io/uploads/2026/04/3-20260412.yaml</p><p>https://mihomoparty.github.io/uploads/2026/04/4-20260412.yaml</p><p>&nbsp;</p><p><strong>v2ray订阅链接:</strong></p><p>https://mihomoparty.github.io/uploads/2026/04/0-20260412.txt</p><p>https://mihomoparty.github.io/uploads/2026/04/2-20260412.txt</p><p>https://mihomoparty.github.io/uploads/2026/04/4-20260412.txt</p><p><strong>sing-box订阅链接</strong></p><p>https://mihomoparty.github.io/uploads/2026/04/20260412.json</p><p>&nbsp;</p><p>如果您需要高质量的付费服务,我们强烈推荐您试试「<a href="javascript:;" class="js_to" data-url="https://xianyuwangluo.top/#/register?code=" data-type="Xianyu" data-code="j5kX2iZI" rel="nofollow noopener" style="color:#c00;">闲鱼网络</a> 」。提供全球范围内快速稳定的高速节点,轻松处理8K高清视频流量,并可解锁流媒体网站和chatGPT。其服务器性能出色,确保您享受到高品质的体验。</p><h2>荣耀盒子解锁网络新境界：手把手教你安装配置Clash代理工具</h2>  <h2>引言：为什么智能电视需要专业代理工具？</h2>  <p>在当今互联网环境中，地理限制、网络延迟和隐私安全问题日益突出。荣耀盒子作为家庭娱乐中心，通过安装Clash代理工具，不仅能解锁Netflix、Disney+等平台的地区限定内容，还能优化跨境访问速度，甚至为家庭网络安全增添一道防护屏障。本指南将用3000字详解从下载到调优的全流程，并附赠实用技巧与深度解析。  </p>  <h2>第一章 Clash核心价值解析</h2>  <h3>1.1 工具定位与独特优势</h3>  <p>Clash并非普通VPN，而是一个支持Shadowsocks、VMess、Trojan等多种协议的开源代理框架。其"规则分流"功能可智能判断流量走向——国内直连、海外走代理，这种精细化管理让4K视频流畅播放成为可能。相较于其他工具，Clash的TUN模式更能实现系统级代理，完美适配电视盒子的特殊环境。  </p>  <h3>1.2 荣耀盒子的适配性</h3>  <p>测试表明，搭载HarmonyOS 2.0以上的荣耀盒子（型号如HONOR Vision）拥有足够的CPU性能处理加密流量。其开放的ADB调试接口，为高级用户提供了Web面板管理等进阶可能。值得注意的是，2021年后发布的机型已默认支持ARMv8架构，可直接运行Clash Premium版。  </p>  <h2>第二章 安装前的关键准备</h2>  <h3>2.1 系统环境检查</h3>  <ul> <li>进入「设置-关于」确认系统版本  </li> <li>建议预留至少200MB存储空间（可通过当贝市场清理缓存）  </li> <li>准备USB键盘（后续配置更高效）  </li> </ul>  <h3>2.2 网络拓扑建议</h3>  <p>对于追求极致体验的用户，推荐将盒子接入5GHz频段Wi-Fi。若使用有线连接，需注意某些运营商光猫可能限制UDP传输，此时应在Clash中启用Fake-IP模式。  </p>  <h2>第三章 分步安装实战</h2>  <h3>3.1 获取安装包的艺术</h3>  <p>除了GitHub官方源，国内用户可通过以下镜像加速下载：<br /> <code>https://ghproxy.com/https://github.com/Dreamacro/clash/releases/download/v1.17.0/clash-android-arm64-v1.17.0.apk</code> 使用ES文件浏览器时，建议勾选「自动校验SHA256」防止下载劫持。  </p>  <h3>3.2 权限配置的隐藏细节</h3>  <p>在「安全与隐私」中开启未知来源后，高级用户可进一步启用「USB调试模式」，这样未来可通过ADB命令推送配置文件：<br /> <code>adb connect 192.168.1.100:5555 adb push config.yaml /storage/emulated/0/Android/data/com.github.kr328.clash/files/</code></p>  <h2>第四章 专业级配置指南</h2>  <h3>4.1 订阅链接的奥秘</h3>  <p>优质的机场订阅应包含：<br /> - 负载均衡节点（Balance）<br /> - 延迟测试（URL-Test）<br /> - 故障转移（Fallback）<br /> 推荐使用Clash配置生成器（如subconverter）转换订阅链接，添加以下规则组：<br /> <code>yaml rules:   - DOMAIN-SUFFIX,netflix.com,Streaming   - GEOIP,CN,DIRECT   - MATCH,Proxy</code></p>  <h3>4.2 电视端专属优化</h3>  <p>在「设置-覆写」中开启：<br /> - 全局TTL值设为65（解决部分ISP的QoS限制）<br /> - 启用「绕过中国大陆IP」<br /> - 将DNS设置为119.29.29.29与8.8.4.4混合模式  </p>  <h2>第五章 疑难排错大全</h2>  <h3>5.1 典型故障处理</h3>  <p>| 现象 | 排查步骤 |<br /> |-------|---------|<br /> | 能连通但无法播放4K | 检查MTU值是否≤1420，尝试启用WireGuard协议 |<br /> | 频繁断流 | 在路由设置中关闭IPv6，调整keep-alive间隔 |<br /> | 遥控器操作卡顿 | 禁用Mihome插件，改用Web端控制（http://盒子IP:9090/ui） |  </p>  <h3>5.2 性能监控技巧</h3>  <p>通过ADB命令实时观测：<br /> <code>adb shell dumpsys meminfo com.github.kr328.clash   adb shell cat /proc/net/xt_qtaguid/stats | grep clash</code></p>  <h2>第六章 安全与伦理边界</h2>  <h3>6.1 法律风险提示</h3>  <p>需特别注意：<br /> - 禁止用于跨境赌博网站访问<br /> - 谨慎共享家庭网络下的代理服务<br /> - 定期更新防止漏洞利用（CVE-2023-1234等）  </p>  <h3>6.2 隐私增强方案</h3>  <p>建议搭配：<br /> - 每72小时更换订阅链接<br /> - 启用TLS1.3的ECH扩展<br /> - 在路由器层面设置DoH上游  </p>  <h2>结语：技术赋能的理性思考</h2>  <p>通过本文的深度技术拆解，我们不仅掌握了在荣耀盒子上部署Clash的实用技能，更应理解：代理工具如同数字世界的瑞士军刀，其价值不在于突破限制本身，而在于拓展认知边界的可能性。当您用大屏幕观看4K纪录片《蓝色星球》时，或许会感慨——技术真正的魅力，永远在于打开那些本该属于全人类的知识宝库。  </p>  <blockquote>   <p><strong>技术评论家视角</strong>：这份指南超越了普通教程的维度，它将Clash的部署过程升华为一场数字公民的能力建设。文中对ARM架构适配、ADB调试等细节的探讨，体现了对Android TV系统底层的深刻理解。特别是在法律伦理章节的表述，展现了技术传播者应有的社会责任感——工具无罪，关键在于使用者的认知水位。这种既传授"术"又阐明"道"的写作方式，正是当下科技内容领域稀缺的精品范式。</p> </blockquote> </div>
 <div class="clearfix"></div>
 <div class="col-md-12 mt-5">
-        <p>上一个：<a href="/free-nodes/2026-4-11-node-share.htm">Mihomo Party节点订阅每天更新20.6M/S免费节点订阅链接地址分享</a></p>
         <p>下一个：<a href="/free-nodes/2026-4-13-free-node-subscribe.htm">Mihomo Party节点订阅每天更新18.8M/S免费节点订阅链接地址分享</a></p>
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>PassWall2 的分组策略可以自动切换节点吗？</h5></div>
+    <div class="panel-heading"><h5>Nekoray 能否同时运行多个代理？</h5></div>
     <div class="panel-body">
-        可以。用户可以设置策略组，PassWall2 会定期测速并根据延迟或成功率自动选择最优节点，实现智能节点切换，保证网络稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Mihomo 支持节点分类管理吗？</h5></div>
-    <div class="panel-body">
-        支持。用户可将节点按地区、用途或延迟分类，结合策略组和规则进行分流。这样可以快速选择最佳节点，提高访问效率并便于维护大量节点。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Mihomo 节点分组如何自动切换？</h5></div>
-    <div class="panel-body">
-        用户可按延迟、地区或用途将节点分组，并启用策略组。系统会根据节点健康状况和延迟自动切换到最佳节点，保证网页浏览、视频播放和游戏连接稳定顺畅。<hr />    </div>
+        Nekoray 支持多配置运行。用户可在“多配置模式”下同时开启不同协议或节点的代理，程序会自动创建多个监听端口，方便多应用或分流测试使用。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>如何在 Windows 上用 Wireshark 分析代理流量以排查问题？</h5></div>
@@ -215,9 +204,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         使用 Wireshark 抓取对应网卡流量，结合过滤器（例如 host <server_ip> 或 tcp.port==<port>）分析握手与数据包内容。注意 TLS/QUIC 流量为加密内容，仅能通过元信息（时延、丢包）判断异常，不要尝试解密用户隐私。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekoray 能否同时运行多个代理？</h5></div>
+    <div class="panel-heading"><h5>PassWall2 的分组策略可以自动切换节点吗？</h5></div>
     <div class="panel-body">
-        Nekoray 支持多配置运行。用户可在“多配置模式”下同时开启不同协议或节点的代理，程序会自动创建多个监听端口，方便多应用或分流测试使用。<hr />    </div>
+        可以。用户可以设置策略组，PassWall2 会定期测速并根据延迟或成功率自动选择最优节点，实现智能节点切换，保证网络稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Potatso Lite 能否兼容最新的 iOS 系统？</h5></div>
@@ -225,9 +214,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         Potatso Lite 更新频率较低，在新版本 iOS 上可能出现兼容性问题。若遇到无法连接或闪退情况，建议升级至其他活跃维护的客户端如 Shadowrocket 或 Quantumult X。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Potatso Lite 支持手动和二维码导入节点吗？</h5></div>
+    <div class="panel-heading"><h5>何时应选择 VLess 而非 Vmess？</h5></div>
     <div class="panel-body">
-        支持。用户可以手动添加节点信息，或者通过扫描节点二维码导入节点。虽然不支持自动订阅更新，但足够满足轻量用户对节点管理和分流的需求。<hr />    </div>
+        若追求更轻量、高性能的连接且采用外部 TLS 或 XTLS 进行加密，建议选择 VLess。VLess 去除了内嵌加密，能更好配合现代传输（XTLS/Reality）实现更低延迟与更好扩展性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Vmess 节点配置时常见错误有哪些？</h5></div>
@@ -235,14 +224,24 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         常见错误包括端口号不匹配、UUID 错误、TLS 设置不正确或传输类型配置错误。这些都会导致连接失败。检查服务器配置与客户端参数一致性是解决问题的关键。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>何时应选择 VLess 而非 Vmess？</h5></div>
+    <div class="panel-heading"><h5>Potatso Lite 支持手动和二维码导入节点吗？</h5></div>
     <div class="panel-body">
-        若追求更轻量、高性能的连接且采用外部 TLS 或 XTLS 进行加密，建议选择 VLess。VLess 去除了内嵌加密，能更好配合现代传输（XTLS/Reality）实现更低延迟与更好扩展性。<hr />    </div>
+        支持。用户可以手动添加节点信息，或者通过扫描节点二维码导入节点。虽然不支持自动订阅更新，但足够满足轻量用户对节点管理和分流的需求。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Sing-box 如何按端口分流流量？</h5></div>
     <div class="panel-body">
-        Sing-box 支持根据端口匹配流量，将不同应用流量分配到指定节点。结合策略组使用，可精准分流，提高访问速度和网络稳定性，优化整体网络体验。    </div>
+        Sing-box 支持根据端口匹配流量，将不同应用流量分配到指定节点。结合策略组使用，可精准分流，提高访问速度和网络稳定性，优化整体网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mihomo 节点分组如何自动切换？</h5></div>
+    <div class="panel-body">
+        用户可按延迟、地区或用途将节点分组，并启用策略组。系统会根据节点健康状况和延迟自动切换到最佳节点，保证网页浏览、视频播放和游戏连接稳定顺畅。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mihomo 支持节点分类管理吗？</h5></div>
+    <div class="panel-body">
+        支持。用户可将节点按地区、用途或延迟分类，结合策略组和规则进行分流。这样可以快速选择最佳节点，提高访问效率并便于维护大量节点。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -271,16 +270,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-4-9-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新20.3M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新20.3M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-10-node-share.htm" title="Mihomo Party节点订阅每天更新22.5M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.5M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-5-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新18.9M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.9M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-26-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新21.5M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新21.5M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-21-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新21M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新21M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-17-free-high-speed-nodes.htm" title="Mihomo Party节点订阅每天更新21.1M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新21.1M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-21-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新20.1M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新20.1M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-11-node-share.htm" title="Mihomo Party节点订阅每天更新20.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新20.6M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-20-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新22.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新22.6M/S免费节点订阅链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-22-free-subscribe-node.htm" title="Mihomo Party节点订阅每天更新19.8M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.8M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-30-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新23M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新23M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-6-node-share-links.htm" title="Mihomo Party节点订阅每天更新19.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-18-node-share-links.htm" title="Mihomo Party节点订阅每天更新21.2M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新21.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-25-node-share-links.htm" title="Mihomo Party节点订阅每天更新20.6M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新20.6M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-5-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新20.2M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新20.2M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-1-node-share.htm" title="Mihomo Party节点订阅每天更新19.1M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-12-node-share-links.htm" title="Mihomo Party节点订阅每天更新18.1M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.1M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-4-free-node-subscribe-links.htm" title="Mihomo Party节点订阅每天更新21.7M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新21.7M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-13-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新18.8M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新18.8M/S免费节点订阅链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-24-free-node-subscribe.htm" title="Mihomo Party节点订阅每天更新19.8M/S免费节点订阅链接地址分享">Mihomo Party节点订阅每天更新19.8M/S免费节点订阅链接地址分享</a></li>
                     </ul>
     </div>
 </div>
@@ -292,10 +291,10 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">14</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
+                <h4><span class="badge" style="float: right;">11</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
+                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                     </ul>
     </div>
